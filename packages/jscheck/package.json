@@ -1,0 +1,21 @@
+{
+  "name": "@lijuhong1981/jscheck",
+  "version": "1.0.7",
+  "description": "> TODO: description",
+  "author": "lijuhong1981",
+  "homepage": "https://github.com/lijuhong1981/jslibs#readme",
+  "license": "ISC",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijuhong1981/jslibs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lijuhong1981/jslibs/issues"
+  }
+}
