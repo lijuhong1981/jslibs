@@ -1,4 +1,4 @@
-import Check, { defined } from "@lijuhong1981/jscheck";
+import Check, { isDefined } from "@lijuhong1981/jscheck";
 import { Destroyable } from "@lijuhong1981/jsdestroy";
 import { now } from "@lijuhong1981/jstime";
 
@@ -55,7 +55,7 @@ class AnimationFrameUpdater extends Destroyable {
     stop() {
         this.isStoped = true;
         this.isStarted = false;
-        if (defined(this.animationFrameHandler)) {
+        if (isDefined(this.animationFrameHandler)) {
             window.cancelAnimationFrame(this.animationFrameHandler);
             delete this.animationFrameHandler;
         }

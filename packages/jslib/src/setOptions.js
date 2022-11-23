@@ -1,5 +1,11 @@
 import getPropertyDescriptor from './getPropertyDescriptor.js';
 
+/**
+ * 为对象设置参数
+ * @param {Object} target 设置的对象
+ * @param {Object} options 设置的参数
+ * @returns {Object} 设置后的对象
+ */
 function setOptions(target, options) {
     if (!target || !options)
         return;
