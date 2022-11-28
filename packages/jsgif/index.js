@@ -480,6 +480,8 @@ function GifPlayer(options = {}) {
     }
 
     function loadData(data) {
+        Check.defined('data', data);
+
         return new Promise(function (resolve, reject) {
             try {
                 if (data instanceof ArrayBuffer)
