@@ -27,6 +27,7 @@ import {
     isDestroyed,
     Destroyable,
 } from "@lijuhong1981/jsdestroy";
+import GifPlayer from "@lijuhong1981/jsgif";
 import {
     Event,
     EventDispatcher,
@@ -80,6 +81,7 @@ export {
     destroyHTMLElement,
     isDestroyed,
     Destroyable,
+    GifPlayer,
     Event,
     EventDispatcher,
     EventEmitter,

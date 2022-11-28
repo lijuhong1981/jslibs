@@ -7,7 +7,7 @@
  * @param {Function} callback 遍历数组元素回调方法
  * @param {Number} maxLoopCount 指定循环最大遍历次数
  * @param {Number} delay 一次循环完成后的延迟时间
- * @returns {Function}
+ * @returns {Function} 返回取消函数，调用后可取消遍历
  */
 function traverseArray(array, callback = (element, index) => { }, maxLoopCount = 1000, delay = 10) {
     const arrayLength = array.length;
