@@ -479,32 +479,42 @@ function GifPlayer(options = {}) {
         return player;
     }
 
+    function loadData(data) {
+        return new Promise(function (resolve, reject) {
+            try {
+                if (data instanceof ArrayBuffer)
+                    data = new Uint8Array(arraybuffer);
+                STREAM = new Stream(data);
+                reset();
+                parseHeader();
+                parseBlock();
+                stopGif();
+                if (options.autoPlay)
+                    playGif();
+                resolve(player);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+
     // 用xhr请求本地文件
-    function loadGIF(url, requestOptions) {
+    function loadUrl(url, requestOptions) {
         Check.typeOf.string('url', url);
 
         return new Promise(function (resolve, reject) {
             fetchArrayBuffer(url, requestOptions).then(function (arraybuffer) {
-                try {
-                    const data = new Uint8Array(arraybuffer);
-                    STREAM = new Stream(data);
-                    reset();
-                    parseHeader();
-                    parseBlock();
-                    stopGif();
-                    if (options.autoPlay)
-                        playGif();
-                    resolve(player);
-                } catch (error) {
-                    reject(error);
-                }
+                loadData(arraybuffer).then(resolve).catch(reject);
             }).catch(reject);
         });
     }
 
     Object.defineProperties(player, {
-        load: {
-            value: loadGIF,
+        loadData: {
+            value: loadData,
+        },
+        loadUrl: {
+            value: loadUrl,
         },
         play: {
             value: playGif,
