@@ -14,7 +14,7 @@ function formatAreaString(area, fractionDigits = 2) {
     else if (area < SQUARE_KILOMETER)
         return (area / ARE).toFixed(fractionDigits) + '公亩';
     else if (area < HECTARE)
-        return (area / SUQARE_KILOMETER).toFixed(fractionDigits) + '平方公里';
+        return (area / SQUARE_KILOMETER).toFixed(fractionDigits) + '平方公里';
     else
         return (area / HECTARE).toFixed(fractionDigits) + '公顷';
 };
