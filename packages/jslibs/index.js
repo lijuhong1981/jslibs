@@ -29,9 +29,9 @@ import {
 } from "@lijuhong1981/jsdestroy";
 import GifPlayer from "@lijuhong1981/jsgif";
 import {
-    Event,
     EventDispatcher,
     EventEmitter,
+    EventRaiser,
 } from "@lijuhong1981/jsevents";
 import * as HtmlUtils from "@lijuhong1981/jshtml";
 import {
@@ -82,9 +82,9 @@ export {
     isDestroyed,
     Destroyable,
     GifPlayer,
-    Event,
     EventDispatcher,
     EventEmitter,
+    EventRaiser,
     HtmlUtils,
     clone,
     getPropertyDescriptor,

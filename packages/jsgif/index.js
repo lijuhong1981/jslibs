@@ -1,5 +1,6 @@
 import Check from "@lijuhong1981/jscheck";
-import { Destroyable, destroyHTMLElement, destroyObject } from "@lijuhong1981/jsdestroy";
+import { defineDestroyProperties, Destroyable, destroyHTMLElement, destroyObject } from "@lijuhong1981/jsdestroy";
+import { EventRaiser } from "@lijuhong1981/events";
 import { fetchArrayBuffer } from "@lijuhong1981/jsload";
 
 // 转流数组
@@ -145,6 +146,7 @@ function GifPlayer(options = {}) {
     let TRANSPARENCY = null;
     let isPlaying = false;
     let currentFrameIndex = 0;
+    const frameChanged = new EventRaiser();
     const player = {};
 
     function reset() {
@@ -464,9 +466,7 @@ function GifPlayer(options = {}) {
     function drawCurrentFrame() {
         const frame = FRAME_LIST[currentFrameIndex];
         drawFrame(frame);
-        if (typeof options.onFrameChanged === 'function') {
-            options.onFrameChanged(currentFrameIndex, frame);
-        }
+        frameChanged.raiseEvent(currentFrameIndex, frame);
         return frame;
     }
 
@@ -552,6 +552,7 @@ function GifPlayer(options = {}) {
     }
 
     function destroyGif() {
+        frameChanged.clear();
         stopGif();
         destroyHTMLElement(CANVAS);
         destroyHTMLElement(TEMP_CANVAS);
@@ -634,22 +635,14 @@ function GifPlayer(options = {}) {
                 return options.timeScale;
             }
         },
-        onFrameChanged: {
-            set: function (value) {
-                options.onFrameChanged = value;
-            },
+        frameChanged: {
             get: function () {
-                return options.onFrameChanged;
+                return frameChanged;
             }
-        },
-        destroy: {
-            value: destroyGif,
-        },
+        }
     });
 
-    player.isDestroyed = function () {
-        return false;
-    };
+    defineDestroyProperties(player, destroyGif);
 
     return player;
 };

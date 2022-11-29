@@ -1,7 +1,7 @@
 import Check from "@lijuhong1981/jscheck";
 import { Destroyable } from "@lijuhong1981/jsdestroy";
 
-class Event extends Destroyable {
+class EventRaiser extends Destroyable {
     constructor() {
         super();
         this._listeners = [];
@@ -117,4 +117,4 @@ class Event extends Destroyable {
     }
 };
 
-export default Event;
+export default EventRaiser;
