@@ -461,9 +461,13 @@ function GifPlayer(options = {}) {
         CANVAS_CTX.drawImage(TEMP_CANVAS, 0, 0);
     }
 
-    function doCurrentFrame() {
+    function drawCurrentFrame() {
         const frame = FRAME_LIST[currentFrameIndex];
         drawFrame(frame);
+    }
+
+    function doFrame() {
+        drawCurrentFrame();
         if (typeof options.onFrameChanged === 'function') {
             options.onFrameChanged(currentFrameIndex, frame);
         }
@@ -471,7 +475,7 @@ function GifPlayer(options = {}) {
             if (!isPlaying)
                 return;
             currentFrameIndex = getNextFrameIndex();
-            doCurrentFrame();
+            doFrame();
         }, frame.delayTime * options.timeScale * 10);
     }
 
@@ -482,7 +486,7 @@ function GifPlayer(options = {}) {
 
         isPlaying = true;
 
-        doCurrentFrame();
+        doFrame();
 
         return player;
     }
@@ -497,6 +501,7 @@ function GifPlayer(options = {}) {
         isPlaying = false;
 
         currentFrameIndex = 0;
+        drawCurrentFrame();
 
         return player;
     }
@@ -548,43 +553,58 @@ function GifPlayer(options = {}) {
             value: loadData,
         },
         loadUrl: {
+            configurable: true,
+            writable: true,
             value: loadUrl,
         },
         play: {
+            configurable: true,
+            writable: true,
             value: playGif,
         },
         pause: {
+            configurable: true,
+            writable: true,
             value: pauseGif,
         },
         stop: {
+            configurable: true,
+            writable: true,
             value: stopGif,
         },
         canvas: {
+            configurable: true,
             get: function () {
                 return CANVAS;
             },
         },
         atlasCanvas: {
+            configurable: true,
             get: function () {
                 return ATLAS_CANVAS;
             },
         },
         frameWidth: {
+            configurable: true,
             get: function () {
                 return CANVAS.width;
             }
         },
         frameHeight: {
+            configurable: true,
             get: function () {
                 return CANVAS.height;
             }
         },
         framesNumber: {
+            configurable: true,
             get: function () {
                 return FRAME_LIST.length;
             }
         },
         currentFrameIndex: {
+            configurable: true,
+            writable: true,
             set: function (value) {
                 if (!FRAME_LIST[value])
                     throw new Error('illegal index: ' + value);
@@ -595,11 +615,14 @@ function GifPlayer(options = {}) {
             }
         },
         frameList: {
+            configurable: true,
             get: function () {
                 return FRAME_LIST;
             }
         },
         reverse: {
+            configurable: true,
+            writable: true,
             set: function (value) {
                 Check.typeOf.bool('reverse', value);
                 options.reverse = value;
@@ -609,6 +632,8 @@ function GifPlayer(options = {}) {
             }
         },
         timeScale: {
+            configurable: true,
+            writable: true,
             set: function (value) {
                 Check.typeOf.number.greaterThan('timeScale', value, 0);
                 options.timeScale = value;
@@ -618,6 +643,8 @@ function GifPlayer(options = {}) {
             }
         },
         onFrameChanged: {
+            configurable: true,
+            writable: true,
             set: function (value) {
                 options.onFrameChanged = value;
             },
@@ -626,11 +653,15 @@ function GifPlayer(options = {}) {
             }
         },
         isDestroyed: {
+            configurable: true,
+            writable: true,
             value: function () {
                 return false;
             },
         },
         destroy: {
+            configurable: true,
+            writable: true,
             value: destroyGif,
         },
     });
