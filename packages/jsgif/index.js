@@ -507,7 +507,7 @@ function GifPlayer(options = {}) {
         return player;
     }
 
-    function loadData(data) {
+    function loadData(data, onLoad, onError) {
         Check.defined('data', data);
 
         return new Promise(function (resolve, reject) {
@@ -522,21 +522,32 @@ function GifPlayer(options = {}) {
                 stopGif();
                 if (options.autoPlay)
                     playGif();
+                if (typeof onLoad === 'function')
+                    onLoad(player);
                 resolve(player);
             } catch (error) {
+                if (typeof onError === 'function')
+                    onError(error);
                 reject(error);
             }
         });
     }
 
     // 用xhr请求本地文件
-    function loadUrl(url, requestOptions) {
+    function loadUrl(url, requestOptions, onLoad, onError) {
         Check.typeOf.string('url', url);
 
         return new Promise(function (resolve, reject) {
+
+            function rejectError() {
+                if (typeof onError === 'function')
+                    onError(error);
+                reject(error);
+            }
+
             fetchArrayBuffer(url, requestOptions).then(function (arraybuffer) {
-                loadData(arraybuffer).then(resolve).catch(reject);
-            }).catch(reject);
+                loadData(arraybuffer, onLoad, onError).then(resolve).catch(rejectError);
+            }).catch(rejectError);
         });
     }
 
