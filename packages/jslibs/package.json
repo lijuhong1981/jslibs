@@ -33,5 +33,6 @@
     "@lijuhong1981/jstime": "^1.0.6",
     "@lijuhong1981/jsurl": "^1.0.5",
     "@lijuhong1981/jswindfield": "^1.0.8"
-  }
+  },
+  "gitHead": "41eaaf2e07770b704c80b27f40b0f033e80dfe9e"
 }
