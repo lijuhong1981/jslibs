@@ -553,58 +553,43 @@ function GifPlayer(options = {}) {
             value: loadData,
         },
         loadUrl: {
-            configurable: true,
-            writable: true,
             value: loadUrl,
         },
         play: {
-            configurable: true,
-            writable: true,
             value: playGif,
         },
         pause: {
-            configurable: true,
-            writable: true,
             value: pauseGif,
         },
         stop: {
-            configurable: true,
-            writable: true,
             value: stopGif,
         },
         canvas: {
-            configurable: true,
             get: function () {
                 return CANVAS;
             },
         },
         atlasCanvas: {
-            configurable: true,
             get: function () {
                 return ATLAS_CANVAS;
             },
         },
         frameWidth: {
-            configurable: true,
             get: function () {
                 return CANVAS.width;
             }
         },
         frameHeight: {
-            configurable: true,
             get: function () {
                 return CANVAS.height;
             }
         },
         framesNumber: {
-            configurable: true,
             get: function () {
                 return FRAME_LIST.length;
             }
         },
         currentFrameIndex: {
-            configurable: true,
-            writable: true,
             set: function (value) {
                 if (!FRAME_LIST[value])
                     throw new Error('illegal index: ' + value);
@@ -615,14 +600,11 @@ function GifPlayer(options = {}) {
             }
         },
         frameList: {
-            configurable: true,
             get: function () {
                 return FRAME_LIST;
             }
         },
         reverse: {
-            configurable: true,
-            writable: true,
             set: function (value) {
                 Check.typeOf.bool('reverse', value);
                 options.reverse = value;
@@ -632,8 +614,6 @@ function GifPlayer(options = {}) {
             }
         },
         timeScale: {
-            configurable: true,
-            writable: true,
             set: function (value) {
                 Check.typeOf.number.greaterThan('timeScale', value, 0);
                 options.timeScale = value;
@@ -643,8 +623,6 @@ function GifPlayer(options = {}) {
             }
         },
         onFrameChanged: {
-            configurable: true,
-            writable: true,
             set: function (value) {
                 options.onFrameChanged = value;
             },
@@ -652,19 +630,14 @@ function GifPlayer(options = {}) {
                 return options.onFrameChanged;
             }
         },
-        isDestroyed: {
-            configurable: true,
-            writable: true,
-            value: function () {
-                return false;
-            },
-        },
         destroy: {
-            configurable: true,
-            writable: true,
             value: destroyGif,
         },
     });
+
+    player.isDestroyed = function () {
+        return false;
+    };
 
     return player;
 };
