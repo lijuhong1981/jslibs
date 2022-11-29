@@ -1,4 +1,5 @@
 import Check from "@lijuhong1981/jscheck";
+import { Destroyable, destroyHTMLElement, destroyObject } from "@lijuhong1981/jsdestroy";
 import { fetchArrayBuffer } from "@lijuhong1981/jsload";
 
 // 转流数组
@@ -17,8 +18,9 @@ function bitsToNum(ba) {
     }, 0);
 };
 
-class Stream {
+class Stream extends Destroyable {
     constructor(data) {
+        super();
         this.data = data;
         this.len = data.length;
         this.pos = 0;
@@ -151,6 +153,7 @@ function GifPlayer(options = {}) {
         LAST_DISPOSA_METHOD = null;
         CURRENT_FRAME_INDEX = -1;
         TRANSPARENCY = null;
+        STREAM && STREAM.destroy();
     };
 
     function readSubBlocks() {
@@ -505,8 +508,8 @@ function GifPlayer(options = {}) {
             try {
                 if (data instanceof ArrayBuffer)
                     data = new Uint8Array(data);
-                STREAM = new Stream(data);
                 reset();
+                STREAM = new Stream(data);
                 parseHeader();
                 parseBlock();
                 drawAtlasImage();
@@ -529,6 +532,15 @@ function GifPlayer(options = {}) {
                 loadData(arraybuffer).then(resolve).catch(reject);
             }).catch(reject);
         });
+    }
+
+    function destroyGif() {
+        stopGif();
+        destroyHTMLElement(CANVAS);
+        destroyHTMLElement(TEMP_CANVAS);
+        destroyHTMLElement(ATLAS_CANVAS);
+        reset();
+        destroyObject(player);
     }
 
     Object.defineProperties(player, {
@@ -612,6 +624,14 @@ function GifPlayer(options = {}) {
             get: function () {
                 return options.onFrameChanged;
             }
+        },
+        isDestroyed: {
+            value: function () {
+                return false;
+            },
+        },
+        destroy: {
+            value: destroyGif,
         },
     });
 
