@@ -1,6 +1,6 @@
 {
   "name": "@lijuhong1981/jslibs",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "> TODO: description",
   "author": "lijuhong1981",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
@@ -21,9 +21,9 @@
   "dependencies": {
     "@lijuhong1981/jscheck": "^1.0.8",
     "@lijuhong1981/jscolor": "^1.0.7",
-    "@lijuhong1981/jsdestroy": "^1.1.5",
-    "@lijuhong1981/jsevents": "^1.0.7",
-    "@lijuhong1981/jsgif": "^1.0.11",
+    "@lijuhong1981/jsdestroy": "^1.1.6",
+    "@lijuhong1981/jsevents": "^1.0.8",
+    "@lijuhong1981/jsgif": "^1.1.0",
     "@lijuhong1981/jshtml": "^1.0.2",
     "@lijuhong1981/jslib": "^1.0.7",
     "@lijuhong1981/jsload": "^1.1.4",
