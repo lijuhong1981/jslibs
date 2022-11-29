@@ -467,10 +467,11 @@ function GifPlayer(options = {}) {
         if (typeof options.onFrameChanged === 'function') {
             options.onFrameChanged(currentFrameIndex, frame);
         }
+        return frame;
     }
 
     function doFrame() {
-        drawCurrentFrame();
+        const frame = drawCurrentFrame();
         setTimeout(function () {
             if (!isPlaying)
                 return;
