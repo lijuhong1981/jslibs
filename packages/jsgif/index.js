@@ -1,6 +1,6 @@
 import Check from "@lijuhong1981/jscheck";
 import { defineDestroyProperties, Destroyable, destroyHTMLElement, destroyObject } from "@lijuhong1981/jsdestroy";
-import { EventRaiser } from "@lijuhong1981/events";
+import { EventRaiser } from "@lijuhong1981/jsevents";
 import { fetchArrayBuffer } from "@lijuhong1981/jsload";
 
 // 转流数组
