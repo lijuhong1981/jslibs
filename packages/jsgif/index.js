@@ -134,7 +134,8 @@ function GifPlayer(options = {}) {
     const CANVAS_CTX = CANVAS.getContext('2d');
     const TEMP_CANVAS = document.createElement("canvas");//用来拿 imageData 的工具人
     const TEMP_CANVAS_CTX = TEMP_CANVAS.getContext('2d', { willReadFrequently: true, }); // 工具人的 getContext('2d')
-    const FRAME_LIST = []; // 存放每一帧以及对应的延时
+    const ATLAS_CANVAS = document.createElement("canvas");
+    const FRAME_LIST = []; // 存放每一帧数据以及对应的延时
     let GIF_INFO = {}; // GIF 的一些信息
     let STREAM = null;
     let LAST_DISPOSA_METHOD = null;
@@ -429,6 +430,21 @@ function GifPlayer(options = {}) {
         }
     };
 
+    function drawAtlasImage() {
+        const length = FRAME_LIST.length;
+        if (length > 0) {
+            ATLAS_CANVAS.width = CANVAS.width * length;
+            ATLAS_CANVAS.height = CANVAS.height;
+            const context = ATLAS_CANVAS.getContext('2d');
+            let dx = 0;
+            for (let i = 0; i < length; i++) {
+                const frame = FRAME_LIST[i];
+                context.putImageData(frame.imgData, dx, 0);
+                dx += CANVAS.width;
+            }
+        }
+    }
+
     function getNextFrameIndex() {
         if (currentFrameIndex === -1)
             return options.reverse ? FRAME_LIST.length - 1 : 0;
@@ -485,11 +501,12 @@ function GifPlayer(options = {}) {
         return new Promise(function (resolve, reject) {
             try {
                 if (data instanceof ArrayBuffer)
-                    data = new Uint8Array(arraybuffer);
+                    data = new Uint8Array(data);
                 STREAM = new Stream(data);
                 reset();
                 parseHeader();
                 parseBlock();
+                drawAtlasImage();
                 stopGif();
                 if (options.autoPlay)
                     playGif();
@@ -532,6 +549,21 @@ function GifPlayer(options = {}) {
                 return CANVAS;
             },
         },
+        atlasCanvas: {
+            get: function () {
+                return ATLAS_CANVAS;
+            },
+        },
+        frameWidth: {
+            get: function () {
+                return CANVAS.width;
+            }
+        },
+        frameHeight: {
+            get: function () {
+                return CANVAS.height;
+            }
+        },
         framesNumber: {
             get: function () {
                 return FRAME_LIST.length;
@@ -545,6 +577,11 @@ function GifPlayer(options = {}) {
             },
             get: function () {
                 return currentFrameIndex;
+            }
+        },
+        frameList: {
+            get: function () {
+                return FRAME_LIST;
             }
         },
         reverse: {
@@ -563,6 +600,14 @@ function GifPlayer(options = {}) {
             },
             get: function () {
                 return options.timeScale;
+            }
+        },
+        onFrameChanged: {
+            set: function (value) {
+                options.onFrameChanged = value;
+            },
+            get: function () {
+                return options.onFrameChanged;
             }
         },
     });
