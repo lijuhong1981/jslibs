@@ -539,7 +539,7 @@ function GifPlayer(options = {}) {
 
         return new Promise(function (resolve, reject) {
 
-            function rejectError() {
+            function rejectError(error) {
                 if (typeof onError === 'function')
                     onError(error);
                 reject(error);
