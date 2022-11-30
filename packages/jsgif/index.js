@@ -519,12 +519,12 @@ function GifPlayer(options = {}) {
                 parseHeader();
                 parseBlock();
                 drawAtlasImage();
-                stopGif();
-                if (options.autoPlay)
-                    playGif();
                 if (typeof onLoad === 'function')
                     onLoad(player);
                 resolve(player);
+                stopGif();
+                if (options.autoPlay)
+                    playGif();
             } catch (error) {
                 if (typeof onError === 'function')
                     onError(error);
