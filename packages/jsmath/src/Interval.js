@@ -78,6 +78,10 @@ class Interval {
         return isBetween(value, this.start, this.end, this.equalsStart, this.equalsEnd);
     }
 
+    between(value) {
+        return this.isBetween(value);
+    }
+
     /**
      * 在该区间内线性插值
      * @param {Number} scalar 插值标量，needClamp为true时约束在[0,1]区间内，为false时可超出[0,1]区间
