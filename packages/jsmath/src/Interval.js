@@ -53,6 +53,22 @@ class Interval {
         return this.end - this.start;
     }
 
+    set minimum(value) {
+        this.start = value;
+    }
+
+    get minimum() {
+        return this.start;
+    }
+
+    set maximum(value) {
+        this.end = value;
+    }
+
+    get maximum() {
+        return this.end;
+    }
+
     /**
      * 判断一个数值是否处于该区间内
      * @param {Number} 需要判断的数值
