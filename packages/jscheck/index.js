@@ -16,7 +16,9 @@ export default Check;
 export {
     Check,
     isDefined,
+    isDefined as defined,
     getDefinedValue,
+    getDefinedValue as definedValue,
     isArray,
     isBoolean,
     isFunction,
@@ -26,5 +28,7 @@ export {
     isString,
     isTypedArray,
     isValid,
+    isValid as valid,
     getValidValue,
+    getValidValue as validValue,
 };
