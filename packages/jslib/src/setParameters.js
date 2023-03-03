@@ -3,21 +3,21 @@ import getPropertyDescriptor from './getPropertyDescriptor.js';
 /**
  * 为对象设置参数
  * @param {Object} target 设置的对象
- * @param {Object} options 设置的参数
+ * @param {Object} parameters 设置的参数
  * @returns {Object} 设置后的对象
  */
-function setParameters(target, options) {
-    if (!target || !options)
+function setParameters(target, parameters) {
+    if (!target || !parameters)
         return;
-    // console.log('target:', target, 'options:', options);
+    // console.log('target:', target, 'parameters:', parameters);
 
-    Object.keys(options).forEach((key) => {
-        if (!options.hasOwnProperty(key)) //过滤继承变量
+    Object.keys(parameters).forEach((key) => {
+        if (!parameters.hasOwnProperty(key)) //过滤继承变量
             return;
         if (key.startsWith('_')) //过滤私有变量
             return;
 
-        const value = options[key];
+        const value = parameters[key];
 
         const descriptor = getPropertyDescriptor(target, key);//获取变量描述信息
         // console.log(key, descriptor);
