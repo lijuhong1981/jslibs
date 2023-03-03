@@ -6,7 +6,7 @@ import getPropertyDescriptor from './getPropertyDescriptor.js';
  * @param {Object} options 设置的参数
  * @returns {Object} 设置后的对象
  */
-function setOptions(target, options) {
+function setParameters(target, options) {
     if (!target || !options)
         return;
     // console.log('target:', target, 'options:', options);
@@ -23,12 +23,16 @@ function setOptions(target, options) {
         // console.log(key, descriptor);
         if (!descriptor || descriptor.writable || descriptor.set)
             target[key] = value;
-        else if (target[key] && typeof target[key].setOptions === 'function') {
-            target[key].setOptions(value);
+        else if (target[key]) {
+            if (typeof target[key].setParameters === 'function') {
+                target[key].setParameters(value);
+            } else if (typeof target[key].setOptions === 'function') {//兼容以前的setOptions
+                target[key].setOptions(value);
+            }
         }
     });
 
     return target;
 }
 
-export default setOptions;
+export default setParameters;
