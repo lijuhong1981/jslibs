@@ -2,7 +2,7 @@ import Check from "@lijuhong1981/jscheck/src/Check.js";
 import isArray from "@lijuhong1981/jscheck/src/isArray.js";
 import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
 import isString from "@lijuhong1981/jscheck/src/isString.js";
-import Destroyable from "@liuhong1981/jsdestroy/src/Destroyable.js";
+import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 
 function indexOfListener(listeners, callback) {
     for (let i = 0; i < listeners.length; i++) {
