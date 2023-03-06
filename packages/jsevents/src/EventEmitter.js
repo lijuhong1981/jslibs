@@ -47,7 +47,7 @@ class EventEmitter extends Destroyable {
      * @param {String|Object} type 事件类型
      * @returns {Boolean} 判断结果
      */
-    has(type) {
+    hasListener(type) {
         return this._dispatcher.hasEventListener(type);
     }
 
