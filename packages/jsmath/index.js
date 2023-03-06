@@ -55,6 +55,9 @@ import randomNumber from "./src/randomNumber.js";
 import randomInteger from "./src/randomInteger.js";
 import toFixed from "./src/toFixed.js";
 import Interval from "./src/Interval.js";
+import windowPositionToNDC from "./src/windowPositionToNDC.js";
+import getNDCInElement from "./src/getNDCInElement.js";
+import ndcToWindowPosition from "./src/ndcToWindowPosition.js";
 
 export {
     PI,
@@ -113,4 +116,7 @@ export {
     randomInteger,
     toFixed,
     Interval,
+    windowPositionToNDC,
+    getNDCInElement,
+    ndcToWindowPosition,
 };
