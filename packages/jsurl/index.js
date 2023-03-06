@@ -3,7 +3,7 @@ import extractFileName from "./src/extractFileName.js";
 import extractBaseName from "./src/extractBaseName.js";
 import extractExtName from "./src/extractExtName.js";
 import mergeUrl from "./src/mergeUrl.js";
-import hasProtocolPrefix from "./src/hasProtocolPrefix";
+import hasProtocolPrefix from "./src/hasProtocolPrefix.js";
 import isBlobProtocol from "./src/isBlobProtocol.js";
 import isDataProtocol from "./src/isDataProtocol.js";
 import isFileProtocol from "./src/isFileProtocol.js";
