@@ -1,4 +1,4 @@
-import splitUrl from "./splitUrl";
+import splitUrl from "./splitUrl.js";
 
 const names = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];
 const parseQuery = /(?:^|&)([^&=]*)=?([^&]*)/g;
