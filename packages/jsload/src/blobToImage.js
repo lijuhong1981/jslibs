@@ -1,4 +1,4 @@
-import loadImage from "./loadImage";
+import loadImage from "./loadImage.js";
 
 /**
  * 转换Blob对象为Image对象

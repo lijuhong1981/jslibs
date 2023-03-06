@@ -1,4 +1,4 @@
-import arrayBufferToBinaryString from "./arrayBufferToBinaryString";
+import arrayBufferToBinaryString from "./arrayBufferToBinaryString.js";
 
 function arrayBufferToBinaryStringAsync(arrayBuffer) {
     return new Promise(function (resolve, reject) {
