@@ -1,5 +1,5 @@
 import { Destroyable } from "@lijuhong1981/jsdestroy";
-import EventDispatcher from "./EventDispatcher";
+import EventDispatcher from "./EventDispatcher.js";
 
 class EventEmitter extends Destroyable {
     constructor() {

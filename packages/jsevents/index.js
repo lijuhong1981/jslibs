@@ -1,6 +1,6 @@
-import EventDispatcher from "./src/EventDispatcher";
-import EventEmitter from "./src/EventEmitter";
-import EventRaiser from "./src/EventRaiser";
+import EventDispatcher from "./src/EventDispatcher.js";
+import EventEmitter from "./src/EventEmitter.js";
+import EventRaiser from "./src/EventRaiser.js";
 
 export {
     EventDispatcher,
