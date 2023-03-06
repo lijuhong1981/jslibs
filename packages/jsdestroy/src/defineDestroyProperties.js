@@ -1,4 +1,4 @@
-import destroyObject from "./destroyObject";
+import destroyObject from "./destroyObject.js";
 
 function returnFalse() {
     return false;
