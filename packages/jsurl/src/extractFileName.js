@@ -1,5 +1,5 @@
 /**
- * 从url中提取文件名
+ * 从url中提取包含扩展名的文件名
  * @param {String} url 传入的url
  * @returns {String} 提取的文件名
  */

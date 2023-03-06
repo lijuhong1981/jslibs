@@ -172,6 +172,70 @@ function firefoxVersion() {
     return isFirefox() && firefoxVersionResult;
 }
 
+let isIPadResult = undefined;
+function isIPad() {
+    if (isIPadResult === undefined) {
+        isIPadResult = /ipad/i.test(theNavigator.userAgent.toLowerCase());
+    }
+    return isIPadResult;
+}
+
+let isIPodResult = undefined;
+function isIPod() {
+    if (isIPodResult === undefined) {
+        isIPodResult = /ipod/i.test(theNavigator.userAgent.toLowerCase());
+    }
+    return isIPodResult;
+}
+
+let isIPhoneResult = undefined;
+function isIPhone() {
+    if (isIPhoneResult === undefined) {
+        isIPhoneResult = /iphone os/i.test(theNavigator.userAgent.toLowerCase());
+    }
+    return isIPhoneResult;
+}
+
+let isAndroidResult = undefined;
+function isAndroid() {
+    if (isAndroidResult === undefined) {
+        isAndroidResult = /android/i.test(theNavigator.userAgent.toLowerCase());
+    }
+    return isAndroidResult;
+}
+
+let isWindowsCEResult = undefined;
+function isWindowsCE() {
+    if (isWindowsCEResult === undefined) {
+        isWindowsCEResult = /windows ce/i.test(theNavigator.userAgent.toLowerCase());
+    }
+    return isWindowsCEResult;
+}
+
+let isWindowsMobileResult = undefined;
+function isWindowsMobile() {
+    if (isWindowsMobileResult === undefined) {
+        isWindowsMobileResult = /windows mobile/i.test(theNavigator.userAgent.toLowerCase());
+    }
+    return isWindowsMobileResult;
+}
+
+let isWindowsPhoneResult = undefined;
+function isWindowsPhone() {
+    if (isWindowsPhoneResult === undefined) {
+        isWindowsPhoneResult = /windows phone/i.test(theNavigator.userAgent.toLowerCase());
+    }
+    return isWindowsPhoneResult;
+}
+
+let isMobileResult = undefined;
+function isMobile() {
+    if (isMobileResult === undefined) {
+        isMobileResult = isIPad() || isIPod() || isIPhone() || isAndroid() || isWindowsCE() || isWindowsMobile() || isWindowsPhone();
+    }
+    return isMobileResult;
+}
+
 let hasPointerEvents = undefined;
 function supportsPointerEvents() {
     if (hasPointerEvents === undefined) {
@@ -310,6 +374,14 @@ const NavigatorDetection = {
     firefoxVersion: firefoxVersion,
     isWindows: isWindows,
     isIPadOrIOS: isIPadOrIOS,
+    isIPad: isIPad,
+    isIPod: isIPod,
+    isIPhone: isIPhone,
+    isAndroid: isAndroid,
+    isWindowsCE: isWindowsCE,
+    isWindowsMobile: isWindowsMobile,
+    isWindowsPhone: isWindowsPhone,
+    isMobile: isMobile,
     hardwareConcurrency: theNavigator.hardwareConcurrency || 3,
     supportsPointerEvents: supportsPointerEvents,
     supportsImageRenderingPixelated: supportsImageRenderingPixelated,
@@ -404,6 +476,22 @@ NavigatorDetection.supportsWebWorkers = function () {
  */
 NavigatorDetection.supportsWebAssembly = function () {
     return typeof WebAssembly !== "undefined";
+};
+
+/**
+ * Detects whether the current browser supports a WebGL2 rendering context for the specified scene.
+ *
+ * @param {Scene} scene the Cesium scene specifying the rendering context
+ * @returns {Boolean} true if the browser supports a WebGL2 rendering context, false if not.
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext|WebGL2RenderingContext}
+ */
+NavigatorDetection.supportsWebgl2 = function (scene) {
+    //>>includeStart('debug', pragmas.debug);
+    Check.defined("scene", scene);
+    //>>includeEnd('debug');
+
+    return scene.context.webgl2;
 };
 
 export default NavigatorDetection;
