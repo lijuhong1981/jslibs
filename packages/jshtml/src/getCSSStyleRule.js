@@ -1,4 +1,4 @@
-import Check from '@lijuhong1981/jscheck';
+import Check from '@lijuhong1981/jscheck/src/Check.js';
 
 function getCSSStyleRule(name) {
     Check.typeOf.string('name', name);

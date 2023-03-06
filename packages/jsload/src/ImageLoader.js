@@ -1,7 +1,10 @@
 import Cache from './Cache.js';
 import loadImage from './loadImage.js';
-import Check, { getValidValue } from '@lijuhong1981/jscheck';
-import { isDataProtocol, isBlobProtocol, mergeUrl } from '@lijuhong1981/jsurl';
+import Check from '@lijuhong1981/jscheck/src/Check.js';
+import getValidValue from '@lijuhong1981/jscheck/src/getValidValue.js';
+import isDataProtocol from '@lijuhong1981/jsurl/src/isDataProtocol.js';
+import isBlobProtocol from '@lijuhong1981/jsurl/src/isBlobProtocol.js';
+import mergeUrl from '@lijuhong1981/jsurl/src/mergeUrl.js';
 
 let loader;
 

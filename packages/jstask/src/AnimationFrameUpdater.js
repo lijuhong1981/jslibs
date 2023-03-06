@@ -1,6 +1,7 @@
-import Check, { isDefined } from "@lijuhong1981/jscheck";
-import { Destroyable } from "@lijuhong1981/jsdestroy";
-import { now } from "@lijuhong1981/jstime";
+import Check from "@lijuhong1981/jscheck/src/Check.js";
+import isDefined from "@lijuhong1981/jscheck/src/isDefined.js";
+import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
+import now from "@lijuhong1981/jstime/src/now.js";
 
 class AnimationFrameUpdater extends Destroyable {
     constructor(autoStart = true, framesPerSecond = 60) {

@@ -1,7 +1,10 @@
-import Check from "@lijuhong1981/jscheck";
-import { defineDestroyProperties, Destroyable, destroyHTMLElement, destroyObject } from "@lijuhong1981/jsdestroy";
-import { EventRaiser } from "@lijuhong1981/jsevents";
-import { fetchArrayBuffer } from "@lijuhong1981/jsload";
+import Check from "@lijuhong1981/jscheck/src/Check.js";
+import defineDestroyProperties from "@lijuhong1981/jsdestroy/src/defineDestroyProperties.js";
+import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
+import destroyHTMLElement from "@lijuhong1981/jsdestroy/src/destroyHTMLElement.js";
+import destroyObject from "@lijuhong1981/jsdestroy/src/destroyObject.js";
+import EventRaiser from "@lijuhong1981/jsevents/src/EventRaiser.js";
+import fetchArrayBuffer from "@lijuhong1981/jsload/src/fetchArrayBuffer.js";
 
 // 转流数组
 function byteToBitArr(bite) {

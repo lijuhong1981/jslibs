@@ -1,5 +1,8 @@
-import Check, { isDefined, isValid, getValidValue } from "@lijuhong1981/jscheck";
-import { lerp } from "@lijuhong1981/jsmath";
+import Check from "@lijuhong1981/jscheck/src/Check.js";
+import isDefined from "@lijuhong1981/jscheck/src/isDefined.js";
+import isValid from "@lijuhong1981/jscheck/src/isValid.js";
+import getValidValue from "@lijuhong1981/jscheck/src/getValidValue.js";
+import lerp from "@lijuhong1981/jsmath/src/lerp.js";
 import byteToFloat from "./byteToFloat.js";
 import floatToByte from "./floatToByte.js";
 import hue2rgb from "./hue2rgb.js";

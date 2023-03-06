@@ -1,5 +1,5 @@
-import Check from "@lijuhong1981/jscheck";
-import { Destroyable } from "@lijuhong1981/jsdestroy";
+import Check from "@lijuhong1981/jscheck/src/Check.js";
+import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 
 class EventRaiser extends Destroyable {
     constructor() {

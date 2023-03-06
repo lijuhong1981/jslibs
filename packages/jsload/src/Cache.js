@@ -1,5 +1,7 @@
-import Check from '@lijuhong1981/jscheck';
-import { Destroyable, destroyHTMLElement, destroyObject } from '@lijuhong1981/jsdestroy';
+import Check from '@lijuhong1981/jscheck/src/Check.js';
+import Destroyable from '@lijuhong1981/jsdestroy/src/Destroyable.js';
+import destroyHTMLElement from '@lijuhong1981/jsdestroy/src/destroyHTMLElement.js';
+import destroyObject from '@lijuhong1981/jsdestroy/src/destroyObject.js';
 
 function destroyValue(value) {
     if (value instanceof HTMLElement)

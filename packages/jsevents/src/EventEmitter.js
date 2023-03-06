@@ -1,4 +1,4 @@
-import { Destroyable } from "@lijuhong1981/jsdestroy";
+import Destroyable from "@liuhong1981/jsdestroy/src/Destroyable.js";
 import EventDispatcher from "./EventDispatcher.js";
 
 class EventEmitter extends Destroyable {

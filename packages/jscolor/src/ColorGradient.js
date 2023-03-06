@@ -1,6 +1,11 @@
-import Check, { getValidValue, isArray, isObject, isValid } from "@lijuhong1981/jscheck";
-import { Destroyable } from "@lijuhong1981/jsdestroy";
-import { clamp, normalize } from "@lijuhong1981/jsmath";
+import Check from "@lijuhong1981/jscheck/src/Check.js";
+import isValid from "@lijuhong1981/jscheck/src/isValid.js";
+import getValidValue from "@lijuhong1981/jscheck/src/getValidValue.js";
+import isArray from "@lijuhong1981/jscheck/src/isArray.js";
+import isObject from "@lijuhong1981/jscheck/src/isObject.js";
+import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
+import clamp from "@lijuhong1981/jsmath/src/clamp.js";
+import normalize from "@lijuhong1981/jsmath/src/normalize.js";
 import Color4 from "./Color4.js";
 import parseToColor4 from "./parseToColor4.js";
 

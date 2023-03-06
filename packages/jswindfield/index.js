@@ -1,7 +1,18 @@
-import Check, { getValidValue, isArray, isFunction, isNumber, isString, isValid } from "@lijuhong1981/jscheck";
-import { Destroyable } from "@lijuhong1981/jsdestroy";
-import { clamp, convertToLatitudeRange, convertToLongitudeRange, lerp, randomNumber, scalarInRange } from "@lijuhong1981/jsmath";
-import { now } from "@lijuhong1981/jstime";
+import Check from "@lijuhong1981/jscheck/src/Check.js";
+import getValidValue from "@lijuhong1981/jscheck/src/getValidValue.js";
+import isArray from "@lijuhong1981/jscheck/src/isArray.js";
+import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
+import isNumber from "@lijuhong1981/jscheck/src/isNumber.js";
+import isString from "@lijuhong1981/jscheck/src/isString.js";
+import isValid from "@lijuhong1981/jscheck/src/isValid.js";
+import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
+import clamp from "@lijuhong1981/jsmath/src/clamp.js";
+import convertToLatitudeRange from "@lijuhong1981/jsmath/src/convertToLatitudeRange.js";
+import convertToLongitudeRange from "@lijuhong1981/jsmath/src/convertToLongitudeRange.js";
+import lerp from "@lijuhong1981/jsmath/src/lerp.js";
+import randomNumber from "@lijuhong1981/jsmath/src/randomNumber.js";
+import scalarInRange from "@lijuhong1981/jsmath/src/scalarInRange.js";
+import now from "@lijuhong1981/jstime/src/now.js";
 
 class Vector {
     constructor(u, v) {

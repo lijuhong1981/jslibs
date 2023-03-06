@@ -1,4 +1,5 @@
-import Check, { isValid } from '@lijuhong1981/jscheck';
+import Check from '@lijuhong1981/jscheck/src/Check.js';
+import isValid from "@lijuhong1981/jscheck/src/isValid.js";
 
 /**
  * 创建Image对象

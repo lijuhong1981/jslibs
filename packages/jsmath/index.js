@@ -91,6 +91,7 @@ export {
     EPSILON20,
     EPSILON21,
     generateUUID,
+    generateUUID as createUUID,
     degToRad,
     radToDeg,
     clamp,
