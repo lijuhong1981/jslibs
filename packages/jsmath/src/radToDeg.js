@@ -1,4 +1,4 @@
-import { DEGREES_PER_RADIAN } from "./Constant";
+import { DEGREES_PER_RADIAN } from "./Constant.js";
 
 /**
  * 弧度转角度

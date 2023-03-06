@@ -40,7 +40,7 @@ import clamp from "./src/clamp.js";
 import clampLatitude from "./src/clampLatitude.js";
 import clampLongitude from "./src/clampLongitude.js";
 import convertToRange from "./src/convertToRange.js";
-import convertToDegreesCircular from "./src/convertToDegreesCircular .js";
+import convertToDegreesCircular from "./src/convertToDegreesCircular.js";
 import convertToRadiansCircular from "./src/convertToRadiansCircular.js";
 import convertToLatitudeRange from "./src/convertToLatitudeRange.js";
 import convertToLongitudeRange from "./src/convertToLongitudeRange.js";

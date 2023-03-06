@@ -1,6 +1,6 @@
-import isBetween from "./isBetween";
-import lerp from "./lerp";
-import scalarInRange from "./scalarInRange";
+import isBetween from "./isBetween.js";
+import lerp from "./lerp.js";
+import scalarInRange from "./scalarInRange.js";
 
 /**
  * 数学上的区间对象
