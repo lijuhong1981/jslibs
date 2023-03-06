@@ -253,6 +253,15 @@ function supportsPointerEvents() {
     return hasPointerEvents;
 }
 
+let hasTouchEvents = undefined;
+function supportsTouchEvents() {
+    if (hasTouchEvents === undefined) {
+        hasTouchEvents = typeof TouchEvent !== "undefined" &&
+            "ontouchend" in document ? true : false;
+    }
+    return hasTouchEvents;
+}
+
 let imageRenderingValueResult = undefined;
 let supportsImageRenderingPixelatedResult = undefined;
 function supportsImageRenderingPixelated() {
@@ -384,6 +393,7 @@ const NavigatorDetection = {
     isMobile: isMobile,
     hardwareConcurrency: theNavigator.hardwareConcurrency || 3,
     supportsPointerEvents: supportsPointerEvents,
+    supportsTouchEvents: supportsTouchEvents,
     supportsImageRenderingPixelated: supportsImageRenderingPixelated,
     supportsWebP: supportsWebP,
     imageRenderingValue: imageRenderingValue,
