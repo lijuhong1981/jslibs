@@ -488,20 +488,4 @@ NavigatorDetection.supportsWebAssembly = function () {
     return typeof WebAssembly !== "undefined";
 };
 
-/**
- * Detects whether the current browser supports a WebGL2 rendering context for the specified scene.
- *
- * @param {Scene} scene the Cesium scene specifying the rendering context
- * @returns {Boolean} true if the browser supports a WebGL2 rendering context, false if not.
- *
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext|WebGL2RenderingContext}
- */
-NavigatorDetection.supportsWebgl2 = function (scene) {
-    //>>includeStart('debug', pragmas.debug);
-    Check.defined("scene", scene);
-    //>>includeEnd('debug');
-
-    return scene.context.webgl2;
-};
-
 export default NavigatorDetection;
