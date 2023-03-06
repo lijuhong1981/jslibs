@@ -1,4 +1,4 @@
-import windowPositionToNDC from "./windowPositionToNDC";
+import windowPositionToNDC from "./windowPositionToNDC.js";
 
 /**
  * 根据一个HTMLElement中的像素位置计算NDC坐标(NormalizedDeviceCoordinates)
