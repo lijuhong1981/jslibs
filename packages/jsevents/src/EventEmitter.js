@@ -43,6 +43,24 @@ class EventEmitter extends Destroyable {
     }
 
     /**
+     * 判断是否已添加某类型的事件监听
+     * @param {String|Object} type 事件类型
+     * @returns {Boolean} 判断结果
+     */
+    has(type) {
+        return this._dispatcher.hasEventListener(type);
+    }
+
+    /**
+     * 获取某类型事件监听器数量
+     * @param {String|Object} type 事件类型
+     * @returns {Number} 监听器数量
+     */
+    listenersNumber() {
+        return this._dispatcher.getEventListenersNumber(type);
+    }
+
+    /**
      * 清除所有事件监听
      * @returns {this}
      */

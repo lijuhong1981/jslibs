@@ -105,6 +105,32 @@ class EventDispatcher extends Destroyable {
     }
 
     /**
+     * 获取某类型事件监听器数量
+     * @param {String|Object} type 事件类型
+     * @returns {Number} 监听器数量
+     */
+    getEventListenersNumber(type) {
+        Check.valid('type', type);
+
+        const listeners = this._listenersMap.get(type);
+
+        return listeners ? listeners.length : 0;
+    }
+
+    /**
+     * 判断是否已添加某类型的事件监听器
+     * @param {String|Object} type 事件类型
+     * @returns {Boolean} 判断结果
+     */
+    hasEventListener(type) {
+        Check.valid('type', type);
+
+        const listeners = this._listenersMap.get(type);
+
+        return listeners && listeners.length > 0;
+    }
+
+    /**
      * 清除所有事件监听
      * @returns {this}
      */
