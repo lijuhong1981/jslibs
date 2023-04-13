@@ -8,7 +8,7 @@ function getNextTaskId() {
     return TaskId++;
 }
 
-const State = Object.freeze({
+const TaskState = Object.freeze({
     None: 0,
     Executing: 1,
     Finished: 2,
@@ -19,7 +19,7 @@ class Task extends Destroyable {
     constructor() {
         super();
         this.id = getNextTaskId();
-        this.state = State.None;
+        this.state = TaskState.None;
         this.priority = 0;
     }
 
@@ -28,7 +28,7 @@ class Task extends Destroyable {
             console.warn('the id ' + this.id + ' task state is ' + this.state + ', unable do execute.');
             return false;
         }
-        this.state = State.Executing;
+        this.state = TaskState.Executing;
         this.onExecute();
         return true;
     }
@@ -36,13 +36,13 @@ class Task extends Destroyable {
     onExecute() { }
 
     get isExecuting() {
-        return this.state === State.Executing;
+        return this.state === TaskState.Executing;
     }
 
     cancel() {
         if (this.isDestroyed() || this.isFinished)
             return false;
-        this.state = State.Canceled;
+        this.state = TaskState.Canceled;
         this.onCancel();
         return true;
     }
@@ -50,13 +50,13 @@ class Task extends Destroyable {
     onCancel() { }
 
     get isCanceled() {
-        return this.state === State.Canceled;
+        return this.state === TaskState.Canceled;
     }
 
     finish() {
         if (this.isDestroyed())
             return false;
-        this.state = State.Finished;
+        this.state = TaskState.Finished;
         this.onFinish();
         return true;
     }
@@ -64,7 +64,7 @@ class Task extends Destroyable {
     onFinish() { }
 
     get isFinished() {
-        return this.state === State.Finished;
+        return this.state === TaskState.Finished;
     }
 };
 
@@ -143,5 +143,6 @@ Object.defineProperties(TaskPool, {
 
 export {
     TaskPool,
-    Task
+    Task,
+    TaskState,
 };

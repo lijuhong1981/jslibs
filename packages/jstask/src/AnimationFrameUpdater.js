@@ -31,13 +31,14 @@ class AnimationFrameUpdater extends Destroyable {
 
     update() {
         if (this.isStoped)
-            return;
+            return this;
         this.animationFrameHandler = window.requestAnimationFrame(this.update);
         const newTime = now();
         const deltaTime = newTime - this._oldTime;
         if (deltaTime >= this._intervalTime) {
             this._oldTime = newTime;
-            this.updateFuncs.forEach(updateFunc => {
+            const updateFuncs = this.updateFuncs.slice();
+            updateFuncs.forEach(updateFunc => {
                 updateFunc(deltaTime);
             });
         }
@@ -63,7 +64,7 @@ class AnimationFrameUpdater extends Destroyable {
         return this;
     }
 
-    get length() {
+    get numberOfUpdateFuncs() {
         return this.updateFuncs.length;
     }
 
