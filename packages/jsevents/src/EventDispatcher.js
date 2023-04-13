@@ -109,7 +109,7 @@ class EventDispatcher extends Destroyable {
      * @param {String|Object} type 事件类型
      * @returns {Number} 监听器数量
      */
-    getEventListenersNumber(type) {
+    getEventListenersCount(type) {
         Check.valid('type', type);
 
         const listeners = this._listenersMap.get(type);

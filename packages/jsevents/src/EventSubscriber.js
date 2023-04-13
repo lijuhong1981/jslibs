@@ -1,10 +1,14 @@
 import Check from "@lijuhong1981/jscheck/src/Check.js";
 import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 
-class EventRaiser extends Destroyable {
+/**
+ * A generic utility class for managing subscribers for a particular event. This class is usually instantiated inside of a container class and exposed as a property for others to subscribe to.
+*/
+class EventSubscriber extends Destroyable {
     constructor() {
         super();
         this._listeners = [];
+        this._listenersMap = new Map();
     }
 
     /**
@@ -20,13 +24,8 @@ class EventRaiser extends Destroyable {
      * @param {Function} callback 事件监听回调函数
      * @returns {Boolean}
      */
-    hasListener(callback) {
-        for (let i = 0, length = this._listeners.length; i < length; i++) {
-            if (this._listeners[i].callback === callback) {
-                return true;
-            }
-        }
-        return false;
+    hasEventListener(callback) {
+        return this._listenersMap.has(callback);
     }
 
     /**
@@ -37,26 +36,23 @@ class EventRaiser extends Destroyable {
      * @param {Boolean} options.once 是否单次事件，可不填
      * @returns {Function} 移除函数，调用该函数可直接移除事件监听
      */
-    addListener(callback, options = {}) {
+    addEventListener(callback, options = {}) {
         Check.typeOf.func('callback', callback);
 
-        let listener;
-        for (let i = 0, length = this._listeners.length; i < length; i++) {
-            if (this._listeners[i].callback === callback) {
-                listener = this._listeners[i];
-                break;
-            }
-        }
+        let listener = this._listenersMap.get(callback);
 
         if (!listener) {
             listener = {
                 callback: callback,
                 options: options,
                 removeFunc: () => {
-                    this.removeListener(callback);
+                    this.removeEventListener(callback);
                 }
             };
             this._listeners.push(listener);
+            this._listenersMap.set(callback, listener);
+        } else {
+            listener.options = options;
         }
 
         return listener.removeFunc;
@@ -67,12 +63,13 @@ class EventRaiser extends Destroyable {
      * @param {Function} callback 回调函数
      * @returns {this}
      */
-    removeListener(callback) {
+    removeEventListener(callback) {
         Check.typeOf.func('callback', callback);
 
         for (let i = 0, length = this._listeners.length; i < length; i++) {
             if (this._listeners[i].callback === callback) {
                 this._listeners.splice(i, 1);
+                this._listenersMap.delete(callback);
                 break;
             }
         }
@@ -86,6 +83,7 @@ class EventRaiser extends Destroyable {
      */
     clear() {
         this._listeners.length = 0;
+        this._listenersMap.clear();
         return this;
     }
 
@@ -117,4 +115,4 @@ class EventRaiser extends Destroyable {
     }
 };
 
-export default EventRaiser;
+export default EventSubscriber;

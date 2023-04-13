@@ -56,8 +56,8 @@ class EventEmitter extends Destroyable {
      * @param {String|Object} type 事件类型
      * @returns {Number} 监听器数量
      */
-    listenersNumber() {
-        return this._dispatcher.getEventListenersNumber(type);
+    listenersCount(type) {
+        return this._dispatcher.getEventListenersCount(type);
     }
 
     /**
@@ -86,8 +86,8 @@ class EventEmitter extends Destroyable {
      * @param {Object} owner 事件对象所有者，可不填
      * @returns {this}
      */
-    emitEvent(event) {
-        this._dispatcher.dispatchEvent(event);
+    emitEvent(event, owner) {
+        this._dispatcher.dispatchEvent(event, owner);
         return this;
     }
 
