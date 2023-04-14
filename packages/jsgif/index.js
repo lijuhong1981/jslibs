@@ -3,7 +3,7 @@ import defineDestroyProperties from "@lijuhong1981/jsdestroy/src/defineDestroyPr
 import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 import destroyHTMLElement from "@lijuhong1981/jsdestroy/src/destroyHTMLElement.js";
 import destroyObject from "@lijuhong1981/jsdestroy/src/destroyObject.js";
-import EventRaiser from "@lijuhong1981/jsevents/src/EventRaiser.js";
+import Event from "@lijuhong1981/jsevents/src/EventSubscriber.js";
 import fetchArrayBuffer from "@lijuhong1981/jsload/src/fetchArrayBuffer.js";
 
 // 转流数组
@@ -149,7 +149,7 @@ function GifPlayer(options = {}) {
     let TRANSPARENCY = null;
     let isPlaying = false;
     let currentFrameIndex = 0;
-    const frameChanged = new EventRaiser();
+    const frameChanged = new Event();
     const player = {};
 
     function reset() {

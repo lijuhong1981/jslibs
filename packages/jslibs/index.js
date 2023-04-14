@@ -31,7 +31,7 @@ import GifPlayer from "@lijuhong1981/jsgif";
 import {
     EventDispatcher,
     EventEmitter,
-    EventRaiser,
+    EventSubscriber,
 } from "@lijuhong1981/jsevents";
 import * as HtmlUtils from "@lijuhong1981/jshtml";
 import {
@@ -88,7 +88,7 @@ export {
     GifPlayer,
     EventDispatcher,
     EventEmitter,
-    EventRaiser,
+    EventSubscriber,
     HtmlUtils,
     clone,
     getPropertyDescriptor,
