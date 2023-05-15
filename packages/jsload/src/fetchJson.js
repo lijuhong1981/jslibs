@@ -6,20 +6,17 @@ import fetchResponse from './fetchResponse.js';
  * @param {RequestInit} requestOptions 请求参数
  * @returns {Promise} 返回Promise对象
  */
-function fetchJson(url, requestOptions) {
-    return new Promise(function (resolve, reject) {
-        fetchResponse(url, requestOptions).then(function (response) {
-            return response.json();
-        }).then(function (json) {
-            if (json) {
-                resolve(json);
-            } else {
-                reject(new Error('fetchJson result is null. '));
-            }
-        }).catch(function (error) {
-            reject(error);
-        });
-    });
+async function fetchJson(url, requestOptions) {
+    try {
+        const response = await fetchResponse(url, requestOptions);
+        const json = await response.json();
+        if (json)
+            return json;
+        else
+            throw new Error('fetchJson result is null. ');
+    } catch (error) {
+        throw error;
+    }
 };
 
 export default fetchJson;

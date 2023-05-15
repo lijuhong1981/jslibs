@@ -34,8 +34,8 @@ import {
     EPSILON21,
 } from "./src/Constant.js";
 import generateUUID from "./src/generateUUID.js";
-import degToRad from "./src/degToRad.js";
-import radToDeg from "./src/radToDeg.js";
+import degreesToRadians from "./src/degreesToRadians.js";
+import radiansToDegrees from "./src/radiansToDegrees.js";
 import clamp from "./src/clamp.js";
 import clampLatitude from "./src/clampLatitude.js";
 import clampLongitude from "./src/clampLongitude.js";
@@ -95,8 +95,8 @@ export {
     EPSILON21,
     generateUUID,
     generateUUID as createUUID,
-    degToRad,
-    radToDeg,
+    degreesToRadians,
+    radiansToDegrees,
     clamp,
     clampLatitude,
     clampLongitude,

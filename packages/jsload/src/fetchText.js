@@ -6,20 +6,17 @@ import fetchResponse from './fetchResponse.js';
  * @param {RequestInit} requestOptions 请求参数
  * @returns {Promise} 返回Promise对象
  */
-function fetchText(url, requestOptions) {
-    return new Promise(function (resolve, reject) {
-        fetchResponse(url, requestOptions).then(function (response) {
-            return response.text();
-        }).then(function (text) {
-            if (text) {
-                resolve(text);
-            } else {
-                reject(new Error('fetchText result is null. '));
-            }
-        }).catch(function (error) {
-            reject(error);
-        });
-    });
+async function fetchText(url, requestOptions) {
+    try {
+        const response = await fetchResponse(url, requestOptions);
+        const text = await response.text();
+        if (text)
+            return text;
+        else
+            throw new Error('fetchText result is null. ');
+    } catch (error) {
+        throw error;
+    }
 };
 
 export default fetchText;

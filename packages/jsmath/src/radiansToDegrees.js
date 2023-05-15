@@ -5,8 +5,8 @@ import { DEGREES_PER_RADIAN } from "./Constant.js";
  * @param {Number} radians 弧度
  * @returns {Number} 角度
  */
-function radToDeg(radians) {
+function radiansToDegrees(radians) {
     return radians * DEGREES_PER_RADIAN;
 }
 
-export default radToDeg;
+export default radiansToDegrees;

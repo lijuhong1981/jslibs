@@ -6,20 +6,17 @@ import fetchResponse from './fetchResponse.js';
  * @param {RequestInit} requestOptions 请求参数
  * @returns {Promise} 返回Promise对象
  */
-function fetchBlob(url, requestOptions) {
-    return new Promise(function (resolve, reject) {
-        fetchResponse(url, requestOptions).then(function (response) {
-            return response.blob();
-        }).then(function (blob) {
-            if (blob) {
-                resolve(blob);
-            } else {
-                reject(new Error('fetchBlob result is null. '));
-            }
-        }).catch(function (error) {
-            reject(error);
-        });
-    });
+async function fetchBlob(url, requestOptions) {
+    try {
+        const response = await fetchResponse(url, requestOptions);
+        const blob = await response.blob();
+        if (blob)
+            return blob;
+        else
+            throw new Error('fetchBlob result is null. ');
+    } catch (error) {
+        throw error;
+    }
 };
 
 export default fetchBlob;

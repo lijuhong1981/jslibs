@@ -4,21 +4,19 @@
  * @param {RequestInit} requestOptions 请求参数
  * @returns {Promise} 返回Promise对象
  */
-function fetchResponse(url, requestOptions) {
-    return new Promise(function (resolve, reject) {
-        if (typeof url !== 'string') {
-            reject(new Error('fetch url ' + url + ' is illegal. '));
-            return;
-        }
-        fetch(url, requestOptions).then(function (response) {
-            if (response.ok)
-                resolve(response);
-            else
-                reject(new Error('fetch url ' + url + ' failed, status=' + response.status + ' ;statusText=' + response.statusText));
-        }).catch(function (error) {
-            reject(error);
-        });
-    });
+async function fetchResponse(url, requestOptions) {
+    if (typeof url !== 'string') {
+        throw new Error('fetch url ' + url + ' is illegal. ');
+    }
+    try {
+        const response = await fetch(url, requestOptions);
+        if (response.ok)
+            return response;
+        else
+            throw new Error('fetch url ' + url + ' failed, status=' + response.status + ' ;statusText=' + response.statusText);
+    } catch (error) {
+        throw error;
+    }
 };
 
 export default fetchResponse;

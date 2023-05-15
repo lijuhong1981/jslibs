@@ -6,20 +6,17 @@ import fetchResponse from './fetchResponse.js';
  * @param {RequestInit} requestOptions 请求参数
  * @returns {Promise} 返回Promise对象
  */
-function fetchArrayBuffer(url, requestOptions) {
-    return new Promise(function (resolve, reject) {
-        fetchResponse(url, requestOptions).then(function (response) {
-            return response.arrayBuffer();
-        }).then(function (arrayBuffer) {
-            if (arrayBuffer) {
-                resolve(arrayBuffer);
-            } else {
-                reject(new Error('fetchArrayBuffer result is null. '));
-            }
-        }).catch(function (error) {
-            reject(error);
-        });
-    });
+async function fetchArrayBuffer(url, requestOptions) {
+    try {
+        const response = await fetchResponse(url, requestOptions);
+        const arrayBuffer = await response.arrayBuffer();
+        if (arrayBuffer)
+            return arrayBuffer;
+        else
+            throw new Error('fetchArrayBuffer result is null. ');
+    } catch (error) {
+        throw error;
+    }
 };
 
 export default fetchArrayBuffer;

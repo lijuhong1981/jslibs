@@ -1,4 +1,4 @@
-import fetchResponse from './fetchResponse.js';
+import fetchArrayBuffer from './fetchArrayBuffer.js';
 import arrayBufferToBinaryString from './arrayBufferToBinaryString.js';
 
 /**
@@ -7,21 +7,14 @@ import arrayBufferToBinaryString from './arrayBufferToBinaryString.js';
  * @param {RequestInit} requestOptions 请求参数
  * @returns {Promise} 返回Promise对象
  */
-function fetchBinaryString(url, requestOptions) {
-    return new Promise(function (resolve, reject) {
-        fetchResponse(url, requestOptions).then(function (response) {
-            return response.arrayBuffer();
-        }).then(function (arrayBuffer) {
-            if (arrayBuffer) {
-                const result = arrayBufferToBinaryString(arrayBuffer);
-                resolve(result);
-            } else {
-                reject(new Error('fetchBinaryString result is null. '));
-            }
-        }).catch(function (error) {
-            reject(error);
-        });
-    });
+async function fetchBinaryString(url, requestOptions) {
+    try {
+        const arrayBuffer = await fetchArrayBuffer(url, requestOptions);
+        const result = arrayBufferToBinaryString(arrayBuffer);
+        return result;
+    } catch (error) {
+        throw error;
+    }
 };
 
 export default fetchBinaryString;

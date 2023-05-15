@@ -1,36 +1,44 @@
 import Cache from './Cache.js';
+import Loader from './Loader.js';
 import loadImage from './loadImage.js';
 import Check from '@lijuhong1981/jscheck/src/Check.js';
 import getValidValue from '@lijuhong1981/jscheck/src/getValidValue.js';
+import isFunction from '@lijuhong1981/jscheck/src/isFunction.js';
 import isDataProtocol from '@lijuhong1981/jsurl/src/isDataProtocol.js';
 import isBlobProtocol from '@lijuhong1981/jsurl/src/isBlobProtocol.js';
-import mergeUrl from '@lijuhong1981/jsurl/src/mergeUrl.js';
 
-const imageCache = new Cache();
+const defaultCache = new Cache();
 
-class ImageLoader {
+class ImageLoader extends Loader {
     constructor(options = {}) {
+        super(options);
         this.enableCache = getValidValue(options.enableCache, true);
-        this.basePath = options.basePath;
+        this._cache = options.cache || defaultCache;
     }
 
     get cache() {
-        return imageCache;
+        return this._cache;
     }
 
+    /**
+     * 加载图片
+     * @param {String} url 加载url
+     * @param {Function} onLoad 加载完成通知函数
+     * @param {Function} onError 加载失败通知函数
+     * @returns {Image} 返回的Image对象
+     */
     load(url, onLoad, onError) {
         Check.typeOf.string('url', url);
 
-        // return new Promise((resolve, reject) => {
         const isImageData = (isDataProtocol(url) || isBlobProtocol(url));
 
         if (!isImageData)
-            url = mergeUrl(this.basePath, url);
+            url = this.mergeUrl(url);
 
         if (this.enableCache) {
             const cached = this.cache.get(url);
             if (cached) {
-                if (onLoad)
+                if (isFunction(onLoad))
                     onLoad(cached);
 
                 return cached;
@@ -39,18 +47,12 @@ class ImageLoader {
 
         return loadImage(url, (image) => {
             if (this.enableCache)
-                this.cache.add(url, image);
-            if (typeof onLoad === 'function')
+                this.cache.set(url, image);
+            if (isFunction(onLoad))
                 onLoad(image);
         }, (error) => {
-            if (typeof onError === 'function')
+            if (isFunction(onError))
                 onError(error);
-        });
-    }
-
-    loadPromise(url) {
-        return new Promise((resolve, reject) => {
-            this.load(url, resolve, reject);
         });
     }
 
@@ -73,6 +75,19 @@ Object.defineProperties(ImageLoader, {
         writable: false,
         value: function () {
             return defaultLoader;
+        }
+    },
+    defaultCache: {
+        configurable: false,
+        get: function () {
+            return defaultCache;
+        }
+    },
+    getDefaultCache: {
+        configurable: false,
+        writable: false,
+        value: function () {
+            return defaultCache;
         }
     },
 });
