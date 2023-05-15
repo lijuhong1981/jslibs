@@ -5,6 +5,7 @@ import createElementFromHTML from "./src/createElementFromHTML.js";
 import createImage from "./src/createImage.js";
 import getCSSStyleRule from "./src/getCSSStyleRule.js";
 import getElementById from "./src/getElementById.js";
+import getEventPosition from "./src/getEventPosition.js";
 import imageToDataURL from "./src/imageToDataURL";
 
 export {
@@ -15,5 +16,6 @@ export {
     createImage,
     getCSSStyleRule,
     getElementById,
+    getEventPosition,
     imageToDataURL,
 };
