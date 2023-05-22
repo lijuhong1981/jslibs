@@ -23,5 +23,6 @@
     "@lijuhong1981/jsdestroy": "^1.1.8",
     "@lijuhong1981/jsmath": "^1.2.0",
     "@lijuhong1981/jstime": "^1.0.8"
-  }
+  },
+  "gitHead": "608784dff85576245cacbbad7893c5f69362689e"
 }
