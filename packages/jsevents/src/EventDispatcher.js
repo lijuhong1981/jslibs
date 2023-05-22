@@ -195,12 +195,10 @@ class EventDispatcher extends Destroyable {
     }
 
     /**
-     * 销毁
-     * @returns {this}
+     * 执行销毁
      */
-    destroy() {
+    onDestroy() {
         this.clear();
-        return super.destroy();
     }
 };
 

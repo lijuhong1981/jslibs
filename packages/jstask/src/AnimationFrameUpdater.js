@@ -103,11 +103,12 @@ class AnimationFrameUpdater extends Destroyable {
         return this;
     }
 
-    destroy() {
+    /**
+     * 执行销毁
+     */
+    onDestroy() {
         this.stop();
         this.removeAll();
-        super.destroy();
-        return this;
     }
 };
 

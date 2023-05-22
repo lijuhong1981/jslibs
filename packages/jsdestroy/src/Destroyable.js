@@ -8,8 +8,24 @@ class Destroyable {
         return false;
     }
 
+    /**
+     * 执行销毁，由子类实现
+     */
+    onDestroy() {
+        // console.warn('onDestroy must be overwrited by subclass.');
+    }
+
+    /**
+     * 销毁自身
+     * @returns {this}
+     */
     destroy() {
-        destroyObject(this);
+        if (this.isDestroyed()) {
+            console.warn('This object was destroyed.', this);
+        } else {
+            this.onDestroy();
+            destroyObject(this);
+        }
         return this;
     }
 }

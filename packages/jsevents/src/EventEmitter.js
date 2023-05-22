@@ -92,12 +92,10 @@ class EventEmitter extends Destroyable {
     }
 
     /**
-     * 销毁
-     * @returns {this}
+     * 执行销毁
      */
-    destroy() {
+    onDestroy() {
         this._dispatcher.destroy();
-        return super.destroy();
     }
 };
 

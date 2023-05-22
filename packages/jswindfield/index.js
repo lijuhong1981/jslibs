@@ -269,11 +269,13 @@ class Field extends Destroyable {
         }
     }
 
-    destroy() {
+    /**
+     * 执行销毁
+     */
+    onDestroy() {
         this.uDatas.length = 0;
         this.vDatas.length = 0;
         this.grids.length = 0;
-        super.destroy();
     }
 };
 
@@ -516,11 +518,13 @@ class WindField extends Destroyable {
         return this;
     }
 
-    destroy() {
+    /**
+     * 执行销毁
+     */
+    onDestroy() {
         this.stopRender();
         if (this.field)
             this.field.destroy();
-        super.destroy();
     }
 };
 

@@ -121,10 +121,12 @@ class TaskPool extends Destroyable {
         }
     }
 
-    destroy() {
+    /**
+     * 执行销毁
+     */
+    onDestroy() {
         AnimationFrameUpdater.instance.remove(this.update);
         this.taskQueue.length = 0;
-        super.destroy();
     }
 };
 

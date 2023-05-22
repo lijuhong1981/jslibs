@@ -404,15 +404,6 @@ class ColorGradient extends Destroyable {
     }
 
     /**
-     * 销毁自身
-     * @returns {this}
-     */
-    destroy() {
-        this.removeAll();
-        return super.destroy();
-    }
-
-    /**
      * 克隆ColorGradient对象
      * @param {ColorGradient} colorGradient 需要克隆的对象
      * @param {ColorGradient} result 克隆的结果对象，可不填
@@ -438,6 +429,13 @@ class ColorGradient extends Destroyable {
      */
     clone(result) {
         return ColorGradient.clone(this, result);
+    }
+
+    /**
+     * 执行销毁
+     */
+    onDestroy() {
+        this.removeAll();
     }
 };
 

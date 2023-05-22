@@ -70,9 +70,11 @@ class Cache extends Destroyable {
         return this;
     }
 
-    destroy() {
+    /**
+     * 执行销毁
+     */
+    onDestroy() {
         this.clear(true);
-        return super.destroy();
     }
 };
 

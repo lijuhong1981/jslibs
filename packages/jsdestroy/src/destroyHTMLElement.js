@@ -50,7 +50,7 @@ function destroyHTMLElementImpl(element, recursivelyChildren) {
  */
 function destroyHTMLElement(element, recursivelyChildren) {
     if (element instanceof HTMLElement === false) {
-        console.warn('the element must be instanceof HTMLElement.');
+        console.warn('The element must be instanceof HTMLElement.');
         return;
     }
     destroyHTMLElementImpl(element, recursivelyChildren);

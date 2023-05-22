@@ -13,7 +13,7 @@ function returnTrue() {
  */
 function destroyObject(object) {
     if (isDestroyed(object) || object.isDestroying) {
-        console.warn('the object isDestroyed or isDestroying, repeated call destroyObject function are not required.', object);
+        console.warn('The object isDestroyed or isDestroying, repeated call destroyObject function are not required.', object);
         return;
     }
 
