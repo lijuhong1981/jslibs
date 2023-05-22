@@ -22,7 +22,7 @@ function defineDestroyProperties(target, destroyFunc) {
             configurable: true,
             enumerable: true,
             writable: true,
-            value: function () {
+            value: function (...args) {
                 // console.warn('onDestroy must be overwrited by subclass.');
             }
         },
@@ -30,13 +30,13 @@ function defineDestroyProperties(target, destroyFunc) {
             configurable: true,
             enumerable: true,
             writable: true,
-            value: function () {
+            value: function (...args) {
                 if (this.isDestroyed()) {
                     console.warn('This object was destroyed.', this);
                 } else {
-                    this.onDestroy();
+                    this.onDestroy(...args);
                     if (destroyFunc)
-                        destroyFunc(this);
+                        destroyFunc(this, ...args);
                     else
                         destroyObject(this);
                 }

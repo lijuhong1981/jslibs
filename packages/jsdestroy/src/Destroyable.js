@@ -11,7 +11,7 @@ class Destroyable {
     /**
      * 执行销毁，由子类实现
      */
-    onDestroy() {
+    onDestroy(...args) {
         // console.warn('onDestroy must be overwrited by subclass.');
     }
 
@@ -19,11 +19,11 @@ class Destroyable {
      * 销毁自身
      * @returns {this}
      */
-    destroy() {
+    destroy(...args) {
         if (this.isDestroyed()) {
             console.warn('This object was destroyed.', this);
         } else {
-            this.onDestroy();
+            this.onDestroy(...args);
             destroyObject(this);
         }
         return this;
