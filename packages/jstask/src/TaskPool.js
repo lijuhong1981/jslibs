@@ -1,4 +1,5 @@
 import Check from '@lijuhong1981/jscheck/src/Check.js';
+import isFunction from '@lijuhong1981/jscheck/src/isFunction.js';
 import Destroyable from '@lijuhong1981/jsdestroy/src/Destroyable.js';
 import AnimationFrameUpdater from './AnimationFrameUpdater.js';
 
@@ -16,16 +17,22 @@ const TaskState = Object.freeze({
 });
 
 class Task extends Destroyable {
-    constructor() {
+    constructor(options = {}) {
         super();
         this.id = getNextTaskId();
         this.state = TaskState.None;
         this.priority = 0;
+        if (isFunction(options.onExecute))
+            this.onExecute = options.onExecute.bind(this);
+        if (isFunction(options.onFinish))
+            this.onFinish = options.onFinish.bind(this);
+        if (isFunction(options.onCancel))
+            this.onCancel = options.onCancel.bind(this);
     }
 
     execute() {
         if (this.isDestroyed() || this.isFinished || this.isCanceled || this.isExecuting) {
-            console.warn('the id ' + this.id + ' task state is ' + this.state + ', unable do execute.');
+            console.warn('The id ' + this.id + ' task state is ' + this.state + ', unable do execute.');
             return false;
         }
         this.state = TaskState.Executing;
