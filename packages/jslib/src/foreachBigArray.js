@@ -1,5 +1,5 @@
 /**
- * 数组遍历
+ * 大数组遍历
  * 
  * 如果一个数组的元素量很大，对数组执行遍历则会非常耗时，这可能会导致UI线程阻塞，所以这里设计了这个遍历方法，它会根据指定的循环次数遍历，完成后如果数组未遍历完成，则会根据指定的延迟时间使用setTimeout函数延迟一定时间后再继续遍历数组，以避免UI线程阻塞现象。
  *  
@@ -9,7 +9,7 @@
  * @param {Number} delay 一次循环完成后的延迟时间
  * @returns {Function} 返回取消函数，调用后可取消遍历
  */
-function traverseArray(array, callback = (element, index) => { }, maxLoopCount = 1000, delay = 10) {
+function foreachBigArray(array, callback = (element, index) => { }, maxLoopCount = 1000, delay = 10) {
     const arrayLength = array.length;
     let index = 0, canceled = false;
 
@@ -43,4 +43,4 @@ function traverseArray(array, callback = (element, index) => { }, maxLoopCount =
     return cancel;
 };
 
-export default traverseArray;
+export default foreachBigArray;

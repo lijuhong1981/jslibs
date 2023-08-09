@@ -12,6 +12,8 @@ import isValid from "@lijuhong1981/jscheck/src/isValid.js";
  * @param {Number} options.width 设置width，可不填
  * @param {Number} options.height 设置height，可不填
  * @param {String} options.className 设置className，可不填
+ * @param {Function} onLoad 图片加载完成回调方法，可不填，options.onLoad优先
+ * @param {Function} onError 图片加载失败回调方法，可不填，options.onError优先
  * @returns {Image}
  */
 function createImage(options = {}, onLoad, onError) {
