@@ -23,6 +23,7 @@ import measureText from "./measureText.js";
  *      x: 0, //文本起始点x轴坐标，不填默认0
  *      y: 0, //文本其实点y轴坐标，不填默认0
  *  };
+ * const canvas = drawTextToCanvas(options);
  */
 function drawTextToCanvas(options, canvas) {
     if (!options || !options.text)
