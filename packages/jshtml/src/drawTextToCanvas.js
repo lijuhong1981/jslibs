@@ -1,7 +1,6 @@
 
-import defined from "@lijuhong1981/jscheck/src/isDefined.js";
 import definedValue from "@lijuhong1981/jscheck/src/getDefinedValue.js";
-import measureText from "./measureText";
+import measureText from "./measureText.js";
 
 /**
  * 绘制文本至画布
