@@ -18,7 +18,7 @@ import measureText from "./measureText.js";
  *      fill: true, //是否填充，不填默认true
  *      fillColor: '#000000', //填充颜色，与Css color规范相同，不填默认'#000000'
  *      outline: false, //是否显示轮廓线，与Css color规范相同，不填默认false
- *      outlineColor: '#ff0000', //轮廓先颜色，不填默认'#ff0000'
+ *      outlineColor: '#ff0000', //轮廓线颜色，不填默认'#ff0000'
  *      outlineWidth: 1, //轮廓线宽度，不填默认1
  *      x: 0, //文本起始点x轴坐标，不填默认0
  *      y: 0, //文本其实点y轴坐标，不填默认0
