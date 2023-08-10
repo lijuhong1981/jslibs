@@ -9,6 +9,7 @@ import measureText from "./measureText.js";
  * @returns {HTMLCanvasElement} 绘制后的画布对象
  * 
  * @example
+ *  //文本配置项
  *  const options = {
  *      text: '文本内容', //文本内容，必填项
  *      font: '30px sans-serif', //字体样式，与CSS font规范相同，不填默认浏览器设置
@@ -17,9 +18,13 @@ import measureText from "./measureText.js";
  *      direction: 'inherit', //文本方向，可选值有ltr, rtl, inherit等，不填默认inherit
  *      fill: true, //是否填充，不填默认true
  *      fillColor: '#000000', //填充颜色，与Css color规范相同，不填默认'#000000'
- *      outline: false, //是否显示轮廓线，与Css color规范相同，不填默认false
- *      outlineColor: '#ff0000', //轮廓线颜色，不填默认'#ff0000'
+ *      outline: false, //是否显示轮廓线，不填默认false
+ *      outlineColor: '#ff0000', //轮廓线颜色，与Css color规范相同，不填默认'#ff0000'
  *      outlineWidth: 1, //轮廓线宽度，不填默认1
+ *      background: false, //是否显示背景，不填默认false
+ *      backgroundColor: '#000000', //背景颜色，与Css color规范相同，不填默认'rgba(0, 0, 0, 0.7)'
+ *      backgroundPaddingX: 5, //背景x方向padding，不填默认5
+ *      backgroundPaddingY: 2, //背景x方向padding，不填默认2
  *      x: 0, //文本起始点x轴坐标，不填默认0
  *      y: 0, //文本其实点y轴坐标，不填默认0
  *  };
@@ -31,12 +36,19 @@ function drawTextToCanvas(options, canvas) {
     const text = options.text;
 
     let x, y, textAlign, textBaseline;
+    const background = definedValue(options.background, false);
+    let backgroundColor, backgroundPaddingX = 0, backgroundPaddingY = 0;
+    if (background) {
+        backgroundColor = definedValue(options.backgroundColor, 'rgba(0, 0, 0, 0.7)');
+        backgroundPaddingX = definedValue(options.backgroundPaddingX, 5);
+        backgroundPaddingY = definedValue(options.backgroundPaddingY, 2);
+    }
     if (!canvas) {
         canvas = document.createElement('canvas');
 
         const rect = measureText(text, options.font);
-        const width = Math.ceil(rect.width);
-        const height = Math.ceil(rect.height);
+        const width = Math.ceil(rect.width) + backgroundPaddingX * 2;
+        const height = Math.ceil(rect.height) + backgroundPaddingY * 2;
         canvas.width = width;
         canvas.height = height;
 
@@ -52,6 +64,12 @@ function drawTextToCanvas(options, canvas) {
     }
 
     const context = canvas.getContext('2d');
+
+    if (background) {
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
     if (options.font)
         context.font = options.font;
     context.textAlign = textAlign;
