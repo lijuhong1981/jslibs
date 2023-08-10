@@ -17,12 +17,12 @@ import measureText from "./measureText.js";
  *      textBaseline: 'alphabetic', //文字垂直方向的对齐方式，可选值有top, hanging, middle, alphabetic, ideographic, bottom等，不填默认alphabetic
  *      direction: 'inherit', //文本方向，可选值有ltr, rtl, inherit等，不填默认inherit
  *      fill: true, //是否填充，不填默认true
- *      fillColor: '#000000', //填充颜色，与Css color规范相同，不填默认'#000000'
+ *      fillColor: '#ffffff', //填充颜色，与Css color规范相同，不填默认'#ffffff'
  *      outline: false, //是否显示轮廓线，不填默认false
  *      outlineColor: '#ff0000', //轮廓线颜色，与Css color规范相同，不填默认'#ff0000'
  *      outlineWidth: 1, //轮廓线宽度，不填默认1
  *      background: false, //是否显示背景，不填默认false
- *      backgroundColor: '#000000', //背景颜色，与Css color规范相同，不填默认'rgba(0, 0, 0, 0.7)'
+ *      backgroundColor: 'rgba(0, 0, 0, 0.7)', //背景颜色，与Css color规范相同，不填默认'rgba(0, 0, 0, 0.7)'
  *      backgroundPaddingX: 5, //背景x方向padding，不填默认5
  *      backgroundPaddingY: 2, //背景x方向padding，不填默认2
  *      x: 0, //文本起始点x轴坐标，不填默认0
@@ -79,7 +79,7 @@ function drawTextToCanvas(options, canvas) {
     const outline = definedValue(options.outline, false);
     const maxWidth = options.maxWidth;
     if (fill) {
-        context.fillStyle = definedValue(options.fillColor, '#000000');
+        context.fillStyle = definedValue(options.fillColor, '#ffffff');
         context.fillText(text, x, y, maxWidth);
     }
     if (outline) {
