@@ -109,12 +109,20 @@ class EventDispatcher extends Destroyable {
      * @param {String|Object} type 事件类型
      * @returns {Number} 监听器数量
      */
-    getEventListenersCount(type) {
+    getListenersCount(type) {
         Check.valid('type', type);
 
         const listeners = this._listenersMap.get(type);
 
         return listeners ? listeners.length : 0;
+    }
+
+    /**
+     * @deprecated
+    */
+    getEventListenersCount(type) {
+        console.warn("The getEventListenersCount function has deprecated, use getListenersCount instead.");
+        return this.getListenersCount(type);
     }
 
     /**

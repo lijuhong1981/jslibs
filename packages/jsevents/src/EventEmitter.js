@@ -57,7 +57,7 @@ class EventEmitter extends Destroyable {
      * @returns {Number} 监听器数量
      */
     listenersCount(type) {
-        return this._dispatcher.getEventListenersCount(type);
+        return this._dispatcher.getListenersCount(type);
     }
 
     /**
