@@ -10,7 +10,7 @@ import isObject from "@lijuhong1981/jscheck/src/isObject.js";
  * @param {object} result 合并后输出的结果对象，可不填
  * @returns {object} 合并后的结果对象
  */
-function combine(object1, object2, recursive = false, ignores = [], result = {}) {
+function merge(object1, object2, recursive = false, ignores = [], result = {}) {
     const object1Defined = defined(object1);
     const object2Defined = defined(object2);
 
@@ -53,4 +53,4 @@ function combine(object1, object2, recursive = false, ignores = [], result = {})
     return result;
 };
 
-export default combine;
+export default merge;
