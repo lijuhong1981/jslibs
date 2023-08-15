@@ -1,6 +1,6 @@
 {
   "name": "@lijuhong1981/jslibs",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "> TODO: description",
   "author": "lijuhong1981",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
@@ -24,7 +24,7 @@
     "@lijuhong1981/jsdestroy": "^1.1.9",
     "@lijuhong1981/jsevents": "^1.1.5",
     "@lijuhong1981/jsgif": "^1.2.2",
-    "@lijuhong1981/jshtml": "^1.0.9",
+    "@lijuhong1981/jshtml": "^1.0.10",
     "@lijuhong1981/jslib": "^1.1.1",
     "@lijuhong1981/jsload": "^1.2.2",
     "@lijuhong1981/jsmath": "^1.2.0",
