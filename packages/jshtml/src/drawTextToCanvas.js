@@ -27,6 +27,7 @@ import measureText from "./measureText.js";
  *      backgroundPaddingY: 2, //背景x方向padding，不填默认2
  *      x: 0, //文本起始点x轴坐标，不填默认0
  *      y: 0, //文本其实点y轴坐标，不填默认0
+ *      scaleRadio: 1, //canvas缩放倍率，不填默认1
  *  };
  * const canvas = drawTextToCanvas(options);
  */
@@ -36,6 +37,7 @@ function drawTextToCanvas(options, canvas) {
     const text = options.text;
 
     let x, y, textAlign, textBaseline;
+    const scaleRadio = definedValue(options.scaleRadio, 1);
     const background = definedValue(options.background, false);
     let backgroundColor, backgroundPaddingX = 0, backgroundPaddingY = 0;
     if (background) {
@@ -47,8 +49,8 @@ function drawTextToCanvas(options, canvas) {
         canvas = document.createElement('canvas');
 
         const rect = measureText(text, options.font);
-        const width = Math.ceil(rect.width) + backgroundPaddingX * 2;
-        const height = Math.ceil(rect.height) + backgroundPaddingY * 2;
+        const width = (Math.ceil(rect.width) + backgroundPaddingX * 2) * scaleRadio;
+        const height = (Math.ceil(rect.height) + backgroundPaddingY * 2) * scaleRadio;
         canvas.width = width;
         canvas.height = height;
 
@@ -57,13 +59,14 @@ function drawTextToCanvas(options, canvas) {
         textAlign = definedValue(options.textAlign, 'center');
         textBaseline = definedValue(options.textBaseline, 'middle');
     } else {
-        x = definedValue(options.x, 0);
-        y = definedValue(options.y, 0);
+        x = definedValue(options.x, 0) * scaleRadio;
+        y = definedValue(options.y, 0) * scaleRadio;
         textAlign = definedValue(options.textAlign, 'start');
         textBaseline = definedValue(options.textBaseline, 'alphabetic');
     }
 
     const context = canvas.getContext('2d');
+    context.scale(scaleRadio, scaleRadio);
 
     if (background) {
         context.fillStyle = backgroundColor;
