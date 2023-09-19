@@ -33,7 +33,6 @@ import {
     EPSILON20,
     EPSILON21,
 } from "./src/Constant.js";
-import generateUUID from "./src/generateUUID.js";
 import degreesToRadians from "./src/degreesToRadians.js";
 import radiansToDegrees from "./src/radiansToDegrees.js";
 import clamp from "./src/clamp.js";
@@ -93,8 +92,6 @@ export {
     EPSILON19,
     EPSILON20,
     EPSILON21,
-    generateUUID,
-    generateUUID as createUUID,
     degreesToRadians,
     radiansToDegrees,
     clamp,
