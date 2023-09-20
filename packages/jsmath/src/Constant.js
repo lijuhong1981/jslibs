@@ -9,6 +9,12 @@ const TWO_PI = 2.0 * PI;
 const ONE_OVER_TWO_PI = 1.0 / (2.0 * PI);
 const RADIANS_PER_DEGREE = PI / 180.0;
 const DEGREES_PER_RADIAN = 180.0 / PI;
+/**
+ * The number of radians in an arc second.
+ *
+ * @type {number}
+ * @constant
+ */
 const RADIANS_PER_ARCSECOND = RADIANS_PER_DEGREE / 3600.0;
 
 /**

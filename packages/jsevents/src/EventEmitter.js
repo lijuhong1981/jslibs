@@ -9,31 +9,36 @@ class EventEmitter extends Destroyable {
 
     /**
      * 添加事件监听
-     * @param {String|Object} type 事件类型
+     * @param {any} type 事件类型
      * @param {Function} callback 回调函数
+     * @param {object} options 事件配置项，可不填
+     * @param {object} options.scope 回调函数<code>this</code>指针对象，可不填
+     * @param {boolean} options.once 是否单次事件，可不填
      * @returns {this}
      */
-    on(type, callback) {
-        this._dispatcher.addEventListener(type, callback);
+    on(type, callback, options) {
+        this._dispatcher.addEventListener(type, callback, options);
         return this;
     }
 
     /**
      * 添加单次事件监听
-     * @param {String|Object} type 事件类型
-     * @param {Function} callback 事件回调函数
+     * @param {any} type 事件类型
+     * @param {Function} callback 回调函数
+     * @param {object} scope 回调函数<code>this</code>指针对象，可不填
      * @returns {this}
      */
-    once(type, callback) {
+    once(type, callback, scope) {
         this._dispatcher.addEventListener(type, callback, {
-            once: true
+            once: true,
+            scope: scope,
         });
         return this;
     }
 
     /**
      * 移除事件监听
-     * @param {String|Object} type 事件类型
+     * @param {any} type 事件类型
      * @param {Function} callback 回调函数，不填时可移除type下所有的事件监听
      * @returns {this}
      */
@@ -44,20 +49,28 @@ class EventEmitter extends Destroyable {
 
     /**
      * 判断是否已添加某类型的事件监听
-     * @param {String|Object} type 事件类型
-     * @returns {Boolean} 判断结果
+     * @param {any} type 事件类型
+     * @returns {boolean} 判断结果
      */
     hasListener(type) {
         return this._dispatcher.hasEventListener(type);
     }
 
     /**
-     * 获取某类型事件监听器数量
-     * @param {String|Object} type 事件类型
-     * @returns {Number} 监听器数量
+     * 注册的事件数量
+     * @returns {number}
      */
-    listenersCount(type) {
-        return this._dispatcher.getListenersCount(type);
+    get numberOfEvents() {
+        return this._dispatcher.numberOfEvents;
+    }
+
+    /**
+     * 获取某类型事件监听器数量
+     * @param {any} type 事件类型
+     * @returns {number} 监听器数量
+     */
+    numberOfListeners(type) {
+        return this._dispatcher.numberOfListeners(type);
     }
 
     /**
@@ -71,7 +84,7 @@ class EventEmitter extends Destroyable {
 
     /**
      * 发送事件参数
-     * @param {String|Object} type 事件类型
+     * @param {any} type 事件类型
      * @param {...any} ...args 事件参数 
      * @returns {this}
      */
@@ -82,8 +95,8 @@ class EventEmitter extends Destroyable {
 
     /**
      * 发送事件对象
-     * @param {Object} event 事件对象
-     * @param {Object} owner 事件对象所有者，可不填
+     * @param {object} event 事件对象
+     * @param {object} owner 事件对象所有者，可不填
      * @returns {this}
      */
     emitEvent(event, owner) {

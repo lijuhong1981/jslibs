@@ -7,7 +7,6 @@ import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 class EventSubscriber extends Destroyable {
     constructor() {
         super();
-        this._listeners = [];
         this._listenersMap = new Map();
     }
 
@@ -16,13 +15,13 @@ class EventSubscriber extends Destroyable {
      * @returns {Number}
      */
     get numberOfListeners() {
-        return this._listeners.length;
+        return this._listenersMap.size;
     }
 
     /**
      * 判断事件监听器是否已存在
      * @param {Function} callback 事件监听回调函数
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     hasEventListener(callback) {
         return this._listenersMap.has(callback);
@@ -31,9 +30,9 @@ class EventSubscriber extends Destroyable {
     /**
      * 添加事件监听
      * @param {Function} callback 回调函数
-     * @param {Object} options 事件配置项，可不填
-     * @param {Object} options.scope 回调函数<code>this</code>指针对象，可不填
-     * @param {Boolean} options.once 是否单次事件，可不填
+     * @param {object} options 事件配置项，可不填
+     * @param {object} options.scope 回调函数<code>this</code>指针对象，可不填
+     * @param {boolean} options.once 是否单次事件，可不填
      * @returns {Function} 移除函数，调用该函数可直接移除事件监听
      */
     addEventListener(callback, options = {}) {
@@ -49,7 +48,6 @@ class EventSubscriber extends Destroyable {
                     this.removeEventListener(callback);
                 }
             };
-            this._listeners.push(listener);
             this._listenersMap.set(callback, listener);
         } else {
             listener.options = options;
@@ -61,20 +59,41 @@ class EventSubscriber extends Destroyable {
     /**
      * 移除事件监听
      * @param {Function} callback 回调函数
-     * @returns {this}
+     * @returns {boolean}
      */
     removeEventListener(callback) {
         Check.typeOf.func('callback', callback);
 
-        for (let i = 0, length = this._listeners.length; i < length; i++) {
-            if (this._listeners[i].callback === callback) {
-                this._listeners.splice(i, 1);
-                this._listenersMap.delete(callback);
-                break;
-            }
-        }
+        return this._listenersMap.delete(callback);
+    }
 
-        return this;
+    /**
+     * @see addEventListener
+    */
+    on(callback, options) {
+        return this.addEventListener(callback, options);
+    }
+
+    /**
+     * @see removeEventListener
+    */
+    off(callback) {
+        return this.removeEventListener(callback);
+    }
+
+    /**
+     * 添加一次事件监听
+     * @param {Function} callback 回调函数
+     * @param {object} scope 回调函数<code>this</code>指针对象，可不填
+     * @returns {Function} 移除函数，调用该函数可直接移除事件监听
+     * 
+     * @see addEventListener
+     */
+    once(callback, scope) {
+        return this.addEventListener(callback, {
+            once: true,
+            scope: scope,
+        });
     }
 
     /**
@@ -82,7 +101,6 @@ class EventSubscriber extends Destroyable {
      * @returns {this}
      */
     clear() {
-        this._listeners.length = 0;
         this._listenersMap.clear();
         return this;
     }
@@ -93,14 +111,15 @@ class EventSubscriber extends Destroyable {
      * @returns {this}
      */
     raiseEvent(...args) {
-        const listeners = this._listeners.slice();
-        listeners.forEach(listener => {
-            listener.callback.call(listener.options.scope, ...args);
-            if (listener.options.once) {
-                const index = this._listeners.indexOf(listener);
-                this._listeners.splice(index, 1);
+        const listeners = this._listenersMap.values();
+        for (const listener of listeners) {
+            const options = listener.options;
+            const callback = listener.callback;
+            callback.apply(options.scope, arguments);
+            if (options.once) {
+                this._listenersMap.delete(callback);
             }
-        });
+        }
 
         return this;
     }
