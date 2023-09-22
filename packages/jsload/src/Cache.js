@@ -18,23 +18,20 @@ class Cache extends Destroyable {
         this.destroyValues = true;
     }
 
-    set(key, value) {
+    set(key, value, destroyOldValue) {
         Check.valid('key', key);
         Check.valid('value', value);
 
+        destroyOldValue = definedValue(destroyOldValue, this.destroyValues);
         const oldValue = this.map.get(key);
         if (oldValue === value)
             return;
 
-        if (oldValue && this.destroyValues)
+        if (oldValue && destroyOldValue)
             destroyValue(oldValue);
         this.map.set(key, value);
 
         return this;
-    }
-
-    add(key, value) {
-        return this.set(key, value);
     }
 
     get(key) {
@@ -59,6 +56,10 @@ class Cache extends Destroyable {
         }
         this.map.delete(key);
         return this;
+    }
+
+    add(key, value, destroyOldValue) {
+        return this.set(key, value, destroyOldValue);
     }
 
     remove(key, destroy) {

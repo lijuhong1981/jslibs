@@ -13,16 +13,19 @@ class ImageLoader extends Loader {
     constructor(options = {}) {
         super(options);
         this.enableCache = getValidValue(options.enableCache, true);
-        this._cache = options.cache || defaultCache;
+        this.cache = options.cache || defaultCache;
     }
 
-    get cache() {
-        return this._cache;
+    /**
+     * 执行图片加载，可由子类重写实现
+     */
+    onImageLoad(url, isImageData, onLoad, onError) {
+        return loadImage(url, onLoad, onError);
     }
 
     /**
      * 加载图片
-     * @param {String} url 加载url
+     * @param {string} url 加载url
      * @param {Function} onLoad 加载完成通知函数
      * @param {Function} onError 加载失败通知函数
      * @returns {Image} 返回的Image对象
@@ -45,7 +48,7 @@ class ImageLoader extends Loader {
             }
         }
 
-        return loadImage(url, (image) => {
+        return this.onImageLoad(url, isImageData, (image) => {
             if (this.enableCache)
                 this.cache.set(url, image);
             if (isFunction(onLoad))

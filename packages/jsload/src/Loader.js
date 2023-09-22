@@ -12,6 +12,7 @@ import mergeUrl from '@lijuhong1981/jsurl/src/mergeUrl.js';
 class Loader {
     constructor(options = {}) {
         this.basePath = options.basePath;
+        this.requestOptions = options.requestOptions;
     }
 
     /**
