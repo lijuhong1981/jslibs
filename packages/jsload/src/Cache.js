@@ -1,4 +1,5 @@
 import Check from '@lijuhong1981/jscheck/src/Check.js';
+import definedValue from '@lijuhong1981/jscheck/src/getDefinedValue.js';
 import Destroyable from '@lijuhong1981/jsdestroy/src/Destroyable.js';
 import destroyHTMLElement from '@lijuhong1981/jsdestroy/src/destroyHTMLElement.js';
 import destroyObject from '@lijuhong1981/jsdestroy/src/destroyObject.js';
@@ -14,15 +15,19 @@ class Cache extends Destroyable {
     constructor() {
         super();
         this.map = new Map();
+        this.destroyValues = true;
     }
 
     set(key, value) {
         Check.valid('key', key);
         Check.valid('value', value);
 
-        if (this.map.get(key) === value)
+        const oldValue = this.map.get(key);
+        if (oldValue === value)
             return;
 
+        if (oldValue && this.destroyValues)
+            destroyValue(oldValue);
         this.map.set(key, value);
 
         return this;
@@ -45,6 +50,7 @@ class Cache extends Destroyable {
     }
 
     delete(key, destroy) {
+        destroy = definedValue(destroy, this.destroyValues);
         if (destroy) {
             const value = this.map.get(key);
             if (value) {
@@ -60,6 +66,7 @@ class Cache extends Destroyable {
     }
 
     clear(destroy) {
+        destroy = definedValue(destroy, this.destroyValues);
         if (destroy) {
             const values = this.map.values();
             for (const value of values) {
@@ -74,7 +81,7 @@ class Cache extends Destroyable {
      * 执行销毁
      */
     onDestroy() {
-        this.clear(true);
+        this.clear();
     }
 };
 
