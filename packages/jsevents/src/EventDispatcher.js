@@ -161,9 +161,9 @@ class EventDispatcher extends Destroyable {
         const _event = this._events.get(type);
         if (_event)
             _event.raiseEvent(type, ...args);
-        else {
-            console.warn('Not found the type`s event.', type);
-        }
+        // else {
+        //     console.warn('Not found the type`s event.', type);
+        // }
 
         return this;
     }
@@ -184,9 +184,9 @@ class EventDispatcher extends Destroyable {
         const _event = this._events.get(event.type);
         if (_event)
             _event.raiseEvent(event);
-        else {
-            console.warn('Not found the type`s event.', event.type);
-        }
+        // else {
+        //     console.warn('Not found the type`s event.', event.type);
+        // }
 
         return this;
     }
