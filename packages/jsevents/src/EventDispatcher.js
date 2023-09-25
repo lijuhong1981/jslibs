@@ -34,8 +34,8 @@ function removeListener(events, type, callback) {
         if (callback) {
             event.removeEventListener(callback);
         } else {
-            event.destroy();
             events.delete(type);
+            event.destroy();
         }
     }
 }
@@ -125,7 +125,7 @@ class EventDispatcher extends Destroyable {
 
     /**
      * 判断是否已添加某类型的事件监听器
-     * @param {string|object} type 事件类型
+     * @param {any} type 事件类型
      * @returns {boolean} 判断结果
      */
     hasEventListener(type) {
@@ -151,18 +151,18 @@ class EventDispatcher extends Destroyable {
 
     /**
      * 发送事件参数
-     * @param {string|object} type 事件类型
+     * @param {any} type 事件类型
      * @param {...any} ...args 事件参数 
      * @returns {this}
      */
     dispatch(type, ...args) {
         Check.valid('type', type);
 
-        const event = this._events.get(type);
-        if (event)
-            event.raiseEvent(type, ...args);
+        const _event = this._events.get(type);
+        if (_event)
+            _event.raiseEvent(type, ...args);
         else {
-            console.warn('Not found the ' + type + ' type`s event.');
+            console.warn('Not found the type`s event.', type);
         }
 
         return this;
@@ -171,6 +171,7 @@ class EventDispatcher extends Destroyable {
     /**
      * 发送事件对象
      * @param {object} event 事件对象
+     * @param {any} event.type 事件类型，必填项
      * @param {object} owner 事件对象所有者，可不填
      * @returns {this}
      */
@@ -180,11 +181,11 @@ class EventDispatcher extends Destroyable {
 
         event.owner = event.owner || owner || this;
 
-        const event = this._events.get(event.type);
-        if (event)
-            event.raiseEvent(event);
+        const _event = this._events.get(event.type);
+        if (_event)
+            _event.raiseEvent(event);
         else {
-            console.warn('Not found the ' + type + ' type`s event.');
+            console.warn('Not found the type`s event.', event.type);
         }
 
         return this;
