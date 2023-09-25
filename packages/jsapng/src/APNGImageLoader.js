@@ -7,9 +7,12 @@ class APNGImageLoader extends ImageLoader {
     //     super(options);
     // }
 
-    onImageLoad(url, isImageData, onLoad, onError) {
+    /**
+     * 重写图片加载函数，生成canvas以绘制apng动画
+    */
+    onImageLoad(options, onLoad, onError) {
         const canvas = document.createElement('canvas');
-        fetchArrayBuffer(url, this.requestOptions).then(function (buffer) {
+        fetchArrayBuffer(options.url, options.requestOptions).then(function (buffer) {
             const apng = parseAPNG(buffer);
             canvas.width = apng.width;
             canvas.height = apng.height;

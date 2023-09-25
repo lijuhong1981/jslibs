@@ -1,3 +1,5 @@
+import Check from '@lijuhong1981/jscheck/src/Check';
+import isFunction from '@lijuhong1981/jscheck/src/isFunction';
 import mergeUrl from '@lijuhong1981/jsurl/src/mergeUrl.js';
 
 /**
@@ -24,15 +26,31 @@ class Loader {
         return mergeUrl(this.basePath, url);
     }
 
+    onLoad(options, onLoad, onError) {
+        throw new Error('This function must be implemented by a subclass.');
+    }
+
     /**
      * 加载资源
-     * @param {String} url 加载url
-     * @param {Function} onLoad 加载完成通知函数
-     * @param {Function} onError 加载失败通知函数
-     * @returns {any}
+     * @param {string|object} options 加载url或加载配置项，必填项
+     * @param {string} options.url 加载url，必填项
+     * @param {object} options.requestOptions 请求配置项，可选项
+     * @param {Function} options.onLoad 加载完成通知函数，可选项
+     * @param {Function} options.onError 加载失败通知函数，可选项
+     * @param {Function} onLoad 加载完成通知函数，可选项
+     * @param {Function} onError 加载失败通知函数，可选项
+     * @returns {any} 由子类决定返回对象
      */
-    load(url, onLoad, onError) {
-        throw new Error('This function must be overwrite.');
+    load(options, onLoad, onError) {
+        Check.defined('options', options);
+        if (typeof options === 'string')
+            options = {
+                url: options,
+            };
+        else
+            options = Object.assign({}, options);
+        Check.defined('options.url', options.url);
+        return this.onLoad(options, onLoad, onError);
     }
 
     /**

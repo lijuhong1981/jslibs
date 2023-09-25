@@ -6,14 +6,17 @@ class GIFImageLoader extends ImageLoader {
     //     super(options);
     // }
 
-    onImageLoad(url, isImageData, onLoad, onError) {
+    /**
+     * 重写图片加载函数，生成canvas以绘制gif动画
+    */
+    onImageLoad(options, onLoad, onError) {
         const player = new GIFPlayer();
-        player.loadUrl(url, this.requestOptions, function () {
-            player.canvas.gifPlayer = player;
+        player.loadUrl(options.url, options.requestOptions, function () {
             onLoad(player.canvas);
         }, function (error) {
             onError(error);
         });
+        player.canvas.gifPlayer = player;
         return player.canvas;
     }
 };
