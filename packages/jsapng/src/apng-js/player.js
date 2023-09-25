@@ -23,6 +23,8 @@ export default class extends EventEmitter {
         this._currentFrameNumber = 0;
 
         /** @type {boolean} */
+        this._playing = false;
+        /** @type {boolean} */
         this._ended = false;
         /** @type {boolean} */
         this._paused = true;
@@ -89,17 +91,22 @@ export default class extends EventEmitter {
 
     // playback
 
+    get playing() { return this._playing; }
+
     get paused() { return this._paused; }
 
     get ended() { return this._ended; }
 
     play() {
+        if (this._playing)
+            return;
         this.emit('play');
 
         if (this._ended) {
             this.stop();
         }
         this._paused = false;
+        this._playing = true;
 
         let nextRenderTime = performance.now() + this.currentFrame.delay / this.playbackRate;
         const tick = now => {
@@ -125,6 +132,7 @@ export default class extends EventEmitter {
         if (!this._paused) {
             this.emit('pause');
             this._paused = true;
+            this._playing = false;
         }
     }
 
@@ -133,6 +141,7 @@ export default class extends EventEmitter {
         this._numPlays = 0;
         this._ended = false;
         this._paused = true;
+        this._playing = false;
         // render first frame
         this._currentFrameNumber = -1;
         this.context.clearRect(0, 0, this._apng.width, this._apng.height);
