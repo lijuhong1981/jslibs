@@ -26,6 +26,9 @@ function destroyObject(object) {
         try {
             const value = object[key];
             if (value) {
+                //有缓存标记，不执行销毁
+                if (value.isCached)
+                    continue;
                 if (value instanceof HTMLElement)
                     destroyHTMLElement(object[key]);
                 if (typeof value.destroy === 'function' || isDestroyed(value))

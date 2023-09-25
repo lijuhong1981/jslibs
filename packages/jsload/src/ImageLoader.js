@@ -12,6 +12,9 @@ class ImageLoader extends Loader {
     constructor(options = {}) {
         super(options);
         this.enableCache = getValidValue(options.enableCache, true);
+        /**
+         * @type {Cache}
+        */
         this.cache = options.cache || defaultCache;
     }
 

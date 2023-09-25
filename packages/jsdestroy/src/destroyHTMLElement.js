@@ -33,9 +33,15 @@ function destroyHTMLElementImpl(element, recursivelyChildren) {
         //指向一张空白图片以释放之前的图片
         element.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
     } else if (element instanceof HTMLCanvasElement) {
+        //移除apng动画
         if (element.apngPlayer) {
             element.apngPlayer.stop();
             delete element.apngPlayer;
+        }
+        //移除gif动画
+        if (element.gifPlayer) {
+            element.gifPlayer.stop();
+            delete element.gifPlayer;
         }
         //修改canvas尺寸为0可以释放之前的绘制结果
         element.width = element.height = 0;

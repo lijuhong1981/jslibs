@@ -1,10 +1,12 @@
 import Check from '@lijuhong1981/jscheck/src/Check.js';
 import definedValue from '@lijuhong1981/jscheck/src/getDefinedValue.js';
+import isObject from '@lijuhong1981/jscheck/src/isObject.js';
 import Destroyable from '@lijuhong1981/jsdestroy/src/Destroyable.js';
 import destroyHTMLElement from '@lijuhong1981/jsdestroy/src/destroyHTMLElement.js';
 import destroyObject from '@lijuhong1981/jsdestroy/src/destroyObject.js';
 
 function destroyValue(value) {
+    delete value.isCached;
     if (value instanceof HTMLElement)
         destroyHTMLElement(value);
     else
@@ -29,6 +31,10 @@ class Cache extends Destroyable {
 
         if (oldValue && destroyOldValue)
             destroyValue(oldValue);
+
+        //如果缓存的是对象，设置一个缓存标记isCached
+        if (isObject(value))
+            value.isCached = true;
         this.map.set(key, value);
 
         return this;
