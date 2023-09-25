@@ -27,7 +27,7 @@ class ImageLoader extends Loader {
      * @returns {Image} 返回的Image对象
      */
     onLoad(options, onLoad, onError) {
-        const isImageData = options.isImageData = (isDataProtocol(url) || isBlobProtocol(url));
+        const isImageData = options.isImageData = (isDataProtocol(options.url) || isBlobProtocol(options.url));
 
         if (!isImageData)
             options.url = this.mergeUrl(options.url);
