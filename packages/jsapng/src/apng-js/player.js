@@ -1,27 +1,6 @@
 import EventEmitter from '@lijuhong1981/jsevents/src/EventEmitter.js';
 
 export default class extends EventEmitter {
-    /** @type {CanvasRenderingContext2D} */
-    context;
-    /** @type {number} */
-    playbackRate = 1.0;
-
-    /** @type {APNG} */
-    _apng;
-    /** @type {Frame} */
-    _prevFrame;
-    /** @type {ImageData} */
-    _prevFrameData;
-    /** @type {number} */
-    _currentFrameNumber = 0;
-
-    /** @type {boolean} */
-    _ended = false;
-    /** @type {boolean} */
-    _paused = true;
-    /** @type {number} */
-    _numPlays = 0;
-
     /**
      * @param {APNG} apng
      * @param {CanvasRenderingContext2D} context
@@ -29,6 +8,27 @@ export default class extends EventEmitter {
      */
     constructor(apng, context, autoPlay) {
         super();
+        /** @type {CanvasRenderingContext2D} */
+        this.context;
+        /** @type {number} */
+        this.playbackRate = 1.0;
+
+        /** @type {APNG} */
+        this._apng;
+        /** @type {Frame} */
+        this._prevFrame;
+        /** @type {ImageData} */
+        this._prevFrameData;
+        /** @type {number} */
+        this._currentFrameNumber = 0;
+
+        /** @type {boolean} */
+        this._ended = false;
+        /** @type {boolean} */
+        this._paused = true;
+        /** @type {number} */
+        this._numPlays = 0;
+
         this._apng = apng;
         this.context = context;
         this.stop();
