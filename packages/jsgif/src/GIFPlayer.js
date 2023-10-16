@@ -136,11 +136,11 @@ const defaultOptions = {
 function GIFPlayer(options = {}) {
     options = Object.assign({}, defaultOptions, options);
     console.log('options:', options);
-    const CANVAS = document.createElement("canvas");
+    const CANVAS = options.canvas || document.createElement("canvas");
     const CANVAS_CTX = CANVAS.getContext('2d');
-    const TEMP_CANVAS = document.createElement("canvas");//用来拿 imageData 的工具人
-    const TEMP_CANVAS_CTX = TEMP_CANVAS.getContext('2d', { willReadFrequently: true, }); // 工具人的 getContext('2d')
-    const ATLAS_CANVAS = document.createElement("canvas");
+    const TEMP_CANVAS = document.createElement("canvas");//用来拿 imageData 的缓存canvas
+    const TEMP_CANVAS_CTX = TEMP_CANVAS.getContext('2d', { willReadFrequently: true, });
+    const ATLAS_CANVAS = options.atlasCanvas || document.createElement("canvas");
     const FRAME_LIST = []; // 存放每一帧数据以及对应的延时
     let GIF_INFO = {}; // GIF 的一些信息
     let STREAM = null;

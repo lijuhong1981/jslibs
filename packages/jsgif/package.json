@@ -23,6 +23,7 @@
     "@lijuhong1981/jscheck": "^1.0.10",
     "@lijuhong1981/jsdestroy": "^1.1.11",
     "@lijuhong1981/jsevents": "^1.1.10",
-    "@lijuhong1981/jsload": "^1.2.7"
+    "@lijuhong1981/jsload": "^1.2.7",
+    "@lijuhong1981/jstask": "^1.1.5"
   }
 }

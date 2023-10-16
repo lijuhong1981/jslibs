@@ -1,5 +1,10 @@
 import GIFPlayer from "./src/GIFPlayer.js";
-import GIFImageLoader from "./src/GifImageLoader.js";
+import loadGIFImage from "./src/loadGIFImage.js";
+import GIFImageLoader from "./src/GIFImageLoader.js";
 
 export default GIFPlayer;
-export { GIFPlayer, GIFImageLoader };
+export {
+    GIFPlayer,
+    loadGIFImage,
+    GIFImageLoader,
+};

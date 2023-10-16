@@ -3,13 +3,14 @@ import readLine from "./src/readLine.js";
 import { inputFile, inputFileAsArrayBuffer, inputFileAsDataURL, inputFileAsText } from "./src/FileInput.js";
 import Cache from "./src/Cache.js";
 import loadImage from "./src/loadImage.js";
-import loadImageAsync from "./src/loadImageAsync.js";
 import Loader from "./src/Loader.js";
 import ImageLoader from "./src/ImageLoader.js";
 import arrayBufferToBinaryString from "./src/arrayBufferToBinaryString.js";
 import arrayBufferToBinaryStringAsync from "./src/arrayBufferToBinaryStringAsync.js";
 import blobToImage from "./src/blobToImage.js";
+import blobToImageAsync from "./src/blobToImageAsync.js";
 import arrayBufferToImage from "./src/arrayBufferToImage.js";
+import arrayBufferToImageAsync from "./src/arrayBufferToImageAsync.js";
 import fetchResponse from "./src/fetchResponse.js";
 import fetchArrayBuffer from "./src/fetchArrayBuffer.js";
 import fetchBlob from "./src/fetchBlob.js";
@@ -29,13 +30,14 @@ export {
     inputFileAsText,
     Cache,
     loadImage,
-    loadImageAsync,
     Loader,
     ImageLoader,
     arrayBufferToBinaryString,
     arrayBufferToBinaryStringAsync,
     blobToImage,
+    blobToImageAsync,
     arrayBufferToImage,
+    arrayBufferToImageAsync,
     fetchResponse,
     fetchArrayBuffer,
     fetchBlob,

@@ -11,14 +11,17 @@ import loadImage from "./loadImage.js";
 function blobToImage(blob, onLoad, onError, result) {
     const objectUrl = window.URL.createObjectURL(blob);
 
-    return loadImage(objectUrl, function (image) {
-        window.URL.revokeObjectURL(objectUrl);
-        if (typeof onLoad === 'function')
-            onLoad(image);
-    }, function (error) {
-        window.URL.revokeObjectURL(objectUrl);
-        if (typeof onError === 'function')
-            onError(error);
+    return loadImage(objectUrl, {
+        onLoad: function (image) {
+            window.URL.revokeObjectURL(objectUrl);
+            if (typeof onLoad === 'function')
+                onLoad(image);
+        },
+        onError: function (error) {
+            window.URL.revokeObjectURL(objectUrl);
+            if (typeof onError === 'function')
+                onError(error);
+        },
     }, result);
 };
 
