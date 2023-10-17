@@ -86,7 +86,7 @@ class Loader {
      * @param {Function} options.onError 加载失败通知函数，可选项
      * @returns {any} 由子类决定返回对象
      */
-    load(url, options) {
+    load(url, options = {}) {
         Check.typeOf.string('url', url);
         url = this.ensureUrl(url);
 
@@ -101,6 +101,8 @@ class Loader {
             }
         }
 
+        if (!options.requestOptions && this.requestOptions)
+            options.requestOptions = this.requestOptions;
         const result = this.onLoad(url, options);
         if (enableCache) {
             this.cache.set(url, result);
