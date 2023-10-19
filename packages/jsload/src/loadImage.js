@@ -12,7 +12,7 @@ import defer from "@lijuhong1981/jstask/src/defer.js";
  * @returns {Image} 返回Image对象
  */
 function loadImage(url, options = {}, result = new Image()) {
-    Check.typeOf.string(url);
+    Check.typeOf.string('url', url);
 
     const readyPromise = defer();
     result.readyPromise = readyPromise.promise;
