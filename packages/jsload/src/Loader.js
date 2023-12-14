@@ -94,8 +94,15 @@ class Loader {
         if (enableCache) {
             const cached = this.cache.get(url);
             if (cached) {
-                if (typeof options.onLoad === 'function')
-                    options.onLoad(cached);
+                if (cached.readyPromise) {
+                    cached.readyPromise.then(function () {
+                        if (typeof options.onLoad === 'function')
+                            options.onLoad(cached);
+                    });
+                } else {
+                    if (typeof options.onLoad === 'function')
+                        options.onLoad(cached);
+                }
 
                 return cached;
             }
