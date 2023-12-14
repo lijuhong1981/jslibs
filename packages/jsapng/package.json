@@ -22,5 +22,6 @@
     "@lijuhong1981/jsevents": "^1.1.10",
     "@lijuhong1981/jsload": "^1.2.11",
     "@lijuhong1981/jstask": "^1.1.6"
-  }
+  },
+  "gitHead": "83765fe329812503f911726afc1c88ff1cf60856"
 }
