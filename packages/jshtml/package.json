@@ -20,5 +20,6 @@
   },
   "dependencies": {
     "@lijuhong1981/jscheck": "^1.0.10"
-  }
+  },
+  "gitHead": "cae3f4be65fe0454718936b9ab5a4d29af4fdda0"
 }
