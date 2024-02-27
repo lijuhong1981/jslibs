@@ -19,16 +19,20 @@ function setParameters(target, parameters) {
 
         const value = parameters[key];
 
-        const descriptor = getPropertyDescriptor(target, key);//获取变量描述信息
-        // console.log(key, descriptor);
-        if (!descriptor || descriptor.writable || descriptor.set)
-            target[key] = value;
-        else if (target[key]) {
+        if (typeof target[key] === 'object') {
             if (typeof target[key].setParameters === 'function') {
                 target[key].setParameters(value);
+                return;
             } else if (typeof target[key].setOptions === 'function') {//兼容以前的setOptions
                 target[key].setOptions(value);
+                return;
             }
+        }
+        const descriptor = getPropertyDescriptor(target, key);//获取变量描述信息
+        // console.log(key, descriptor);
+        if (!descriptor || descriptor.writable || descriptor.set) {
+            target[key] = value;
+            return;
         }
     });
 

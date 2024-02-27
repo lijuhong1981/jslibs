@@ -3,6 +3,8 @@ import isObject from "@lijuhong1981/jscheck/src/isObject.js";
 
 /**
  * 合并两个对象属性并输出给一个新对象
+ * 
+ * 注：对象1属性优先级高于对象2
  * @param {object} object1 合并对象1
  * @param {object} object2 合并对象2
  * @param {boolean} recursive 是否递归合并，默认false
