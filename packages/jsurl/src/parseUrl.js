@@ -1,5 +1,5 @@
 import splitUrl from "./splitUrl.js";
-import parseQuery from "./parseQuery.js";
+import parseQueryParams from "./parseQueryParams.js";
 
 const names = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];
 
@@ -37,7 +37,7 @@ function parseUrl(url, result = {}) {
     }
     result.queryParams = {};
     if (result.query)
-        parseQuery(result.query, result.queryParams);
+        parseQueryParams(result.query, result.queryParams);
     return result;
 };
 

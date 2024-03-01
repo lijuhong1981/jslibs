@@ -6,11 +6,11 @@ const queryPattern = /(?:^|&)([^&=]*)=?([^&]*)/g;
  * @param {object} result
  * @returns {object}
  */
-function parseQuery(urlQuery, result = {}) {
+function parseQueryParams(urlQuery, result = {}) {
     urlQuery.replace(queryPattern, function (match, key, value) {
         if (key)
             result[key] = value;
     });
 };
 
-export default parseQuery;
+export default parseQueryParams;

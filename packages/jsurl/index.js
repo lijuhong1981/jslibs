@@ -11,7 +11,7 @@ import isHttpProtocol from "./src/isHttpProtocol.js";
 import splitPath from "./src/splitPath.js";
 import splitUrl from "./src/splitUrl.js";
 import parsePath from "./src/parsePath.js";
-import parseQuery from "./src/parseQuery.js";
+import parseQueryParams from "./src/parseQueryParams.js";
 import parseUrl from "./src/parseUrl.js";
 
 export {
@@ -28,6 +28,6 @@ export {
     splitPath,
     splitUrl,
     parsePath,
-    parseQuery,
+    parseQueryParams,
     parseUrl,
 };
