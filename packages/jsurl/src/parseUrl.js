@@ -1,7 +1,7 @@
 import splitUrl from "./splitUrl.js";
+import parseQuery from "./parseQuery.js";
 
 const names = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];
-const parseQuery = /(?:^|&)([^&=]*)=?([^&]*)/g;
 
 /**
  * 解析url，输出结果如下：
@@ -37,10 +37,7 @@ function parseUrl(url, result = {}) {
     }
     result.queryParams = {};
     if (result.query)
-        result.query.replace(parseQuery, function (match, key, value) {
-            if (key)
-                result.queryParams[key] = value;
-        });
+        parseQuery(result.query, result.queryParams);
     return result;
 };
 
