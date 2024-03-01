@@ -11,6 +11,7 @@ function parseQueryParams(urlQuery, result = {}) {
         if (key)
             result[key] = value;
     });
+    return result;
 };
 
 export default parseQueryParams;
