@@ -6,6 +6,7 @@ import Fullscreen from "./src/Fullscreen.js";
 import merge from "./src/merge.js";
 import NavigatorDetection from "./src/NavigatorDetection.js";
 import setParameters from "./src/setParameters.js";
+import * as logger from "./src/logger.js";
 
 export {
     clone,
@@ -17,4 +18,5 @@ export {
     NavigatorDetection,
     setParameters,
     setParameters as setOptions,
+    logger,
 };
