@@ -8,6 +8,7 @@ import isInteger from "./src/isInteger.js";
 import isNumber from "./src/isNumber.js";
 import isObject from "./src/isObject.js";
 import isString from "./src/isString.js";
+import isStringNotEmpty from "./src/isStringNotEmpty.js";
 import isTypedArray from "./src/isTypedArray.js";
 import isValid from "./src/isValid.js";
 import getValidValue from "./src/getValidValue.js";
@@ -26,6 +27,7 @@ export {
     isNumber,
     isObject,
     isString,
+    isStringNotEmpty,
     isTypedArray,
     isValid,
     isValid as valid,

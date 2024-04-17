@@ -1,5 +1,5 @@
 import Cache from './Cache.js';
-import Check from '@lijuhong1981/jscheck/src/Check';
+import Check from '@lijuhong1981/jscheck/src/Check.js';
 import definedValue from '@lijuhong1981/jscheck/src/getDefinedValue.js';
 import mergeUrl from '@lijuhong1981/jsurl/src/mergeUrl.js';
 
