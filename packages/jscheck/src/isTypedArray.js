@@ -12,6 +12,6 @@ function isTypedArray(value) {
         value instanceof BigUint64Array)
         return true;
     return false;
-}
+};
 
 export default isTypedArray;

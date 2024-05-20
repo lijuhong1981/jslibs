@@ -7,6 +7,7 @@ import merge from "./src/merge.js";
 import NavigatorDetection from "./src/NavigatorDetection.js";
 import setParameters from "./src/setParameters.js";
 import * as logger from "./src/logger.js";
+import HashArray from "./src/HashArray.js";
 
 export {
     clone,
@@ -19,4 +20,5 @@ export {
     setParameters,
     setParameters as setOptions,
     logger,
+    HashArray,
 };
