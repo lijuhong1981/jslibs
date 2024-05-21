@@ -4,6 +4,7 @@ import getPropertyDescriptor from "./src/getPropertyDescriptor.js";
 import foreachBigArray from "./src/foreachBigArray.js";
 import Fullscreen from "./src/Fullscreen.js";
 import merge from "./src/merge.js";
+import deepAssign from "./src/deepAssign.js";
 import NavigatorDetection from "./src/NavigatorDetection.js";
 import setParameters from "./src/setParameters.js";
 import * as logger from "./src/logger.js";
@@ -16,6 +17,7 @@ export {
     foreachBigArray,
     Fullscreen,
     merge,
+    deepAssign,
     NavigatorDetection,
     setParameters,
     setParameters as setOptions,

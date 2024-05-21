@@ -1,28 +1,29 @@
+import Check from "@lijuhong1981/jscheck/src/Check.js";
+
 /**
  * 克隆一个对象
- * @param {Object} object 需要克隆的对象
- * @param {boolean} deep 是否执行深度拷贝
- * @returns {Object} 新生成的克隆结果对象
+ * @param {object} source 需要克隆的源对象，必填
+ * @param {boolean} deep 是否执行深克隆，默认false
+ * @param {boolean} checkOwnProperty 是否执行source.hasOwnProperty(propertyName)检查，默认true
+ * @returns {object} 新生成的克隆结果对象
  */
-function clone(object, deep) {
-    if (object === null || typeof object !== "object") {
-        return object;
-    }
+function clone(source, deep = false, checkOwnProperty = true) {
+    Check.typeOf.object('source', source);
 
-    let result = new object.constructor();
-    if (typeof object.clone === 'function')
-        return object.clone(result);
-    for (let propertyName in object) {
-        if (object.hasOwnProperty(propertyName)) {
-            let value = object[propertyName];
-            if (value && deep && typeof value === 'object') {
-                value = clone(value, deep);
-            }
-            result[propertyName] = value;
+    const result = new source.constructor();
+    if (typeof source.clone === 'function')
+        return source.clone(result);
+    for (const propertyName in source) {
+        if (checkOwnProperty && !source.hasOwnProperty(propertyName))
+            continue;
+        let value = source[propertyName];
+        if (value && typeof value === 'object' && deep) {
+            value = clone(value, deep, checkOwnProperty);
         }
+        result[propertyName] = value;
     }
 
     return result;
-}
+};
 
 export default clone;
