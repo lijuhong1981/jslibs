@@ -11,7 +11,7 @@ import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
  * 
  * 键Key必须是字符串类型
 */
-class HashArray extends EventEmitter {
+class HashArray {
     /**
      * HashArray构造函数
      * @constructor
