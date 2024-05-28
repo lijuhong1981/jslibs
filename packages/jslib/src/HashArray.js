@@ -1,4 +1,6 @@
+import Event from "@lijuhong1981/jsevents/src/EventSubscriber.js";
 import Check from "@lijuhong1981/jscheck/src/Check.js";
+import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
 
 /**
  * Hash数组
@@ -9,10 +11,18 @@ import Check from "@lijuhong1981/jscheck/src/Check.js";
  * 
  * 键Key必须是字符串类型
 */
-class HashArray {
-    constructor() {
+class HashArray extends EventEmitter {
+    /**
+     * HashArray构造函数
+     * @constructor
+     * @param {Function} onchange change事件回调函数
+     * @returns {HashArray}
+     */
+    constructor(onchange) {
         this._keys = [];
         this._hash = {};
+        this.changeEvent = new Event();
+        this.onchange = onchange;
     }
 
     /**
@@ -66,6 +76,9 @@ class HashArray {
     clear() {
         this._hash = {};
         this._keys.length = 0;
+        this._emitEvent({
+            type: 'clear',
+        });
     }
 
     /**
@@ -97,6 +110,13 @@ class HashArray {
 
         // 设置值元素
         this._hash[key] = value;
+        hasKey ? this._emitEvent({
+            type: 'replace',
+            key, value
+        }) : this._emitEvent({
+            type: 'add',
+            key, value, insertAt
+        });;
 
         return this;
     }
@@ -112,6 +132,10 @@ class HashArray {
         if (idx !== -1) {
             this._keys.splice(idx, 1);
             delete this._hash[key];
+            this._emitEvent({
+                type: 'delete',
+                key,
+            });
             return true;
         }
         return false;
@@ -165,6 +189,18 @@ class HashArray {
             const value = this._hash[key];
             callback(key, value);
         }
+    }
+
+    /**
+     * @param {object} event
+     * @returns {this}
+     * 
+     * @private
+     */
+    _emitEvent(event) {
+        this.changeEvent.raiseEvent(event);
+        isFunction(this.onchange) && this.onchange(this, event);
+        return this;
     }
 };
 

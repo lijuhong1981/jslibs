@@ -65,15 +65,14 @@ class EventDispatcher extends Destroyable {
         Check.valid('type', type);
         Check.typeOf.func('callback', callback);
 
-        if (isString(type) && type.match(/\s+/)) {
+        if (isString(type) && type.match(/\s+/))
             type = type.split(/\s+/);
-        }
 
-        if (isArray(type)) {
+        if (isArray(type))
             type.forEach(element => {
                 addListener(this._events, element, callback, options);
             });
-        } else
+        else
             addListener(this._events, type, callback, options);
 
         return this;
@@ -88,16 +87,28 @@ class EventDispatcher extends Destroyable {
     removeEventListener(type, callback) {
         Check.valid('type', type);
 
-        if (isString(type) && type.match(/\s+/)) {
+        if (isString(type) && type.match(/\s+/))
             type = type.split(/\s+/);
-        }
 
-        if (isArray(type)) {
+        if (isArray(type))
             type.forEach(element => {
                 removeListener(this._events, element, callback);
             });
-        } else
+        else
             removeListener(this._events, type, callback);
+
+        return this;
+    }
+
+    /**
+     * 移除所有事件监听
+     * @returns {this}
+     */
+    removeAllEventListeners() {
+        this._events.forEach(function (event) {
+            event.destroy();
+        });
+        this._events.clear();
 
         return this;
     }
@@ -137,16 +148,15 @@ class EventDispatcher extends Destroyable {
     }
 
     /**
-     * 清除所有事件监听
-     * @returns {this}
+     * 获取某类型的所有事件监听器
+     * @param {any} type
+     * @returns {Array<Function>}
      */
-    clear() {
-        this._events.forEach(function (event, type) {
-            event.destroy();
-        });
-        this._events.clear();
+    getEventListeners(type) {
+        Check.valid('type', type);
 
-        return this;
+        const event = this._events.get(type);
+        return event && event.listeners;
     }
 
     /**
@@ -160,7 +170,7 @@ class EventDispatcher extends Destroyable {
 
         const _event = this._events.get(type);
         if (_event)
-            _event.raiseEvent(type, ...args);
+            _event.raiseEvent(...args);
         // else {
         //     console.warn('Not found the type`s event.', type);
         // }
@@ -179,7 +189,8 @@ class EventDispatcher extends Destroyable {
         Check.typeOf.object('event', event);
         Check.valid('event.type', event.type);
 
-        event.owner = event.owner || owner || this;
+        if (!event.owner)
+            event.owner = owner || this;
 
         const _event = this._events.get(event.type);
         if (_event)
@@ -195,7 +206,7 @@ class EventDispatcher extends Destroyable {
      * 执行销毁
      */
     onDestroy() {
-        this.clear();
+        this.removeAllEventListeners();
     }
 };
 

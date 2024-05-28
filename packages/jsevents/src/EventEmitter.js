@@ -16,9 +16,16 @@ class EventEmitter extends Destroyable {
      * @param {boolean} options.once 是否单次事件，可不填
      * @returns {this}
      */
-    on(type, callback, options) {
+    addListener(type, callback, options) {
         this._dispatcher.addEventListener(type, callback, options);
         return this;
+    }
+
+    /**
+     * @see addListener
+    */
+    on(type, callback, options) {
+        return this.addListener(type, callback, options);
     }
 
     /**
@@ -27,9 +34,11 @@ class EventEmitter extends Destroyable {
      * @param {Function} callback 回调函数
      * @param {object} scope 回调函数<code>this</code>指针对象，可不填
      * @returns {this}
+     * 
+     * @see addListener
      */
     once(type, callback, scope) {
-        this._dispatcher.addEventListener(type, callback, {
+        this.addListener(type, callback, {
             once: true,
             scope: scope,
         });
@@ -42,8 +51,24 @@ class EventEmitter extends Destroyable {
      * @param {Function} callback 回调函数，不填时可移除type下所有的事件监听
      * @returns {this}
      */
-    off(type, callback) {
+    removeListener(type, callback) {
         this._dispatcher.removeEventListener(type, callback);
+        return this;
+    }
+
+    /**
+     * @see removeListener
+    */
+    off(type, callback) {
+        return this.removeListener(type, callback);
+    }
+
+    /**
+     * 移除所有事件监听
+     * @returns {this}
+     */
+    removeAllListeners() {
+        this._dispatcher.removeAllEventListeners();
         return this;
     }
 
@@ -54,6 +79,15 @@ class EventEmitter extends Destroyable {
      */
     hasListener(type) {
         return this._dispatcher.hasEventListener(type);
+    }
+
+    /**
+     * 获取某类型的所有事件监听器
+     * @param {any} type
+     * @returns {Array<Function>}
+     */
+    getListeners(type) {
+        return this._dispatcher.getEventListeners(type);
     }
 
     /**
@@ -74,15 +108,6 @@ class EventEmitter extends Destroyable {
     }
 
     /**
-     * 清除所有事件监听
-     * @returns {this}
-     */
-    clear() {
-        this._dispatcher.clear();
-        return this;
-    }
-
-    /**
      * 发送事件参数
      * @param {any} type 事件类型
      * @param {...any} ...args 事件参数 
@@ -100,7 +125,7 @@ class EventEmitter extends Destroyable {
      * @returns {this}
      */
     emitEvent(event, owner) {
-        this._dispatcher.dispatchEvent(event, owner);
+        this._dispatcher.dispatchEvent(event, owner || this);
         return this;
     }
 

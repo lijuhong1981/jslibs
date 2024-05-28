@@ -19,6 +19,19 @@ class EventSubscriber extends Destroyable {
     }
 
     /**
+     * 获取所有的事件监听器
+     * @returns {Array<Function>}
+     */
+    get listeners() {
+        const result = [];
+        const listeners = this._listenersMap.values();
+        for (const listener of listeners) {
+            result.push(listener.callback);
+        }
+        return result;
+    }
+
+    /**
      * 判断事件监听器是否已存在
      * @param {Function} callback 事件监听回调函数
      * @returns {boolean}
