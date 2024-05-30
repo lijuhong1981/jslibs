@@ -13,16 +13,15 @@ import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
 */
 class HashArray {
     /**
-     * HashArray构造函数
      * @constructor
-     * @param {Function} onchange change事件回调函数
-     * @returns {HashArray}
+     * 
+     * @param {Function} onChange change事件回调函数
      */
-    constructor(onchange) {
+    constructor(onChange) {
         this._keys = [];
         this._hash = {};
         this.changeEvent = new Event();
-        this.onchange = onchange;
+        this.onChange = onChange;
     }
 
     /**
@@ -199,7 +198,7 @@ class HashArray {
      */
     _emitEvent(event) {
         this.changeEvent.raiseEvent(event);
-        isFunction(this.onchange) && this.onchange(this, event);
+        isFunction(this.onChange) && this.onChange(event);
         return this;
     }
 };
