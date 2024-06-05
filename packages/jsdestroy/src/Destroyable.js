@@ -22,6 +22,8 @@ class Destroyable {
     destroy(...args) {
         if (this.isDestroyed()) {
             console.warn('This object was destroyed.', this);
+        } else if (this.isDestroying) {
+            console.warn('This object is destroying.', this);
         } else {
             this.onDestroy(...args);
             destroyObject(this);
