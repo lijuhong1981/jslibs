@@ -10,6 +10,10 @@ import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
  * 同时会记住键的原始插入顺序
  * 
  * 键Key必须是字符串类型
+ * 
+ * @template T
+ * 
+ * @class
 */
 class HashArray {
     /**
@@ -42,7 +46,7 @@ class HashArray {
 
     /**
      * 返回值元素数组
-     * @returns {Array}
+     * @returns {Array<T>}
      */
     values() {
         const result = [];
@@ -56,7 +60,7 @@ class HashArray {
 
     /**
      * 返回键值对{key, value}元素数组
-     * @returns {Array}
+     * @returns {Array<{string, T}>}
      */
     entries() {
         const result = [];
@@ -83,9 +87,9 @@ class HashArray {
     /**
      * 设置键值对元素
      * @param {string} key 设置的键，必须是字符串类型
-     * @param {any} value 设置的值，任意类型，可以是null、undefined或NaN
+     * @param {T} value 设置的值，任意类型，可以是null、undefined或NaN
      * @param {number} insertAt 插入索引，不填则表示在最后插入，如果key已在数组中存在，则该值不生效
-     * @returns {this}
+     * @returns {void}
      */
     set(key, value, insertAt) {
         Check.typeOf.string('key', key);
@@ -115,9 +119,8 @@ class HashArray {
         }) : this._emitEvent({
             type: 'add',
             key, value, insertAt
-        });;
+        });
 
-        return this;
     }
 
     /**
@@ -143,7 +146,7 @@ class HashArray {
     /**
      * 根据键获取值
      * @param {string} key
-     * @returns {any}
+     * @returns {T}
      */
     get(key) {
         Check.typeOf.string('key', key);
@@ -171,12 +174,18 @@ class HashArray {
     }
 
     /**
-     * 遍历数组并为每个键值对调用传入的回调函数
-     * @param {Function} callback
+     * 遍历回调方法
+     * @callback forEachCallback
+     * @param {T} value
+     * @param {string} key
+    */
+    /**
+     * 遍历
+     * @param {forEachCallback} callback
      * @returns {void}
      * 
      * @example
-     * hashArray.forEach(function(key, value) {
+     * hashArray.forEach(function(value, key) {
      *     console.log(key, value);
      * });
      * 
@@ -186,7 +195,7 @@ class HashArray {
         for (let i = 0, len = this._keys.length; i < len; i++) {
             const key = this._keys[i];
             const value = this._hash[key];
-            callback(key, value);
+            callback(value, key);
         }
     }
 
