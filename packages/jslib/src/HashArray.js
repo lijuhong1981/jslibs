@@ -17,9 +17,15 @@ import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
 */
 class HashArray {
     /**
+     * change事件回调方法
+     * @callback changeCallback
+     * @param {object} event
+     * @param {string} event.type
+    */
+    /**
      * @constructor
      * 
-     * @param {Function} onChange change事件回调函数
+     * @param {changeCallback} onChange change事件回调方法
      */
     constructor(onChange) {
         this._keys = [];
@@ -180,8 +186,8 @@ class HashArray {
      * @param {string} key
     */
     /**
-     * 遍历
-     * @param {forEachCallback} callback
+     * 遍历数组
+     * @param {forEachCallback} callback 遍历回调方法
      * @returns {void}
      * 
      * @example
