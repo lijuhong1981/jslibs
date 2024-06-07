@@ -28,7 +28,9 @@ class HashArray {
      * @param {changeCallback} onChange change事件回调方法
      */
     constructor(onChange) {
+        /** @type {Array<string>} */
         this._keys = [];
+        /** @type {Object<string, T>} */
         this._hash = {};
         this.changeEvent = new Event();
         this.onChange = onChange;
