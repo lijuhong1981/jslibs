@@ -1,6 +1,6 @@
 /**
  * 判断对象是否已被销毁过
- * @param {Object} object
+ * @param {object} object
  * @returns {Boolean}
  */
 function isDestroyed(object) {

@@ -1,7 +1,7 @@
-function destroyHTMLElementImpl(element, recursivelyChildren) {
-    if (recursivelyChildren) {
+function destroyHTMLElementImpl(element, deepChildren) {
+    if (deepChildren) {
         while (element.lastChild) {
-            destroyHTMLElementImpl(element.lastChild, recursivelyChildren);
+            destroyHTMLElementImpl(element.lastChild, deepChildren);
         }
     }
     if (element.parentNode)
@@ -51,15 +51,15 @@ function destroyHTMLElementImpl(element, recursivelyChildren) {
 /**
  * 销毁HTMLElement对象
  * @param {HTMLElement} element HTMLElement对象
- * @param {Boolean} recursivelyChildren 是否递归销毁子对象
+ * @param {Boolean} deepChildren 是否向下执行深度销毁
  * @returns {void}
  */
-function destroyHTMLElement(element, recursivelyChildren) {
+function destroyHTMLElement(element, deepChildren) {
     if (element instanceof HTMLElement === false) {
         console.warn('The element must be instanceof HTMLElement.');
         return;
     }
-    destroyHTMLElementImpl(element, recursivelyChildren);
+    destroyHTMLElementImpl(element, deepChildren);
 };
 
 export default destroyHTMLElement;

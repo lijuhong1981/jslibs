@@ -2,6 +2,9 @@ import destroyObject from './destroyObject.js';
 
 /**
  * Destroyable是一个包含了destroy相关Property的class，可用于继承
+ * 
+ * @abstract
+ * @class
 */
 class Destroyable {
     isDestroyed() {
@@ -10,6 +13,7 @@ class Destroyable {
 
     /**
      * 执行销毁，由子类实现
+     * @abstract
      */
     onDestroy(...args) {
         // console.warn('onDestroy must be overwrited by subclass.');
