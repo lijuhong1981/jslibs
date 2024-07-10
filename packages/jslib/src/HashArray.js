@@ -11,7 +11,7 @@ import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
  * 
  * 键Key必须是字符串类型
  * 
- * @template T
+ * @template T value元素
  * 
  * @class
 */
@@ -87,9 +87,7 @@ class HashArray {
     clear() {
         this._hash = {};
         this._keys.length = 0;
-        this._emitEvent({
-            type: 'clear',
-        });
+        this._emitEvent({ type: 'clear', });
     }
 
     /**
@@ -104,9 +102,9 @@ class HashArray {
 
         // 判断键元素是否已存在
         const hasKey = this._keys.indexOf(key) !== -1;
+        // 判断是否传入了插入索引
+        const hasInsertIndex = Number.isSafeInteger(insertAt);
         if (!hasKey) {
-            // 判断是否传入了插入索引
-            const hasInsertIndex = Number.isSafeInteger(insertAt);
             if (hasInsertIndex) {
                 // 检查插入索引是否超出了范围
                 Check.typeOf.integer.greaterThanOrEquals('insertAt', insertAt, 0);
@@ -121,14 +119,21 @@ class HashArray {
 
         // 设置值元素
         this._hash[key] = value;
-        hasKey ? this._emitEvent({
-            type: 'replace',
-            key, value
-        }) : this._emitEvent({
-            type: 'add',
-            key, value, insertAt
-        });
-
+        if (hasKey)
+            this._emitEvent({
+                type: 'replace',
+                key, value
+            });
+        else if (hasInsertIndex)
+            this._emitEvent({
+                type: 'insert',
+                key, value, insertAt
+            });
+        else
+            this._emitEvent({
+                type: 'add',
+                key, value
+            });
     }
 
     /**
@@ -214,6 +219,7 @@ class HashArray {
      * @private
      */
     _emitEvent(event) {
+        event.owner = this;
         this.changeEvent.raiseEvent(event);
         isFunction(this.onChange) && this.onChange(event);
         return this;

@@ -2,7 +2,7 @@
  * 判断两个数组内部值是否相等
  * @param {Array} left
  * @param {Array} right
- * @returns {Boolean}
+ * @returns {boolean}
  */
 function equalsArray(left, right) {
     if (left === right)

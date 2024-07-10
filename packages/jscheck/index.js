@@ -4,6 +4,7 @@ import getDefinedValue from "./src/getDefinedValue.js";
 import isArray from "./src/isArray.js";
 import isBoolean from "./src/isBoolean.js";
 import isFunction from "./src/isFunction.js";
+import isAsyncFunction from "./src/isAsyncFunction.js";
 import isInteger from "./src/isInteger.js";
 import isNumber from "./src/isNumber.js";
 import isObject from "./src/isObject.js";
@@ -23,6 +24,7 @@ export {
     isArray,
     isBoolean,
     isFunction,
+    isAsyncFunction,
     isInteger,
     isNumber,
     isObject,
