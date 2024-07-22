@@ -1,6 +1,6 @@
 {
   "name": "@lijuhong1981/jsload",
-  "version": "1.2.22",
+  "version": "1.2.23",
   "description": "> TODO: description",
   "author": "lijuhong1981 <lijuhong@hotmail.com>",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
@@ -19,9 +19,9 @@
     "url": "https://github.com/lijuhong1981/jslibs/issues"
   },
   "dependencies": {
-    "@lijuhong1981/jscheck": "^1.0.16",
+    "@lijuhong1981/jscheck": "^1.0.17",
     "@lijuhong1981/jsdestroy": "^1.1.14",
-    "@lijuhong1981/jstask": "^1.1.14",
+    "@lijuhong1981/jstask": "^1.1.15",
     "@lijuhong1981/jsurl": "^1.0.12"
   },
   "gitHead": "a5ca76621c6760f46c2ff8072b855638acda7abe"
