@@ -1,6 +1,6 @@
 {
   "name": "@lijuhong1981/jsapng",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "> TODO: description",
   "author": "lijuhong1981 <lijuhong@hotmail.com>",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
@@ -19,9 +19,9 @@
     "url": "https://github.com/lijuhong1981/jslibs/issues"
   },
   "dependencies": {
-    "@lijuhong1981/jsevents": "^1.1.18",
-    "@lijuhong1981/jsload": "^1.2.21",
-    "@lijuhong1981/jstask": "^1.1.13"
+    "@lijuhong1981/jsevents": "^1.1.19",
+    "@lijuhong1981/jsload": "^1.2.22",
+    "@lijuhong1981/jstask": "^1.1.14"
   },
   "gitHead": "59983847cd16f7847e32f1860a82090d4d26c12c"
 }
