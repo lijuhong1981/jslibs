@@ -19,6 +19,11 @@ function setParameters(target, parameters) {
 
         const value = parameters[key];
 
+        /**
+         * 这里要先获取变量描述信息，以判断该变量是否可赋值
+         * 可赋值的变量直接赋值
+         * 不可赋值的变量再判断是否存在setParameters或setOptions函数，存在则通过调用这2个函数赋值
+        */
         const descriptor = getPropertyDescriptor(target, key);//获取变量描述信息
         // console.log(key, descriptor);
         if (!descriptor || descriptor.writable || descriptor.set)
