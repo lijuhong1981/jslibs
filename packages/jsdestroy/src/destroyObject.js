@@ -58,7 +58,8 @@ function destroyObject(object, config) {
                         value.destroy();
                     else
                         destroyObject(value, deep);
-                }
+                } else if (value.undeletable) //有不可删除标记，不执行delete操作
+                    continue;
             }
         } catch (error) {
             console.warn(error);
