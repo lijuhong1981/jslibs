@@ -1,6 +1,6 @@
 {
   "name": "@lijuhong1981/jsgif",
-  "version": "1.2.30",
+  "version": "1.2.31",
   "description": "> TODO: description",
   "author": "lijuhong1981 <lijuhong@hotmail.com>",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
@@ -21,9 +21,9 @@
   "gitHead": "11a1d49d8302089d97ed1c37cdbfa8a231d3ef0c",
   "dependencies": {
     "@lijuhong1981/jscheck": "^1.0.19",
-    "@lijuhong1981/jsdestroy": "^1.1.15",
-    "@lijuhong1981/jsevents": "^1.1.23",
-    "@lijuhong1981/jsload": "^1.2.26",
-    "@lijuhong1981/jstask": "^1.1.18"
+    "@lijuhong1981/jsdestroy": "^1.1.16",
+    "@lijuhong1981/jsevents": "^1.1.24",
+    "@lijuhong1981/jsload": "^1.2.27",
+    "@lijuhong1981/jstask": "^1.1.19"
   }
 }
