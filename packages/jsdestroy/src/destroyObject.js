@@ -40,6 +40,9 @@ function destroyObject(object, config) {
     for (const key in object) {
         if (key === 'isDestroying' || key === 'isDestroyed' || key === 'destroy')
             continue;
+        //过滤掉以'_'开头的变量
+        if (key.startsWith('_'))
+            continue;
         try {
             const value = object[key];
             if (value) {
