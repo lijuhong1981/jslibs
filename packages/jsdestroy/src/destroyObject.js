@@ -11,6 +11,7 @@ function returnTrue() {
  * @param {object} object 销毁对象
  * @param {object} config 销毁配置
  * @param {boolean} config.deleteProperty 是否删除对象属性，默认true
+ * @param {Array<string>} config.ignoreProperties 需要忽略的属性数组
  * @param {boolean} config.overwriteFunction 是否覆盖对象方法，默认true
  * @param {boolean} config.releaseArray 是否释放数组内容，默认true，为true时会执行array.length = 0
  * @param {boolean} config.destroyHTMLElement 是否销毁HTMLElement，默认true
@@ -25,10 +26,13 @@ function destroyObject(object, config) {
 
     config = Object.assign({
         deleteProperty: true,
+        ignoreProperties: [],
         overwriteFunction: true,
         releaseArray: true,
         destroyHTMLElement: true,
     }, config);
+
+    config.ignoreProperties.push('isDestroying', 'isDestroyed', 'destroy', 'undeletable');
 
     //标记正在执行销毁
     object.isDestroying = true;
@@ -38,8 +42,11 @@ function destroyObject(object, config) {
     }
 
     for (const key in object) {
-        if (key === 'isDestroying' || key === 'isDestroyed' || key === 'destroy')
-            continue;
+        //过滤属性
+        if (config.ignoreProperties) {
+            if (config.ignoreProperties.indexOf(key) !== -1)
+                continue;
+        }
         try {
             const value = object[key];
             if (value) {
