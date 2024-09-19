@@ -13,7 +13,7 @@ function merge(target, source) {
             const sourceValue = source[property];
             //判断targetValue是否有值
             if (!defined(targetValue)) {
-                //targetValue无值时，直接为target[property]赋值
+                //targetValue无值时，直接将target[property]赋值为sourceValue
                 target[property] = sourceValue;
             } else {
                 //targetValue有值时，判断targetValue与sourceValue是否Object类型

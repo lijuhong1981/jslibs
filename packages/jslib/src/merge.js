@@ -11,6 +11,7 @@ import isObject from "@lijuhong1981/jscheck/src/isObject.js";
  * @param {Array<string>} ignores 合并时需要忽略的属性名称数组，可不填
  * @param {object} result 合并后输出的结果对象，可不填
  * @returns {object} 合并后的结果对象
+ * @deprecated
  */
 function merge(object1, object2, recursive = false, ignores = [], result = {}) {
     const object1Defined = defined(object1);
