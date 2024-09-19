@@ -20,7 +20,8 @@ function merge(target, source) {
                 if (isObject(targetValue) && isObject(sourceValue)) {
                     //targetValue与sourceValue都是Object类型，合并targetValue与sourceValue
                     merge(targetValue, sourceValue);
-                } else {
+                } else if (defined(sourceValue)) {
+                    //sourceValue有值时覆盖掉target[property]
                     target[property] = sourceValue;
                 }
             }
@@ -29,17 +30,17 @@ function merge(target, source) {
 };
 
 /**
- * 对象深拷贝合并
+ * 对象混合
  * 
- * 因Object.assign()只能执行对象的浅拷贝，所以设计了deepAssign这个方法来执行对象的深拷贝合并
+ * 将多个对象混合为一个对象
  * 
- * 输入输出与Object.assign保持一致
+ * 与deepAssign最大的区别是如果后一个对象的某属性值为undefined或null，则不会覆盖掉前一个对象的同属性值
  * 
  * @param {object} target 目标对象
  * @param {Array<object>} sources 源对象数组
  * @returns {object} 返回target目标对象
  */
-function deepAssign(target = {}, ...sources) {
+function mix(target = {}, ...sources) {
     if (!sources || sources.length === 0)
         return target;
     sources.forEach(source => {
@@ -48,6 +49,6 @@ function deepAssign(target = {}, ...sources) {
     return target;
 };
 
-Object.deepAssign = deepAssign;
+Object.mix = mix;
 
-export default deepAssign;
+export default mix;
