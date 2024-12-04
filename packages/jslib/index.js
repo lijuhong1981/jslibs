@@ -3,7 +3,9 @@ import deepAssign from "./src/deepAssign.js";
 import deepMix from "./src/deepMix.js";
 import equalsArray from "./src/equalsArray.js";
 import foreachBigArray from "./src/foreachBigArray.js";
+import formatDate from "./src/formatDate.js";
 import Fullscreen from "./src/Fullscreen.js";
+import generateGUID from "./src/generateGUID.js";
 import getPropertyDescriptor from "./src/getPropertyDescriptor.js";
 import HashArray from "./src/HashArray.js";
 import * as logger from "./src/logger.js";
@@ -22,6 +24,8 @@ export {
     deepMix,
     equalsArray,
     foreachBigArray,
+    formatDate,
+    generateGUID,
     getPropertyDescriptor,
     logger,
     merge,
@@ -30,3 +34,4 @@ export {
     setParameters,
     wait
 };
+

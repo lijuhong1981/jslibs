@@ -16,6 +16,9 @@ const TaskState = Object.freeze({
     Canceled: 3,
 });
 
+/**
+ * 任务对象，需由子类继承实现
+*/
 class Task extends Destroyable {
     constructor(options = {}) {
         super();
