@@ -3,7 +3,7 @@ import Check from "@lijuhong1981/jscheck/src/Check.js";
 import isFunction from "@lijuhong1981/jscheck/src/isFunction.js";
 
 /**
- * Hash数组
+ * Hash数组对象
  * 
  * 以键值对{key, value}形式保存元素
  * 
@@ -34,6 +34,10 @@ class HashArray {
         this._hash = {};
         this.changeEvent = new Event();
         this.onChange = onChange;
+    }
+
+    get isHashArray() {
+        return true;
     }
 
     /**
