@@ -33,6 +33,7 @@ class Task extends Destroyable {
     /**
      * @constructor
      * @param {object} options 配置项
+     * @param {boolean} options.autoDestroyTask 自动销毁任务，当值为true时会自动销毁已完成、取消、失败的任务，默认true
      * @param {Function} options.onExecute 任务执行函数
      * @param {Function} options.onFinish 任务完成函数
      * @param {Function} options.onCancel 任务取消函数
@@ -50,6 +51,11 @@ class Task extends Destroyable {
         */
         this.state = TaskState.None;
         // this.priority = 0;
+        /**
+         * 自动销毁任务，当值为true时会自动销毁已完成、取消、失败的任务
+         * @type {boolean}
+        */
+        this.autoDestroyTask = options.autoDestroyTask;
         if (isFunction(options.onExecute))
             this.onExecute = options.onExecute.bind(this);
         if (isFunction(options.onFinish))
@@ -219,11 +225,12 @@ class TaskPool extends Destroyable {
         const unexecuteTasks = [];
         const tasks = this.taskQueue.slice();
         tasks.forEach(task => {
-            if (task.isFinished || task.isCanceled || task.isFailed) { //移除掉已完成或已取消或已失败的任务
+            if (task.isDestroyed() || task.isFinished || task.isCanceled || task.isFailed) { //移除掉已销毁、完成、取消、失败的任务
                 const index = this.taskQueue.indexOf(task);
                 if (index !== -1)
                     this.taskQueue.splice(index, 1);
-                task.destroy();
+                if (this.autoDestroyTask && !task.isDestroyed())
+                    task.destroy();
             } else if (task.isExecuting) { //统计执行中的任务
                 executingCount++;
             } else { //未执行的任务
