@@ -1,4 +1,5 @@
 import Check from '@lijuhong1981/jscheck/src/Check.js';
+import definedValue from '@lijuhong1981/jscheck/src/getDefinedValue.js';
 import isFunction from '@lijuhong1981/jscheck/src/isFunction.js';
 import Destroyable from '@lijuhong1981/jsdestroy/src/Destroyable.js';
 import AnimationFrameUpdater from './AnimationFrameUpdater.js';
@@ -32,12 +33,12 @@ const TaskState = Object.freeze({
 class Task extends Destroyable {
     /**
      * @constructor
-     * @param {object} options 配置项
-     * @param {boolean} options.autoDestroyTask 自动销毁任务，当值为true时会自动销毁已完成、取消、失败的任务，默认true
-     * @param {Function} options.onExecute 任务执行函数
-     * @param {Function} options.onFinish 任务完成函数
-     * @param {Function} options.onCancel 任务取消函数
-     * @param {Function} options.onFail 任务失败函数
+     * @param {object|undefined} options 配置项
+     * @param {boolean|undefined} options.autoDestroy 是否自动销毁任务，当值为true时会自动销毁已完成、取消、失败的任务，默认true
+     * @param {Function|undefined} options.onExecute 任务执行函数
+     * @param {Function|undefined} options.onFinish 任务完成函数
+     * @param {Function|undefined} options.onCancel 任务取消函数
+     * @param {Function|undefined} options.onFail 任务失败函数
      */
     constructor(options = {}) {
         super();
@@ -52,10 +53,10 @@ class Task extends Destroyable {
         this.state = TaskState.None;
         // this.priority = 0;
         /**
-         * 自动销毁任务，当值为true时会自动销毁已完成、取消、失败的任务
+         * 是否自动销毁任务，当值为true时会自动销毁已完成、取消、失败的任务
          * @type {boolean}
         */
-        this.autoDestroyTask = options.autoDestroyTask;
+        this.autoDestroy = definedValue(options.autoDestroy, true);
         if (isFunction(options.onExecute))
             this.onExecute = options.onExecute.bind(this);
         if (isFunction(options.onFinish))
@@ -229,7 +230,7 @@ class TaskPool extends Destroyable {
                 const index = this.taskQueue.indexOf(task);
                 if (index !== -1)
                     this.taskQueue.splice(index, 1);
-                if (this.autoDestroyTask && !task.isDestroyed())
+                if (task.autoDestroy && !task.isDestroyed())
                     task.destroy();
             } else if (task.isExecuting) { //统计执行中的任务
                 executingCount++;
