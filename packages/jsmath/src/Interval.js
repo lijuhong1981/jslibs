@@ -268,7 +268,7 @@ class Interval {
     /**
      * 将一个区间对象的所有属性打包到一个数组中
      * @param {Interval} interval 需要打包的区间对象
-     * @param {Array} array 打包到的数组
+     * @param {Array} array 打包到的目标数组，可不填
      * @param {Integer} startingIndex 数组起始索引，默认0
      * @returns {Array} 打包后的数组
      */
@@ -283,7 +283,7 @@ class Interval {
 
     /**
      * 将当前区间对象属性打包至数组
-     * @param {Array} array 打包到的数组
+     * @param {Array} array 打包到的目标数组，可不填
      * @param {Integer} startingIndex 数组起始索引，默认0
      * @returns {Array} 打包后的数组
      */
