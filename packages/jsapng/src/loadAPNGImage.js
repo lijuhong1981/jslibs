@@ -1,6 +1,6 @@
 import fetchArrayBuffer from "@lijuhong1981/jsload/src/fetchArrayBuffer.js";
-import parseAPNG from './apng-js/parser.js';
 import defer from "@lijuhong1981/jstask/src/defer.js";
+import parseAPNG from './apng-js/parser.js';
 
 /**
  * 加载APNG图片

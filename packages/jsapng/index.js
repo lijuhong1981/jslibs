@@ -1,10 +1,3 @@
-import parseAPNG from './src/apng-js/parser.js';
-import loadAPNGImage from './src/loadAPNGImage.js';
-import APNGImageLoader from './src/APNGImageLoader.js';
-
-export default parseAPNG;
-export {
-    parseAPNG,
-    loadAPNGImage,
-    APNGImageLoader,
-};
+export * from './src/apng-js/parser.js';
+export * from './src/loadAPNGImage.js';
+export * from './src/APNGImageLoader.js';

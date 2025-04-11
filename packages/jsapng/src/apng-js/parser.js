@@ -1,5 +1,5 @@
 import crc32 from './crc32';
-import {APNG, Frame} from './structs';
+import { APNG, Frame } from './structs';
 
 const errNotPNG = new Error('Not a PNG');
 const errNotAPNG = new Error('Not an animated PNG');
@@ -117,7 +117,7 @@ export default function parseAPNG(buffer) {
         bb.push(preBlob);
         frame.dataParts.forEach(p => bb.push(makeChunkBytes('IDAT', p)));
         bb.push(postBlob);
-        frame.imageData = new Blob(bb, {'type': 'image/png'});
+        frame.imageData = new Blob(bb, { 'type': 'image/png' });
         delete frame.dataParts;
         bb = null;
     });
