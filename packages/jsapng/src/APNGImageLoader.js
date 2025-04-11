@@ -12,3 +12,4 @@ class APNGImageLoader extends ImageLoader {
 };
 
 export default APNGImageLoader;
+export { APNGImageLoader };

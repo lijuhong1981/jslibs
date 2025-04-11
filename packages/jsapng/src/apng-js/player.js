@@ -1,6 +1,6 @@
 import EventEmitter from '@lijuhong1981/jsevents/src/EventEmitter.js';
 
-export default class extends EventEmitter {
+class Player extends EventEmitter {
     /**
      * @param {APNG} apng
      * @param {CanvasRenderingContext2D} context
@@ -147,4 +147,6 @@ export default class extends EventEmitter {
         this.context.clearRect(0, 0, this._apng.width, this._apng.height);
         this.renderNextFrame();
     }
-}
+};
+
+export default Player;

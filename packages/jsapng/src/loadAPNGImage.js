@@ -39,3 +39,4 @@ function loadAPNGImage(url, options = {}, result = document.createElement('canva
 };
 
 export default loadAPNGImage;
+export { loadAPNGImage };

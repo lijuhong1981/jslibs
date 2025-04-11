@@ -1,11 +1,11 @@
-import crc32 from './crc32';
-import { APNG, Frame } from './structs';
+import crc32 from './crc32.js';
+import { APNG, Frame } from './structs.js';
 
 const errNotPNG = new Error('Not a PNG');
 const errNotAPNG = new Error('Not an animated PNG');
 
-export function isNotPNG(err) { return err === errNotPNG; }
-export function isNotAPNG(err) { return err === errNotAPNG; }
+// export function isNotPNG(err) { return err === errNotPNG; }
+// export function isNotAPNG(err) { return err === errNotAPNG; }
 
 // '\x89PNG\x0d\x0a\x1a\x0a'
 const PNGSignature = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
@@ -15,7 +15,7 @@ const PNGSignature = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0
  * @param {ArrayBuffer} buffer
  * @return {APNG|Error}
  */
-export default function parseAPNG(buffer) {
+function parseAPNG(buffer) {
     const bytes = new Uint8Array(buffer);
 
     if (Array.prototype.some.call(PNGSignature, (b, i) => b !== bytes[i])) {
@@ -199,3 +199,6 @@ var makeChunkBytes = function (type, dataBytes) {
 var makeDWordArray = function (x) {
     return new Uint8Array([(x >>> 24) & 0xff, (x >>> 16) & 0xff, (x >>> 8) & 0xff, x & 0xff]);
 };
+
+export default parseAPNG;
+export { parseAPNG };
