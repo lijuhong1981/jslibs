@@ -3,3 +3,4 @@ function isStringNotEmpty(value) {
 };
 
 export default isStringNotEmpty;
+export { isStringNotEmpty };

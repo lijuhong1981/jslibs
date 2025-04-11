@@ -3,3 +3,4 @@ function isArray(value) {
 };
 
 export default isArray;
+export { isArray };

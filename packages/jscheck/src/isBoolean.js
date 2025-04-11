@@ -3,3 +3,4 @@ function isBoolean(value) {
 };
 
 export default isBoolean;
+export { isBoolean };

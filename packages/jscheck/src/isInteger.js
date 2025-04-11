@@ -3,3 +3,4 @@ function isInteger(value) {
 };
 
 export default isInteger;
+export { isInteger };

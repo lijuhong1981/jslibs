@@ -5,3 +5,4 @@ function isValid(value) {
 };
 
 export default isValid;
+export { isValid };

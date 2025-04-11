@@ -3,3 +3,4 @@ function isNumber(value) {
 };
 
 export default isNumber;
+export { isNumber };

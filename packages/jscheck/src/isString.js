@@ -3,3 +3,4 @@ function isString(value) {
 };
 
 export default isString;
+export { isString };

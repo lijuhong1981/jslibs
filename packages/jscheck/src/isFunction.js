@@ -3,3 +3,4 @@ function isFunction(value) {
 };
 
 export default isFunction;
+export { isFunction };

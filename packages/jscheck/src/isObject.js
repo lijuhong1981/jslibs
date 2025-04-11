@@ -3,3 +3,4 @@ function isObject(value) {
 };
 
 export default isObject;
+export { isObject };

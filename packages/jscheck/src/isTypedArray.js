@@ -15,3 +15,4 @@ function isTypedArray(value) {
 };
 
 export default isTypedArray;
+export { isTypedArray };

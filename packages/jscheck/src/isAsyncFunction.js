@@ -8,3 +8,4 @@ function isAsyncFunction(func) {
 }
 
 export default isAsyncFunction;
+export { isAsyncFunction };

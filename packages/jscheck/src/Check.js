@@ -244,3 +244,4 @@ Check.equals = function (name, test, target) {
 };
 
 export default Check;
+export { Check };
