@@ -8,3 +8,4 @@ const now = (typeof performance === 'undefined' &&
     };
 
 export default now;
+export { now };

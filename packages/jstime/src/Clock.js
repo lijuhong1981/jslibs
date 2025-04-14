@@ -71,3 +71,4 @@ class Clock {
 }
 
 export default Clock;
+export { Clock };
