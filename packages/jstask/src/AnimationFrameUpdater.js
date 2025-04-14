@@ -224,3 +224,4 @@ Object.defineProperties(AnimationFrameUpdater, {
 });
 
 export default AnimationFrameUpdater;
+export { AnimationFrameUpdater };

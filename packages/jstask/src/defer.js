@@ -21,3 +21,4 @@ function defer() {
 }
 
 export default defer;
+export { defer };

@@ -1,10 +1,3 @@
-import AnimationFrameUpdater from "./src/AnimationFrameUpdater.js";
-import defer from "./src/defer.js";
-import { Task, TaskPool } from "./src/TaskPool.js";
-
-export {
-    AnimationFrameUpdater,
-    defer,
-    Task,
-    TaskPool,
-};
+export * from "./src/AnimationFrameUpdater.js";
+export * from "./src/defer.js";
+export * from "./src/TaskPool.js";
