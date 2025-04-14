@@ -63,3 +63,4 @@ function destroyHTMLElement(element, deepChildren) {
 };
 
 export default destroyHTMLElement;
+export { destroyHTMLElement }

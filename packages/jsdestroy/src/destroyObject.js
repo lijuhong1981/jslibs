@@ -84,3 +84,4 @@ function destroyObject(object, config) {
 }
 
 export default destroyObject;
+export { destroyObject }

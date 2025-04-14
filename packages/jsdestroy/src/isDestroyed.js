@@ -14,3 +14,4 @@ function isDestroyed(object) {
 }
 
 export default isDestroyed;
+export { isDestroyed }

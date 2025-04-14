@@ -37,3 +37,4 @@ class Destroyable {
 }
 
 export default Destroyable;
+export { Destroyable }

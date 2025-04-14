@@ -47,3 +47,4 @@ function defineDestroyProperties(target, destroyFunc) {
 }
 
 export default defineDestroyProperties;
+export { defineDestroyProperties }
