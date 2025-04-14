@@ -13,3 +13,4 @@ function formatDistanceString(distance, fractionDigits = 2) {
 };
 
 export default formatDistanceString;
+export { formatDistanceString };

@@ -20,3 +20,4 @@ function formatAreaString(area, fractionDigits = 2) {
 };
 
 export default formatAreaString;
+export { formatAreaString };

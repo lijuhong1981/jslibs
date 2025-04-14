@@ -14,3 +14,4 @@ function extractNumber(value) {
 };
 
 export default extractNumber;
+export { extractNumber };

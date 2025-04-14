@@ -14,3 +14,4 @@ function formatVolumeString(volume, fractionDigits = 2) {
 };
 
 export default formatVolumeString;
+export { formatVolumeString };
