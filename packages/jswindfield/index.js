@@ -533,6 +533,4 @@ WindField.Field = Field;
 WindField.defaultOptions = defaultOptions;
 
 export default WindField;
-export {
-    Vector, Field, defaultOptions, WindField,
-};
+export { WindField };

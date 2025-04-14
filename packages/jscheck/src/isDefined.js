@@ -3,4 +3,4 @@ function isDefined(value) {
 };
 
 export default isDefined;
-export { isDefined };
+export { isDefined as defined, isDefined };

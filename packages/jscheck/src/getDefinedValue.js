@@ -8,4 +8,4 @@ function getDefinedValue(...args) {
 };
 
 export default getDefinedValue;
-export { getDefinedValue };
+export { getDefinedValue as definedValue, getDefinedValue };

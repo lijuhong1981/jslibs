@@ -8,4 +8,4 @@ function getValidValue(...args) {
 };
 
 export default getValidValue;
-export { getValidValue };
+export { getValidValue, getValidValue as validValue };
