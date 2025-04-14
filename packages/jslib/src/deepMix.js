@@ -52,3 +52,4 @@ function deepMix(target = {}, ...sources) {
 Object.deepMix = deepMix;
 
 export default deepMix;
+export { deepMix };

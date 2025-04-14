@@ -1,37 +1,18 @@
-import clone from "./src/clone.js";
-import deepAssign from "./src/deepAssign.js";
-import deepMix from "./src/deepMix.js";
-import equalsArray from "./src/equalsArray.js";
-import foreachBigArray from "./src/foreachBigArray.js";
-import formatDate from "./src/formatDate.js";
-import Fullscreen from "./src/Fullscreen.js";
-import generateGUID from "./src/generateGUID.js";
-import getPropertyDescriptor from "./src/getPropertyDescriptor.js";
-import HashArray from "./src/HashArray.js";
-import * as logger from "./src/logger.js";
-import merge from "./src/merge.js";
-import mix from "./src/mix.js";
-import NavigatorDetection from "./src/NavigatorDetection.js";
-import setParameters from "./src/setParameters.js";
-import wait from "./src/wait.js";
-
-export {
-    Fullscreen,
-    HashArray,
-    NavigatorDetection,
-    clone,
-    deepAssign,
-    deepMix,
-    equalsArray,
-    foreachBigArray,
-    formatDate,
-    generateGUID,
-    getPropertyDescriptor,
-    logger,
-    merge,
-    mix,
-    setParameters as setOptions,
-    setParameters,
-    wait
-};
+import "./src/Array.extension.js";
+export * from "./src/clone.js";
+export * from "./src/deepAssign.js";
+export * from "./src/deepMix.js";
+export * from "./src/equalsArray.js";
+export * from "./src/foreachBigArray.js";
+export * from "./src/formatDate.js";
+export * from "./src/Fullscreen.js";
+export * from "./src/generateGUID.js";
+export * from "./src/getPropertyDescriptor.js";
+export * from "./src/HashArray.js";
+export * as logger from "./src/logger.js";
+export * from "./src/merge.js";
+export * from "./src/mix.js";
+export * from "./src/NavigatorDetection.js";
+export * from "./src/setParameters.js";
+export * from "./src/wait.js";
 

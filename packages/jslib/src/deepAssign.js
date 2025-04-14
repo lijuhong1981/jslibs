@@ -51,3 +51,4 @@ function deepAssign(target = {}, ...sources) {
 Object.deepAssign = deepAssign;
 
 export default deepAssign;
+export { deepAssign };

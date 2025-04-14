@@ -231,3 +231,4 @@ class HashArray {
 };
 
 export default HashArray;
+export { HashArray };

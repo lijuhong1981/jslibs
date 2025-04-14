@@ -2,7 +2,7 @@
  * 生成GUID
  * @returns {string}
 */
-const generateGUID = (window.crypto && typeof window.crypto.getRandomValues === 'function') ?
+const generateGUID = (typeof window !== 'undefined' && window.crypto && typeof window.crypto.getRandomValues === 'function') ?
     function () {
         // If we have a cryptographically secure PRNG, use that
         // http://stackoverflow.com/questions/6906916/collisions-when-generating-uuids-in-javascript
@@ -27,3 +27,4 @@ const generateGUID = (window.crypto && typeof window.crypto.getRandomValues === 
     };
 
 export default generateGUID;
+export { generateGUID };

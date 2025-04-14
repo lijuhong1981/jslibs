@@ -31,3 +31,4 @@ function formatDate(formatString = 'yyyy-MM-dd HH:mm:ss', date = new Date()) {
 }
 
 export default formatDate;
+export { formatDate };

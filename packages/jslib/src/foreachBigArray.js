@@ -44,3 +44,4 @@ function foreachBigArray(array, callback = (element, index) => { }, maxLoopCount
 };
 
 export default foreachBigArray;
+export { foreachBigArray };

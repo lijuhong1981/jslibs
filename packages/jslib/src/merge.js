@@ -58,3 +58,4 @@ function merge(object1, object2, recursive = false, ignores = [], result = {}) {
 };
 
 export default merge;
+export { merge };

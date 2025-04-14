@@ -45,3 +45,4 @@ function mix(target = {}, ...sources) {
 Object.mix = mix;
 
 export default mix;
+export { mix };

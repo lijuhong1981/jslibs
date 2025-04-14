@@ -489,3 +489,4 @@ NavigatorDetection.supportsWebAssembly = function () {
 };
 
 export default NavigatorDetection;
+export { NavigatorDetection };

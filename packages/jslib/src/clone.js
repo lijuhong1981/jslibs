@@ -43,3 +43,4 @@ function clone(source, config) {
 };
 
 export default clone;
+export { clone };

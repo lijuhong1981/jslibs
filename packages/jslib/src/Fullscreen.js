@@ -246,3 +246,4 @@ Fullscreen.exitFullscreen = function () {
 Fullscreen._names = _names;
 
 export default Fullscreen;
+export { Fullscreen };

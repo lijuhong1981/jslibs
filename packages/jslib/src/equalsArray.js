@@ -28,3 +28,4 @@ function equalsArray(left, right) {
 };
 
 export default equalsArray;
+export { equalsArray };

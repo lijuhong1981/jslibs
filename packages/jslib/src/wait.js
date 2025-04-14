@@ -8,3 +8,4 @@ function wait(milliseconds) {
 }
 
 export default wait;
+export { wait };

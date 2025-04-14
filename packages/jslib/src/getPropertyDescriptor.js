@@ -15,3 +15,4 @@ function getPropertyDescriptor(object, propertyName) {
 }
 
 export default getPropertyDescriptor;
+export { getPropertyDescriptor };

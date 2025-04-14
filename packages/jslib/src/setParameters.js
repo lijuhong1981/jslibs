@@ -41,3 +41,4 @@ function setParameters(target, parameters) {
 }
 
 export default setParameters;
+export { setParameters, setParameters as setOptions };
