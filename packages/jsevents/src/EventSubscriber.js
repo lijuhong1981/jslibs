@@ -146,3 +146,4 @@ class EventSubscriber extends Destroyable {
 };
 
 export default EventSubscriber;
+export { EventSubscriber }

@@ -138,3 +138,4 @@ class EventEmitter extends Destroyable {
 };
 
 export default EventEmitter;
+export { EventEmitter }

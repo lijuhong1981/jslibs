@@ -211,3 +211,4 @@ class EventDispatcher extends Destroyable {
 };
 
 export default EventDispatcher;
+export { EventDispatcher }
