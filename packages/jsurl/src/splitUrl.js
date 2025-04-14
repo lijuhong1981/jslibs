@@ -11,3 +11,4 @@ function splitUrl(url) {
 };
 
 export default splitUrl;
+export { splitUrl };

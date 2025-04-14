@@ -19,3 +19,4 @@ function extractBaseName(url) {
 };
 
 export default extractBaseName;
+export { extractBaseName };

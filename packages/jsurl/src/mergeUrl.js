@@ -14,3 +14,4 @@ function mergeUrl(base, relative) {
 };
 
 export default mergeUrl;
+export { mergeUrl };

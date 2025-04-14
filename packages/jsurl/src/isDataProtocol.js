@@ -5,3 +5,4 @@ function isDataProtocol(url) {
 };
 
 export default isDataProtocol;
+export { isDataProtocol };

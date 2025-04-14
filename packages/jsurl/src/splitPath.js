@@ -12,3 +12,4 @@ function splitPath(path) {
 };
 
 export default splitPath;
+export { splitPath };

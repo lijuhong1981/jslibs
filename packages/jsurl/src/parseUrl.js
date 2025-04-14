@@ -42,3 +42,4 @@ function parseUrl(url, result = {}) {
 };
 
 export default parseUrl;
+export { parseUrl };

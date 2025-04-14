@@ -5,3 +5,4 @@ function isHttpProtocol(url) {
 };
 
 export default isHttpProtocol;
+export { isHttpProtocol };

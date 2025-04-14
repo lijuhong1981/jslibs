@@ -5,3 +5,4 @@ function isFileProtocol(url) {
 };
 
 export default isFileProtocol;
+export { isFileProtocol };

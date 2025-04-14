@@ -5,3 +5,4 @@ function isBlobProtocol(url) {
 };
 
 export default isBlobProtocol;
+export { isBlobProtocol };

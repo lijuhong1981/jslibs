@@ -28,3 +28,4 @@ function parsePath(path, result = {}) {
 };
 
 export default parsePath;
+export { parsePath };

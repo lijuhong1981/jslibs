@@ -1,33 +1,15 @@
-import extractBaseUrl from "./src/extractBaseUrl.js";
-import extractFileName from "./src/extractFileName.js";
-import extractBaseName from "./src/extractBaseName.js";
-import extractExtName from "./src/extractExtName.js";
-import mergeUrl from "./src/mergeUrl.js";
-import hasProtocolPrefix from "./src/hasProtocolPrefix.js";
-import isBlobProtocol from "./src/isBlobProtocol.js";
-import isDataProtocol from "./src/isDataProtocol.js";
-import isFileProtocol from "./src/isFileProtocol.js";
-import isHttpProtocol from "./src/isHttpProtocol.js";
-import splitPath from "./src/splitPath.js";
-import splitUrl from "./src/splitUrl.js";
-import parsePath from "./src/parsePath.js";
-import parseQueryParams from "./src/parseQueryParams.js";
-import parseUrl from "./src/parseUrl.js";
-
-export {
-    extractBaseUrl,
-    extractFileName,
-    extractBaseName,
-    extractExtName,
-    mergeUrl,
-    hasProtocolPrefix,
-    isBlobProtocol,
-    isDataProtocol,
-    isFileProtocol,
-    isHttpProtocol,
-    splitPath,
-    splitUrl,
-    parsePath,
-    parseQueryParams,
-    parseUrl,
-};
+export * from "./src/extractBaseName.js";
+export * from "./src/extractBaseUrl.js";
+export * from "./src/extractExtName.js";
+export * from "./src/extractFileName.js";
+export * from "./src/hasProtocolPrefix.js";
+export * from "./src/isBlobProtocol.js";
+export * from "./src/isDataProtocol.js";
+export * from "./src/isFileProtocol.js";
+export * from "./src/isHttpProtocol.js";
+export * from "./src/mergeUrl.js";
+export * from "./src/parsePath.js";
+export * from "./src/parseQueryParams.js";
+export * from "./src/parseUrl.js";
+export * from "./src/splitPath.js";
+export * from "./src/splitUrl.js";

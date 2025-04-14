@@ -16,3 +16,4 @@ function extractExtName(url, containsPoint = true) {
 };
 
 export default extractExtName;
+export { extractExtName };

@@ -15,3 +15,4 @@ function extractFileName(url) {
 };
 
 export default extractFileName;
+export { extractFileName };

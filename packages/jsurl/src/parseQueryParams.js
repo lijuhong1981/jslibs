@@ -15,3 +15,4 @@ function parseQueryParams(urlQuery, result = {}) {
 };
 
 export default parseQueryParams;
+export { parseQueryParams };

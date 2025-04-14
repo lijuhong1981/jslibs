@@ -5,3 +5,4 @@ function hasProtocolPrefix(url) {
 };
 
 export default hasProtocolPrefix;
+export { hasProtocolPrefix };

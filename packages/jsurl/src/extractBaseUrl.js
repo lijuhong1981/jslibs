@@ -10,3 +10,4 @@ function extractBaseUrl(url) {
 }
 
 export default extractBaseUrl;
+export { extractBaseUrl };
