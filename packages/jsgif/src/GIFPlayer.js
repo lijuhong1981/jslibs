@@ -651,3 +651,4 @@ function GIFPlayer(options = {}) {
 };
 
 export default GIFPlayer;
+export { GIFPlayer }

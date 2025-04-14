@@ -12,3 +12,4 @@ class GIFImageLoader extends ImageLoader {
 };
 
 export default GIFImageLoader;
+export { GIFImageLoader }

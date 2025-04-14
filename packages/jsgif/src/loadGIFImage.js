@@ -32,3 +32,4 @@ function loadGIFImage(url, options = {}, result = document.createElement('canvas
 };
 
 export default loadGIFImage;
+export { loadGIFImage }
