@@ -10,3 +10,4 @@ function clearCanvas(canvas) {
 };
 
 export default clearCanvas;
+export { clearCanvas };

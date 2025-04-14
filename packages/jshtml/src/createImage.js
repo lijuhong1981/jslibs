@@ -1,6 +1,3 @@
-import Check from '@lijuhong1981/jscheck/src/Check.js';
-import isValid from "@lijuhong1981/jscheck/src/isValid.js";
-
 /**
  * 创建Image对象
  * @param {Object} options 配置项
@@ -22,17 +19,17 @@ function createImage(options = {}, onLoad, onError) {
             url: options
         };
     const url = options.url || options.src;
-    Check.typeOf.string('url', url);
+    if (!url) throw new Error('createImage: url is required');
 
     const image = new Image();
     image.crossOrigin = options.crossOrigin || 'anonymous';
-    if (isValid(options.width))
+    if (typeof options.width === 'number')
         image.width = options.width;
-    if (isValid(options.height))
+    if (typeof options.height === 'number')
         image.height = options.height;
-    if (isValid(options.id))
+    if (typeof options.id === 'string')
         image.id = options.id;
-    if (isValid(options.className))
+    if (typeof options.className === 'string')
         image.className = options.className;
 
     onLoad = options.onLoad || onLoad;
@@ -41,18 +38,18 @@ function createImage(options = {}, onLoad, onError) {
     function onImageLoad() {
         image.removeEventListener('load', onImageLoad, false);
         image.removeEventListener('error', onImageError, false);
-        if (onLoad) onLoad(image);
+        if (typeof onLoad === 'function') onLoad(image);
     }
 
     function onImageError(event) {
         image.removeEventListener('load', onImageLoad, false);
         image.removeEventListener('error', onImageError, false);
-        if (onError) onError(event);
+        if (typeof onError === 'function') onError(event);
     }
 
-    if (onLoad)
+    if (typeof onLoad === 'function')
         image.addEventListener('load', onImageLoad, false);
-    if (onError)
+    if (typeof onError === 'function')
         image.addEventListener('error', onImageError, false);
 
     image.src = url;
@@ -68,3 +65,4 @@ function createImage(options = {}, onLoad, onError) {
 }
 
 export default createImage;
+export { createImage };

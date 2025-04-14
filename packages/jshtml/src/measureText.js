@@ -1,5 +1,3 @@
-import Check from "@lijuhong1981/jscheck/src/Check.js";
-
 /**
  * 测量文本宽高
  * @param {string} text 测量的文本
@@ -7,8 +5,6 @@ import Check from "@lijuhong1981/jscheck/src/Check.js";
  * @returns {DOMRect}
  */
 function measureText(text, font) {
-    Check.typeOf.string('text', text);
-
     const span = document.createElement("span");
     document.body.appendChild(span);
     span.style.margin = 0;
@@ -24,3 +20,4 @@ function measureText(text, font) {
 };
 
 export default measureText;
+export { measureText };

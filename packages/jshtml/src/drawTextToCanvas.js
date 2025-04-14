@@ -1,5 +1,4 @@
 
-import definedValue from "@lijuhong1981/jscheck/src/getDefinedValue.js";
 import measureText from "./measureText.js";
 
 /**
@@ -31,19 +30,18 @@ import measureText from "./measureText.js";
  *  };
  * const canvas = drawTextToCanvas(options);
  */
-function drawTextToCanvas(options, canvas) {
-    if (!options || !options.text)
-        return;
+function drawTextToCanvas(options = {}, canvas) {
+    if (!options.text) throw new Error('options.text is required');
     const text = options.text;
 
     let x, y, textAlign, textBaseline;
-    const scaleRadio = definedValue(options.scaleRadio, 1);
-    const background = definedValue(options.background, false);
+    const scaleRadio = options.scaleRadio ?? 1;
+    const background = options.background ?? false;
     let backgroundColor, backgroundPaddingX = 0, backgroundPaddingY = 0;
     if (background) {
-        backgroundColor = definedValue(options.backgroundColor, 'rgba(0, 0, 0, 0.7)');
-        backgroundPaddingX = definedValue(options.backgroundPaddingX, 5);
-        backgroundPaddingY = definedValue(options.backgroundPaddingY, 2);
+        backgroundColor = options.backgroundColor ?? 'rgba(0, 0, 0, 0.7)';
+        backgroundPaddingX = options.backgroundPaddingX ?? 5;
+        backgroundPaddingY = options.backgroundPaddingY ?? 2;
     }
     if (!canvas) {
         canvas = document.createElement('canvas');
@@ -56,13 +54,13 @@ function drawTextToCanvas(options, canvas) {
 
         x = width / 2;
         y = height / 2;
-        textAlign = definedValue(options.textAlign, 'center');
-        textBaseline = definedValue(options.textBaseline, 'middle');
+        textAlign = options.textAlign ?? 'center';
+        textBaseline = options.textBaseline ?? 'middle';
     } else {
-        x = definedValue(options.x, 0) * scaleRadio;
-        y = definedValue(options.y, 0) * scaleRadio;
-        textAlign = definedValue(options.textAlign, 'start');
-        textBaseline = definedValue(options.textBaseline, 'alphabetic');
+        x = options.x ?? 0 * scaleRadio;
+        y = options.y ?? 0 * scaleRadio;
+        textAlign = options.textAlign ?? 'start';
+        textBaseline = options.textBaseline ?? 'alphabetic';
     }
 
     const context = canvas.getContext('2d');
@@ -78,16 +76,16 @@ function drawTextToCanvas(options, canvas) {
     context.textAlign = textAlign;
     context.textBaseline = textBaseline;
 
-    const fill = definedValue(options.fill, true);
-    const outline = definedValue(options.outline, false);
+    const fill = options.fill ?? true;
+    const outline = options.outline ?? false;
     const maxWidth = options.maxWidth;
     if (fill) {
-        context.fillStyle = definedValue(options.fillColor, '#ffffff');
+        context.fillStyle = options.fillColor ?? '#ffffff';
         context.fillText(text, x, y, maxWidth);
     }
     if (outline) {
-        context.strokeStyle = definedValue(options.outlineColor, '#ff0000');
-        context.lineWidth = definedValue(options.outlineWidth, 1);
+        context.strokeStyle = options.outlineColor ?? '#ff0000';
+        context.lineWidth = options.outlineWidth ?? 1;
         context.strokeText(text, x, y, maxWidth);
     }
 
@@ -95,3 +93,4 @@ function drawTextToCanvas(options, canvas) {
 };
 
 export default drawTextToCanvas;
+export { drawTextToCanvas };

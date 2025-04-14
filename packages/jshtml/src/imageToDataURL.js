@@ -1,4 +1,4 @@
-const _canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
+let _canvas;
 
 /**
  * 将Image转换为DataUrl
@@ -17,6 +17,7 @@ function imageToDataURL(image, mimeType, quality) {
     if (image instanceof HTMLCanvasElement) {
         canvas = image;
     } else {
+        if (!_canvas) _canvas = document.createElement('canvas');
         _canvas.width = image.width;
         _canvas.height = image.height;
 
@@ -35,3 +36,4 @@ function imageToDataURL(image, mimeType, quality) {
 }
 
 export default imageToDataURL;
+export { imageToDataURL };

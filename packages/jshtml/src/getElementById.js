@@ -17,3 +17,4 @@ function getElementById(element, id) {
 };
 
 export default getElementById;
+export { getElementById };

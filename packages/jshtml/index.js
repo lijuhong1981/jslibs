@@ -1,25 +1,11 @@
-import appendCss from "./src/appendCss.js";
-import canvasToImage from "./src/canvasToImage.js";
-import clearCanvas from "./src/clearCanvas.js";
-import createElementFromHTML from "./src/createElementFromHTML.js";
-import createImage from "./src/createImage.js";
-import getCSSStyleRule from "./src/getCSSStyleRule.js";
-import getElementById from "./src/getElementById.js";
-import getEventPosition from "./src/getEventPosition.js";
-import imageToDataURL from "./src/imageToDataURL.js";
-import measureText from "./src/measureText.js";
-import drawTextToCanvas from "./src/drawTextToCanvas.js";
-
-export {
-    appendCss,
-    canvasToImage,
-    clearCanvas,
-    createElementFromHTML,
-    createImage,
-    getCSSStyleRule,
-    getElementById,
-    getEventPosition,
-    imageToDataURL,
-    measureText,
-    drawTextToCanvas,
-};
+export * from "./src/appendCss.js";
+export * from "./src/canvasToImage.js";
+export * from "./src/clearCanvas.js";
+export * from "./src/createElementFromHTML.js";
+export * from "./src/createImage.js";
+export * from "./src/drawTextToCanvas.js";
+export * from "./src/getCssStyleRule.js";
+export * from "./src/getElementById.js";
+export * from "./src/getEventPosition.js";
+export * from "./src/imageToDataURL.js";
+export * from "./src/measureText.js";

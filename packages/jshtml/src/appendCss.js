@@ -4,6 +4,7 @@
  * @returns {Promise}
  */
 function appendCss(url) {
+    if (!url) return Promise.reject(new Error('appendCss: url is required'));
     return new Promise((resolve, reject) => {
         const link = document.createElement('link');
         link.async = true;
@@ -29,3 +30,4 @@ function appendCss(url) {
 }
 
 export default appendCss;
+export { appendCss };

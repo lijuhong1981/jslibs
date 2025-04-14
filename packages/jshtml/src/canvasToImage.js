@@ -12,3 +12,4 @@ function canvasToImage(canvas, mimeType, quality) {
 };
 
 export default canvasToImage;
+export { canvasToImage };

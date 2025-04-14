@@ -13,3 +13,4 @@ function createElementFromHTML(HTML) {
 };
 
 export default createElementFromHTML;
+export { createElementFromHTML };
