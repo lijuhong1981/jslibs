@@ -18,3 +18,4 @@ async function fetchImageBitmap(url, requestOptions, imageBitmapOptions) {
 };
 
 export default fetchImageBitmap;
+export { fetchImageBitmap };

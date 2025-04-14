@@ -42,3 +42,4 @@ function loadImage(url, options = {}, result = new Image()) {
 };
 
 export default loadImage;
+export { loadImage };

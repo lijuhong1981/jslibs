@@ -23,3 +23,4 @@ function arrayBufferToImageAsync(arrayBuffer, onLoad, onError, result) {
 };
 
 export default arrayBufferToImageAsync;
+export { arrayBufferToImageAsync };

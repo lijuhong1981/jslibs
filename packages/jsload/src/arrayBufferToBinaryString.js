@@ -20,3 +20,4 @@ function arrayBufferToBinaryString(arrayBuffer) {
 }
 
 export default arrayBufferToBinaryString;
+export { arrayBufferToBinaryString };

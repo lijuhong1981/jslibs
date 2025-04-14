@@ -12,3 +12,4 @@ function arrayBufferToBinaryStringAsync(arrayBuffer) {
 };
 
 export default arrayBufferToBinaryStringAsync;
+export { arrayBufferToBinaryStringAsync };

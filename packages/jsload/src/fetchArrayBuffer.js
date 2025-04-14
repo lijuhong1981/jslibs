@@ -20,3 +20,4 @@ async function fetchArrayBuffer(url, requestOptions) {
 };
 
 export default fetchArrayBuffer;
+export { fetchArrayBuffer };

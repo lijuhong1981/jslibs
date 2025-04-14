@@ -177,3 +177,4 @@ Object.defineProperties(Loader, {
 });
 
 export default Loader;
+export { Loader };

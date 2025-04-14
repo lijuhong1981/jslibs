@@ -50,3 +50,4 @@ function readLine(data, callback, encoding) {
 };
 
 export default readLine;
+export { readLine };

@@ -20,3 +20,4 @@ async function fetchJson(url, requestOptions) {
 };
 
 export default fetchJson;
+export { fetchJson };

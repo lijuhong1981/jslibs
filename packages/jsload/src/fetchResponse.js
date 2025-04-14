@@ -20,3 +20,4 @@ async function fetchResponse(url, requestOptions) {
 };
 
 export default fetchResponse;
+export { fetchResponse };

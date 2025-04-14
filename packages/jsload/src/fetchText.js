@@ -20,3 +20,4 @@ async function fetchText(url, requestOptions) {
 };
 
 export default fetchText;
+export { fetchText };

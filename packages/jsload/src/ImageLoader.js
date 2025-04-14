@@ -40,3 +40,4 @@ Object.defineProperties(ImageLoader, {
 });
 
 export default ImageLoader;
+export { ImageLoader };

@@ -4,8 +4,7 @@ import {
     readAsDataURL
 } from './FileRead.js';
 
-const fileInput = document.createElement('input');
-fileInput.type = 'file';
+let fileInput;
 
 /**
  * 触发文件输入
@@ -14,6 +13,10 @@ fileInput.type = 'file';
  */
 function inputFile(callback) {
     return new Promise((resole, reject) => {
+        if (!fileInput) {
+            fileInput = document.createElement('input');
+            fileInput.type = 'file';
+        }
 
         function onInput() {
             fileInput.removeEventListener('change', onInput, false);
@@ -59,7 +62,7 @@ function inputFileAsText(onLoad, onError, encoding) {
  */
 function inputFileAsArrayBuffer(onLoad, onError) {
     return new Promise((resole, reject) => {
-        inputFil().then((file) => {
+        inputFile().then((file) => {
             readAsArrayBuffer(file, onLoad, onError).then((result) => {
                 resole(result);
             }).catch((error) => {

@@ -93,3 +93,4 @@ class Cache extends Destroyable {
 };
 
 export default Cache;
+export { Cache };

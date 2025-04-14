@@ -26,3 +26,4 @@ function blobToImage(blob, onLoad, onError, result) {
 };
 
 export default blobToImage;
+export { blobToImage };

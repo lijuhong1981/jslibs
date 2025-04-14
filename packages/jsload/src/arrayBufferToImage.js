@@ -14,3 +14,4 @@ function arrayBufferToImage(arrayBuffer, onLoad, onError, result) {
 };
 
 export default arrayBufferToImage;
+export { arrayBufferToImage };

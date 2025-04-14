@@ -18,3 +18,4 @@ async function fetchBinaryString(url, requestOptions) {
 };
 
 export default fetchBinaryString;
+export { fetchBinaryString };

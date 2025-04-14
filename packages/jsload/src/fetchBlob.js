@@ -20,3 +20,4 @@ async function fetchBlob(url, requestOptions) {
 };
 
 export default fetchBlob;
+export { fetchBlob };

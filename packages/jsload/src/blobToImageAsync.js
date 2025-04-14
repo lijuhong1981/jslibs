@@ -23,3 +23,4 @@ function blobToImageAsync(blob, onLoad, onError, result) {
 };
 
 export default blobToImageAsync;
+export { blobToImageAsync };
