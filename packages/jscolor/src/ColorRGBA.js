@@ -1,7 +1,5 @@
 import Check from "@lijuhong1981/jscheck/src/Check.js";
-import getValidValue from "@lijuhong1981/jscheck/src/getValidValue.js";
 import defined from "@lijuhong1981/jscheck/src/isDefined.js";
-import isValid from "@lijuhong1981/jscheck/src/isValid.js";
 import lerp from "@lijuhong1981/jsmath/src/lerp.js";
 import byteToFloat from "./byteToFloat.js";
 import ColorRGB from "./ColorRGB.js";
@@ -1141,6 +1139,12 @@ ColorRGBA.fromColorRGB = function (color, alpha = 1.0, result = new ColorRGBA())
 };
 
 /**
+ * @see ColorRGBA.fromColorRGB
+ * @deprecated
+*/
+ColorRGBA.fromColor3 = ColorRGBA.fromColorRGB;
+
+/**
  * Sets this Color values from an ColorRGB instance.
  * 
  * @see ColorRGBA.fromColorRGB
@@ -1164,6 +1168,12 @@ ColorRGBA.prototype.toColorRGB = function (result = new ColorRGBA()) {
 
     return result;
 };
+
+/**
+ * @see ColorRGBA#toColorRGB
+ * @deprecated
+*/
+ColorRGBA.prototype.toColor3 = ColorRGBA.prototype.toColorRGB;
 
 /**
  * An immutable Color instance initialized to CSS color #F0F8FF
@@ -2487,4 +2497,4 @@ ColorRGBA.YELLOWGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.YELLOWGREE
  */
 ColorRGBA.TRANSPARENT = Object.freeze(new ColorRGBA(0, 0, 0, 0));
 export default ColorRGBA;
-export { ColorRGBA, ColorRGBA as Color4 };
+export { ColorRGBA as Color4, ColorRGBA };
