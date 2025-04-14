@@ -15,3 +15,4 @@ function windowPositionToNDC(posInWindow, width, height, result = {}) {
 };
 
 export default windowPositionToNDC;
+export { windowPositionToNDC };

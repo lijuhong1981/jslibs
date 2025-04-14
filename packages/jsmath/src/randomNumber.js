@@ -9,3 +9,4 @@ function randomNumber(rangeMinimum = 0, rangeMaximum = Number.MAX_SAFE_INTEGER) 
 };
 
 export default randomNumber;
+export { randomNumber };

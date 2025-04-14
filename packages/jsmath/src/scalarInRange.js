@@ -16,3 +16,4 @@ function scalarInRange(value, rangeMinimum, rangeMaximum, needClamp = false) {
 };
 
 export default scalarInRange;
+export { scalarInRange };

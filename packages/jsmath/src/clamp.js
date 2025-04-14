@@ -10,3 +10,4 @@ function clamp(value, rangeMinimum, rangeMaximum) {
 };
 
 export default clamp;
+export { clamp };

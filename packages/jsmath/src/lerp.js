@@ -15,3 +15,4 @@ function lerp(start, end, scalar, needClamp = true) {
 };
 
 export default lerp;
+export { lerp };

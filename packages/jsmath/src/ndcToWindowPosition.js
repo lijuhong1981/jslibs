@@ -23,3 +23,4 @@ function ndcToWindowPosition(ndc, width, height, result = {}, checkInvisible = t
 }
 
 export default ndcToWindowPosition;
+export { ndcToWindowPosition };

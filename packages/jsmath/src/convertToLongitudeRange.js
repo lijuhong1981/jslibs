@@ -14,3 +14,4 @@ function convertToLongitudeRange(longitude, degrees = true) {
 };
 
 export default convertToLongitudeRange;
+export { convertToLongitudeRange };

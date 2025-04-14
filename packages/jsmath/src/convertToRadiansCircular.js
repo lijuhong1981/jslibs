@@ -12,3 +12,4 @@ function convertToRadiansCircular(radians, minValue = 0) {
 };
 
 export default convertToRadiansCircular;
+export { convertToRadiansCircular };

@@ -15,3 +15,4 @@ function clampLatitude(latitude, degrees = true) {
 };
 
 export default clampLatitude;
+export { clampLatitude };

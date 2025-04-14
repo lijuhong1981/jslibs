@@ -9,3 +9,4 @@ function toFixed(value, decimalNumber = 2) {
 }
 
 export default toFixed;
+export { toFixed };

@@ -12,3 +12,4 @@ function getNDCInElement(element, posInElement, result = {}) {
 };
 
 export default getNDCInElement;
+export { getNDCInElement };

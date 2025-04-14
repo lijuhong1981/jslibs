@@ -334,3 +334,4 @@ class Interval {
 Interval.packedLength = 4;
 
 export default Interval;
+export { Interval };

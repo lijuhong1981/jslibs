@@ -8,3 +8,4 @@ function parseBoolean(value) {
 };
 
 export default parseBoolean;
+export { parseBoolean };

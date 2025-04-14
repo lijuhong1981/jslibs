@@ -28,3 +28,4 @@ function convertToLatitudeRange(latitude, degrees = true) {
 };
 
 export default convertToLatitudeRange;
+export { convertToLatitudeRange };

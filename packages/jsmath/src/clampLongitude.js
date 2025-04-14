@@ -14,3 +14,4 @@ function clampLongitude(longitude, degrees = true) {
 };
 
 export default clampLongitude;
+export { clampLongitude };

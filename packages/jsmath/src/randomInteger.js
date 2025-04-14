@@ -11,3 +11,4 @@ function randomInteger(rangeMinimum = 0, rangeMaximum = Number.MAX_SAFE_INTEGER 
 };
 
 export default randomInteger;
+export { randomInteger };

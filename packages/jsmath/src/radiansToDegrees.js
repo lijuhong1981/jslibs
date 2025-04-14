@@ -10,3 +10,4 @@ function radiansToDegrees(radians) {
 }
 
 export default radiansToDegrees;
+export { radiansToDegrees };

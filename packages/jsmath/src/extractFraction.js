@@ -13,3 +13,4 @@ function extractFraction(value) {
 };
 
 export default extractFraction;
+export { extractFraction };

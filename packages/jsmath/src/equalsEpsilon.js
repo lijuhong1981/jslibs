@@ -10,3 +10,4 @@ function equalsEpsilon(left, right, epsilon = 0) {
 };
 
 export default equalsEpsilon;
+export { equalsEpsilon };

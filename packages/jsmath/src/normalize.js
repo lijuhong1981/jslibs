@@ -13,3 +13,4 @@ function normalize(value, rangeMinimum, rangeMaximum) {
 };
 
 export default normalize;
+export { normalize };

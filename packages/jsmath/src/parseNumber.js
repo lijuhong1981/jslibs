@@ -14,3 +14,4 @@ function parseNumber(value) {
 }
 
 export default parseNumber;
+export { parseNumber };

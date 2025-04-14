@@ -11,3 +11,4 @@ function convertToDegreesCircular(degrees, minValue = 0) {
 };
 
 export default convertToDegreesCircular;
+export { convertToDegreesCircular };

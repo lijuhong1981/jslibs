@@ -10,3 +10,4 @@ function degreesToRadians(degrees) {
 };
 
 export default degreesToRadians;
+export { degreesToRadians };

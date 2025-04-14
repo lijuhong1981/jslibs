@@ -16,3 +16,4 @@ function isBetween(value, rangeMinimum, rangeMaximum, equalsMinimum = true, equa
 };
 
 export default isBetween;
+export { isBetween };

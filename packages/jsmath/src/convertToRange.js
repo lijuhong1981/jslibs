@@ -21,3 +21,4 @@ function convertToRange(value, rangeMinimum, rangeMaximum) {
 };
 
 export default convertToRange;
+export { convertToRange };
