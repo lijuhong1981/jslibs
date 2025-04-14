@@ -10,3 +10,4 @@ function floatToByte(number) {
 };
 
 export default floatToByte;
+export { floatToByte };

@@ -6,8 +6,8 @@ import isObject from "@lijuhong1981/jscheck/src/isObject.js";
 import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 import clamp from "@lijuhong1981/jsmath/src/clamp.js";
 import normalize from "@lijuhong1981/jsmath/src/normalize.js";
-import Color4 from "./Color4.js";
-import parseToColor4 from "./parseToColor4.js";
+import ColorRGBA from "./ColorRGBA.js";
+import parseToColorRGBA from "./parseToColorRGBA.js";
 
 function ascCompare(a, b) {
     return a.offset - b.offset;
@@ -240,7 +240,7 @@ class ColorGradient extends Destroyable {
         }
         Check.typeOf.number.greaterThanOrEquals('offset', offset, 0);
         Check.typeOf.number.lessThanOrEquals('offset', offset, 1);
-        color = parseToColor4(color);
+        color = parseToColorRGBA(color);
         if (isValid(opacity))
             color.alpha = opacity;
         const element = {
@@ -344,10 +344,10 @@ class ColorGradient extends Destroyable {
     /**
      * 根据offset插值计算得到一个Color对象
      * @param {Number} offset 插值，范围0~1之间
-     * @param {Color4} result 输出的Color对象
-     * @returns {Color4}
+     * @param {ColorRGBA} result 输出的Color对象
+     * @returns {ColorRGBA}
      */
-    getColor(offset, result = new Color4()) {
+    getColor(offset, result = new ColorRGBA()) {
         Check.typeOf.number('offset', offset);
         offset = clamp(offset, 0, 1);
         this.sort();
@@ -367,7 +367,7 @@ class ColorGradient extends Destroyable {
             }
         }
         offset = normalize(offset, prevColor.offset, nextColor.offset);
-        return Color4.lerp(prevColor.color, nextColor.color, offset, result);
+        return ColorRGBA.lerp(prevColor.color, nextColor.color, offset, result);
     }
 
     /**
@@ -466,3 +466,4 @@ ColorGradient.getDefault = function () {
 };
 
 export default ColorGradient;
+export { ColorGradient };

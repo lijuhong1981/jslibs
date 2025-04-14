@@ -18,3 +18,4 @@ function hue2rgb(m1, m2, h) {
 }
 
 export default hue2rgb;
+export { hue2rgb };

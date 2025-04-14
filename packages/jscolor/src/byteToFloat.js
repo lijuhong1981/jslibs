@@ -1,4 +1,3 @@
-
 /**
  * Converts a 'byte' color component in the range of 0 to 255 into
  * a 'float' color component in the range of 0 to 1.0.
@@ -11,3 +10,4 @@ function byteToFloat(number) {
 };
 
 export default byteToFloat;
+export { byteToFloat };
