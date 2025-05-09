@@ -7,6 +7,7 @@ export * from "./src/foreachBigArray.js";
 export * from "./src/formatDate.js";
 export * from "./src/Fullscreen.js";
 export * from "./src/generateGUID.js";
+export * from "./src/getLocalIP.js";
 export * from "./src/getPropertyDescriptor.js";
 export * from "./src/HashArray.js";
 export * as logger from "./src/logger.js";
