@@ -6,7 +6,7 @@ import blobToImage from "./blobToImage.js";
  * @param {Function} onLoad 加载完成回调
  * @param {Function} onError 加载出错回调
  * @param {Image} result 输出的Image对象，可不填
- * @returns {Promise} 返回Promise对象
+ * @returns {Promise<Image>} 异步返回Image对象
  */
 function blobToImageAsync(blob, onLoad, onError, result) {
     return new Promise(function (resolve, reject) {

@@ -2,7 +2,7 @@
  * 封装使用fetch接口获取Response对象
  * @param {String} url 请求url
  * @param {RequestInit} requestOptions 请求参数
- * @returns {Promise} 返回Promise对象
+ * @returns {Promise<Response>} 异步返回Response对象
  */
 async function fetchResponse(url, requestOptions) {
     if (typeof url !== 'string') {

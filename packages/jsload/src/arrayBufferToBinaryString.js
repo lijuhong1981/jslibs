@@ -3,7 +3,7 @@ const MaxStackSize = 1024 * 50;
 /**
  * 将一个ArrayBuffer类型数组转换为二进制字符串
  * @param {ArrayBuffer} arrayBuffer 需要转换的arrayBuffer
- * @returns {String} 转换后的二进制字符串
+ * @returns {string} 转换后的二进制字符串
  */
 function arrayBufferToBinaryString(arrayBuffer) {
     const length = arrayBuffer.byteLength;

@@ -4,12 +4,15 @@ import {
     readAsDataURL
 } from './FileRead.js';
 
+/**
+ * @type {HTMLInputElement}
+*/
 let fileInput;
 
 /**
  * 触发文件输入
  * @param {Function} callback 回调函数
- * @returns {Promise}
+ * @returns {Promise<File>}
  */
 function inputFile(callback) {
     return new Promise((resole, reject) => {

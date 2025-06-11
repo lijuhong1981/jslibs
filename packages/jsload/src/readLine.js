@@ -7,7 +7,7 @@ import {
  * @param {File|Blob|ArrayBuffer|String} data 读取的数据
  * @param {Function} callback 按行回调函数
  * @param {String} encoding 文本编码
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 function readLine(data, callback, encoding) {
     return new Promise((resolve, reject) => {

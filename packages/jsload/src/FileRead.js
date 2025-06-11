@@ -4,7 +4,7 @@
  * @param {Function} onLoad 加载完成回调函数
  * @param {Function} onError 加载出错回调函数
  * @param {String} encoding 文本编码
- * @returns {Promise}
+ * @returns {Promise<string>}
  */
 function readAsText(file, onLoad, onError, encoding) {
     return new Promise((resolve, reject) => {

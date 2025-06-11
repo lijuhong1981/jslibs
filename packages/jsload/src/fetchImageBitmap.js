@@ -5,7 +5,7 @@ import fetchBlob from './fetchBlob.js';
  * @param {String} url 请求url
  * @param {RequestInit} requestOptions 请求参数
  * @param {ImageBitmapOptions} imageBitmapOptions imageBitmap参数
- * @returns {Promise} 返回Promise对象
+ * @returns {Promise<ImageBitmap>} 异步返回ImageBitmap对象
  */
 async function fetchImageBitmap(url, requestOptions, imageBitmapOptions) {
     try {
