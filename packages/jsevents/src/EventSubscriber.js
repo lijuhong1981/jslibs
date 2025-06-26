@@ -81,6 +81,13 @@ class EventSubscriber extends Destroyable {
     }
 
     /**
+     * @see hasEventListener
+    */
+    has(callback) {
+        return this.hasEventListener(callback);
+    }
+
+    /**
      * @see addEventListener
     */
     on(callback, options) {
