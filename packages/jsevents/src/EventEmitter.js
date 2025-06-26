@@ -73,12 +73,26 @@ class EventEmitter extends Destroyable {
     }
 
     /**
+     * @see removeAllListeners
+    */
+    offAll() {
+        return this.removeAllListeners();
+    }
+
+    /**
      * 判断是否已添加某类型的事件监听
      * @param {any} type 事件类型
      * @returns {boolean} 判断结果
      */
     hasListener(type) {
         return this._dispatcher.hasEventListener(type);
+    }
+
+    /** 
+     * @see hasListener
+    */
+    has(type) {
+        return this.hasListener(type);
     }
 
     /**
@@ -88,6 +102,13 @@ class EventEmitter extends Destroyable {
      */
     getListeners(type) {
         return this._dispatcher.getEventListeners(type);
+    }
+
+    /**
+     * @see getListeners
+    */
+    listeners(type) {
+        return this.getListeners(type);
     }
 
     /**
