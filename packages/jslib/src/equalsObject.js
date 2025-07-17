@@ -1,5 +1,11 @@
 import equalsArray from "./equalsArray.js";
 
+/**
+ * 判断两个对象内部值是否相等
+ * @param {object} left
+ * @param {object} right
+ * @returns {boolean}
+ */
 function equalsObject(left, right) {
     if (typeof left !== 'object') {
         console.warn('The left value is not Object.', left);
