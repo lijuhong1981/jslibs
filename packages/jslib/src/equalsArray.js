@@ -20,11 +20,13 @@ function equalsArray(left, right) {
     if (left.length !== right.length)
         return false;
     for (let i = 0; i < left.length; i++) {
-        if (Array.isArray(left[i]) && !equalsArray(left[i], right[i]))
+        const leftValue = left[i];
+        const rightValue = right[i];
+        if (Array.isArray(leftValue) && !equalsArray(leftValue, rightValue))
             return false;
-        else if (typeof left[i] === 'object' && !equalsObject(left[i], right[i]))
+        else if (typeof leftValue === 'object' && !equalsObject(leftValue, rightValue))
             return false;
-        else if (left[i] !== right[i])
+        else if (leftValue !== rightValue)
             return false;
     }
     return true;
