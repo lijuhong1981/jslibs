@@ -12,7 +12,7 @@ function returnTrue() {
  * @param {object} config 销毁配置
  * @param {boolean} config.deleteProperty 是否删除对象属性，默认true
  * @param {Array<string>} config.ignoreProperties 需要忽略的属性数组
- * @param {boolean} config.ignoreUnderlinePrefixProperty 是否忽略下划线前缀的属性，默认true
+ * @param {boolean} config.ignoreUnderlinePrefixProperty 是否忽略下划线前缀的属性，默认false
  * @param {boolean} config.overwriteFunction 是否覆盖对象方法，默认true
  * @param {boolean} config.releaseArray 是否释放数组内容，默认true，为true时会执行array.length = 0
  * @param {boolean} config.destroyHTMLElement 是否销毁HTMLElement，默认true
@@ -28,7 +28,7 @@ function destroyObject(object, config = {}) {
     config = Object.assign({
         deleteProperty: true,
         ignoreProperties: [],
-        ignoreUnderlinePrefixProperty: true,
+        ignoreUnderlinePrefixProperty: false,
         overwriteFunction: true,
         releaseArray: true,
         destroyHTMLElement: true,
