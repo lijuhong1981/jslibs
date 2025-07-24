@@ -12,6 +12,7 @@ function returnTrue() {
  * @param {object} config 销毁配置
  * @param {boolean} config.deleteProperty 是否删除对象属性，默认true
  * @param {Array<string>} config.ignoreProperties 需要忽略的属性数组
+ * @param {boolean} config.ignoreUnderlinePrefixProperty 是否忽略下划线前缀的属性，默认true
  * @param {boolean} config.overwriteFunction 是否覆盖对象方法，默认true
  * @param {boolean} config.releaseArray 是否释放数组内容，默认true，为true时会执行array.length = 0
  * @param {boolean} config.destroyHTMLElement 是否销毁HTMLElement，默认true
@@ -27,6 +28,7 @@ function destroyObject(object, config = {}) {
     config = Object.assign({
         deleteProperty: true,
         ignoreProperties: [],
+        ignoreUnderlinePrefixProperty: true,
         overwriteFunction: true,
         releaseArray: true,
         destroyHTMLElement: true,
@@ -41,12 +43,14 @@ function destroyObject(object, config = {}) {
         console.warn('The object isDestroyed, call function is invalid.', object);
     }
 
+    const hasIgnoreProperties = Array.isArray(config.ignoreProperties) && config.ignoreProperties.length > 0;
+
     for (const key in object) {
         //过滤属性
-        if (config.ignoreProperties) {
-            if (config.ignoreProperties.indexOf(key) !== -1)
-                continue;
-        }
+        if (hasIgnoreProperties && config.ignoreProperties.indexOf(key) !== -1)
+            continue;
+        if (config.ignoreUnderlinePrefixProperty === true && key.startsWith('_'))
+            continue;
         try {
             const value = object[key];
             if (value) {
@@ -58,13 +62,13 @@ function destroyObject(object, config = {}) {
                 else if (Array.isArray(value) && config.releaseArray === true)
                     value.length = 0;
                 else if (value instanceof HTMLElement && config.destroyHTMLElement === true)
-                    destroyHTMLElement(object[key]);
+                    destroyHTMLElement(value, config.deep);
                 //如果value是对象且deep为true
                 else if (typeof value === 'object' && config.deep === true) {
                     if (typeof value.destroy === 'function')
                         value.destroy();
                     else
-                        destroyObject(value, deep);
+                        destroyObject(value, config);
                 }
                 if (value.undeletable) //有不可删除标记，不执行delete操作
                     continue;
@@ -72,8 +76,12 @@ function destroyObject(object, config = {}) {
         } catch (error) {
             console.warn(error);
         }
-        if (config.deleteProperty === true)
-            delete object[key];
+        try {
+            if (config.deleteProperty === true)
+                delete object[key];
+        } catch (error) {
+            console.warn(error);
+        }
     }
 
     object.isDestroyed = returnTrue;
