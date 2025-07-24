@@ -18,7 +18,7 @@ function returnTrue() {
  * @param {boolean} config.deep 是否向下执行深度销毁，默认false
  * @returns {void}
  */
-function destroyObject(object, config) {
+function destroyObject(object, config = {}) {
     if (isDestroyed(object) || object.isDestroying) {
         console.warn('The object isDestroyed or isDestroying, repeated call destroyObject function are not required.', object);
         return;
@@ -32,7 +32,7 @@ function destroyObject(object, config) {
         destroyHTMLElement: true,
     }, config);
 
-    config.ignoreProperties.push('isDestroying', 'isDestroyed', 'destroy', 'undeletable');
+    config.ignoreProperties.push('isDestroying', 'isDestroyed', 'destroy', 'destroyConfigure', 'undeletable');
 
     //标记正在执行销毁
     object.isDestroying = true;
