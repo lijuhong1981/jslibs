@@ -7,6 +7,12 @@ import destroyObject from './destroyObject.js';
  * @class
 */
 class Destroyable {
+    /**
+     * 获取销毁配置，由子类实现
+     * @returns {object|void}
+    */
+    get destroyConfigure() { }
+
     isDestroyed() {
         return false;
     }
@@ -30,7 +36,7 @@ class Destroyable {
             console.warn('This object is destroying.', this);
         } else {
             this.onDestroy(...args);
-            destroyObject(this);
+            destroyObject(this, this.destroyConfigure);
         }
         return this;
     }
