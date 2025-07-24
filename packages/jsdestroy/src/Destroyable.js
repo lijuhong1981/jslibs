@@ -9,7 +9,8 @@ import destroyObject from './destroyObject.js';
 class Destroyable {
     /**
      * 获取销毁配置，由子类实现
-     * @returns {object|void}
+     * @type {object|void}
+     * @abstract
     */
     get destroyConfigure() { }
 
