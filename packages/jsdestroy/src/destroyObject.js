@@ -24,6 +24,10 @@ function destroyObject(object, config = {}) {
         console.warn('The object isDestroyed or isDestroying, repeated call destroyObject function are not required.', object);
         return;
     }
+    if (object.dontDestroy || object.isCached || object.isProtected) {
+        console.warn('The object has dontDestroy or isCached or isProtected flag, dont execute destroy.', object);
+        return;
+    }
 
     config = Object.assign({
         deleteProperty: true,
@@ -54,8 +58,8 @@ function destroyObject(object, config = {}) {
         try {
             const value = object[key];
             if (value) {
-                //有缓存或受保护标记，不执行销毁
-                if (value.isCached || value.isProtected)
+                //有不可销毁或缓存或受保护标记，不执行销毁
+                if (value.dontDestroy || value.isCached || value.isProtected)
                     continue;
                 if (typeof value === 'function' && config.overwriteFunction === true)
                     object[key] = warnOnDestroyed;
