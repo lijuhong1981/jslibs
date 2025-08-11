@@ -1,3 +1,4 @@
+import defined from "@lijuhong1981/jscheck/src/isDefined.js";
 import Fullscreen from "./Fullscreen.js";
 
 let theNavigator;
@@ -15,10 +16,10 @@ function extractVersion(versionString) {
     return parts;
 }
 
-let isChromeResult = undefined;
-let chromeVersionResult = undefined;
+let isChromeResult;
+let chromeVersionResult;
 function isChrome() {
-    if (isChromeResult === undefined) {
+    if (!defined(isChromeResult)) {
         isChromeResult = false;
         // Edge contains Chrome in the user agent too
         if (!isEdge()) {
@@ -37,10 +38,10 @@ function chromeVersion() {
     return isChrome() && chromeVersionResult;
 }
 
-let isSafariResult = undefined;
-let safariVersionResult = undefined;
+let isSafariResult;
+let safariVersionResult;
 function isSafari() {
-    if (isSafariResult === undefined) {
+    if (!defined(isSafariResult)) {
         isSafariResult = false;
 
         // Chrome and Edge contain Safari in the user agent too
@@ -64,10 +65,10 @@ function safariVersion() {
     return isSafari() && safariVersionResult;
 }
 
-let isWebkitResult = undefined;
-let webkitVersionResult = undefined;
+let isWebkitResult;
+let webkitVersionResult;
 function isWebkit() {
-    if (isWebkitResult === undefined) {
+    if (!defined(isWebkitResult)) {
         isWebkitResult = false;
 
         const fields = / AppleWebKit\/([\.0-9]+)(\+?)/.exec(theNavigator.userAgent);
@@ -85,10 +86,10 @@ function webkitVersion() {
     return isWebkit() && webkitVersionResult;
 }
 
-let isInternetExplorerResult = undefined;
-let internetExplorerVersionResult = undefined;
+let isInternetExplorerResult;
+let internetExplorerVersionResult;
 function isInternetExplorer() {
-    if (isInternetExplorerResult === undefined) {
+    if (!defined(isInternetExplorerResult)) {
         isInternetExplorerResult = false;
 
         let fields;
@@ -100,7 +101,7 @@ function isInternetExplorer() {
             }
         } else if (theNavigator.appName === "Netscape") {
             fields = /Trident\/.*rv:([0-9]{1,}[\.0-9]{0,})/.exec(
-                theNavigator.userAgent
+                theNavigator.userAgent,
             );
             if (fields !== null) {
                 isInternetExplorerResult = true;
@@ -115,10 +116,10 @@ function internetExplorerVersion() {
     return isInternetExplorer() && internetExplorerVersionResult;
 }
 
-let isEdgeResult = undefined;
-let edgeVersionResult = undefined;
+let isEdgeResult;
+let edgeVersionResult;
 function isEdge() {
-    if (isEdgeResult === undefined) {
+    if (!defined(isEdgeResult)) {
         isEdgeResult = false;
         const fields = / Edg\/([\.0-9]+)/.exec(theNavigator.userAgent);
         if (fields !== null) {
@@ -133,10 +134,10 @@ function edgeVersion() {
     return isEdge() && edgeVersionResult;
 }
 
-let isFirefoxResult = undefined;
-let firefoxVersionResult = undefined;
+let isFirefoxResult;
+let firefoxVersionResult;
 function isFirefox() {
-    if (isFirefoxResult === undefined) {
+    if (!defined(isFirefoxResult)) {
         isFirefoxResult = false;
 
         const fields = /Firefox\/([\.0-9]+)/.exec(theNavigator.userAgent);
@@ -148,17 +149,17 @@ function isFirefox() {
     return isFirefoxResult;
 }
 
-let isWindowsResult = undefined;
+let isWindowsResult;
 function isWindows() {
-    if (isWindowsResult === undefined) {
+    if (!defined(isWindowsResult)) {
         isWindowsResult = /Windows/i.test(theNavigator.appVersion);
     }
     return isWindowsResult;
 }
 
-let isIPadOrIOSResult = undefined;
+let isIPadOrIOSResult;
 function isIPadOrIOS() {
-    if (isIPadOrIOSResult === undefined) {
+    if (!defined(isIPadOrIOSResult)) {
         isIPadOrIOSResult =
             navigator.platform === "iPhone" ||
             navigator.platform === "iPod" ||
@@ -172,73 +173,73 @@ function firefoxVersion() {
     return isFirefox() && firefoxVersionResult;
 }
 
-let isIPadResult = undefined;
+let isIPadResult;
 function isIPad() {
-    if (isIPadResult === undefined) {
+    if (!defined(isIPadResult)) {
         isIPadResult = /ipad/i.test(theNavigator.userAgent.toLowerCase());
     }
     return isIPadResult;
 }
 
-let isIPodResult = undefined;
+let isIPodResult;
 function isIPod() {
-    if (isIPodResult === undefined) {
+    if (!defined(isIPodResult)) {
         isIPodResult = /ipod/i.test(theNavigator.userAgent.toLowerCase());
     }
     return isIPodResult;
 }
 
-let isIPhoneResult = undefined;
+let isIPhoneResult;
 function isIPhone() {
-    if (isIPhoneResult === undefined) {
+    if (!defined(isIPhoneResult)) {
         isIPhoneResult = /iphone os/i.test(theNavigator.userAgent.toLowerCase());
     }
     return isIPhoneResult;
 }
 
-let isAndroidResult = undefined;
+let isAndroidResult;
 function isAndroid() {
-    if (isAndroidResult === undefined) {
+    if (!defined(isAndroidResult)) {
         isAndroidResult = /android/i.test(theNavigator.userAgent.toLowerCase());
     }
     return isAndroidResult;
 }
 
-let isWindowsCEResult = undefined;
+let isWindowsCEResult;
 function isWindowsCE() {
-    if (isWindowsCEResult === undefined) {
+    if (!defined(isWindowsCEResult)) {
         isWindowsCEResult = /windows ce/i.test(theNavigator.userAgent.toLowerCase());
     }
     return isWindowsCEResult;
 }
 
-let isWindowsMobileResult = undefined;
+let isWindowsMobileResult;
 function isWindowsMobile() {
-    if (isWindowsMobileResult === undefined) {
+    if (!defined(isWindowsMobileResult)) {
         isWindowsMobileResult = /windows mobile/i.test(theNavigator.userAgent.toLowerCase());
     }
     return isWindowsMobileResult;
 }
 
-let isWindowsPhoneResult = undefined;
+let isWindowsPhoneResult;
 function isWindowsPhone() {
-    if (isWindowsPhoneResult === undefined) {
+    if (!defined(isWindowsPhoneResult)) {
         isWindowsPhoneResult = /windows phone/i.test(theNavigator.userAgent.toLowerCase());
     }
     return isWindowsPhoneResult;
 }
 
-let isMobileResult = undefined;
+let isMobileResult;
 function isMobile() {
-    if (isMobileResult === undefined) {
+    if (!defined(isMobileResult)) {
         isMobileResult = isIPad() || isIPod() || isIPhone() || isAndroid() || isWindowsCE() || isWindowsMobile() || isWindowsPhone();
     }
     return isMobileResult;
 }
 
-let hasPointerEvents = undefined;
+let hasPointerEvents;
 function supportsPointerEvents() {
-    if (hasPointerEvents === undefined) {
+    if (!defined(hasPointerEvents)) {
         //While navigator.pointerEnabled is deprecated in the W3C specification
         //we still need to use it if it exists in order to support browsers
         //that rely on it, such as the Windows WebBrowser control which defines
@@ -248,32 +249,32 @@ function supportsPointerEvents() {
         hasPointerEvents =
             !isFirefox() &&
             typeof PointerEvent !== "undefined" &&
-            (theNavigator.pointerEnabled === undefined || theNavigator.pointerEnabled);
+            (!defined(theNavigator.pointerEnabled) || theNavigator.pointerEnabled);
     }
     return hasPointerEvents;
 }
 
-let hasTouchEvents = undefined;
+let hasTouchEvents;
 function supportsTouchEvents() {
-    if (hasTouchEvents === undefined) {
+    if (!defined(hasTouchEvents)) {
         hasTouchEvents = typeof TouchEvent !== "undefined" &&
             "ontouchend" in document ? true : false;
     }
     return hasTouchEvents;
 }
 
-let imageRenderingValueResult = undefined;
-let supportsImageRenderingPixelatedResult = undefined;
+let imageRenderingValueResult;
+let supportsImageRenderingPixelatedResult;
 function supportsImageRenderingPixelated() {
-    if (supportsImageRenderingPixelatedResult === undefined) {
+    if (!defined(supportsImageRenderingPixelatedResult)) {
         const canvas = document.createElement("canvas");
         canvas.setAttribute(
             "style",
-            "image-rendering: -moz-crisp-edges;" + "image-rendering: pixelated;"
+            "image-rendering: -moz-crisp-edges;" + "image-rendering: pixelated;",
         );
         //canvas.style.imageRendering will be undefined, null or an empty string on unsupported browsers.
         const tmp = canvas.style.imageRendering;
-        supportsImageRenderingPixelatedResult = tmp && tmp !== "";
+        supportsImageRenderingPixelatedResult = defined(tmp) && tmp !== "";
         if (supportsImageRenderingPixelatedResult) {
             imageRenderingValueResult = tmp;
         }
@@ -291,7 +292,7 @@ function supportsWebP() {
     //>>includeStart('debug', pragmas.debug);
     if (!supportsWebP.initialized) {
         throw new Error(
-            "You must call NavigatorDetection.supportsWebP.initialize and wait for the promise to resolve before calling NavigatorDetection.supportsWebP"
+            "You must call NavigatorDetection.supportsWebP.initialize and wait for the promise to resolve before calling NavigatorDetection.supportsWebP",
         );
     }
     //>>includeEnd('debug');
@@ -301,7 +302,7 @@ supportsWebP._promise = undefined;
 supportsWebP._result = undefined;
 supportsWebP.initialize = function () {
     // From https://developers.google.com/speed/webp/faq#how_can_i_detect_browser_support_for_webp
-    if (supportsWebP._promise) {
+    if (defined(supportsWebP._promise)) {
         return supportsWebP._promise;
     }
 
@@ -325,7 +326,7 @@ supportsWebP.initialize = function () {
 Object.defineProperties(supportsWebP, {
     initialized: {
         get: function () {
-            return supportsWebP._result !== undefined;
+            return defined(supportsWebP._result);
         },
     },
 });
@@ -340,7 +341,7 @@ if (typeof ArrayBuffer !== "undefined") {
         Int32Array,
         Uint32Array,
         Float32Array,
-        Float64Array
+        Float64Array,
     );
 
     if (typeof Uint8ClampedArray !== "undefined") {
@@ -404,7 +405,7 @@ const NavigatorDetection = {
  * Detects whether the current browser supports Basis Universal textures and the web assembly modules needed to transcode them.
  *
  * @param {Scene} scene
- * @returns {Boolean} true if the browser supports web assembly modules and the scene supports Basis Universal textures, false if not.
+ * @returns {boolean} true if the browser supports web assembly modules and the scene supports Basis Universal textures, false if not.
  */
 NavigatorDetection.supportsBasis = function (scene) {
     return NavigatorDetection.supportsWebAssembly() && scene.context.supportsBasis;
@@ -413,7 +414,7 @@ NavigatorDetection.supportsBasis = function (scene) {
 /**
  * Detects whether the current browser supports the full screen standard.
  *
- * @returns {Boolean} true if the browser supports the full screen standard, false if not.
+ * @returns {boolean} true if the browser supports the full screen standard, false if not.
  *
  * @see Fullscreen
  * @see {@link http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html|W3C Fullscreen Living Specification}
@@ -425,7 +426,7 @@ NavigatorDetection.supportsFullscreen = function () {
 /**
  * Detects whether the current browser supports typed arrays.
  *
- * @returns {Boolean} true if the browser supports typed arrays, false if not.
+ * @returns {boolean} true if the browser supports typed arrays, false if not.
  *
  * @see {@link https://tc39.es/ecma262/#sec-typedarray-objects|Typed Array Specification}
  */
@@ -436,7 +437,7 @@ NavigatorDetection.supportsTypedArrays = function () {
 /**
  * Detects whether the current browser supports BigInt64Array typed arrays.
  *
- * @returns {Boolean} true if the browser supports BigInt64Array typed arrays, false if not.
+ * @returns {boolean} true if the browser supports BigInt64Array typed arrays, false if not.
  *
  * @see {@link https://tc39.es/ecma262/#sec-typedarray-objects|Typed Array Specification}
  */
@@ -447,7 +448,7 @@ NavigatorDetection.supportsBigInt64Array = function () {
 /**
  * Detects whether the current browser supports BigUint64Array typed arrays.
  *
- * @returns {Boolean} true if the browser supports BigUint64Array typed arrays, false if not.
+ * @returns {boolean} true if the browser supports BigUint64Array typed arrays, false if not.
  *
  * @see {@link https://tc39.es/ecma262/#sec-typedarray-objects|Typed Array Specification}
  */
@@ -458,7 +459,7 @@ NavigatorDetection.supportsBigUint64Array = function () {
 /**
  * Detects whether the current browser supports BigInt.
  *
- * @returns {Boolean} true if the browser supports BigInt, false if not.
+ * @returns {boolean} true if the browser supports BigInt, false if not.
  *
  * @see {@link https://tc39.es/ecma262/#sec-bigint-objects|BigInt Specification}
  */
@@ -469,7 +470,7 @@ NavigatorDetection.supportsBigInt = function () {
 /**
  * Detects whether the current browser supports Web Workers.
  *
- * @returns {Boolean} true if the browsers supports Web Workers, false if not.
+ * @returns {boolean} true if the browsers supports Web Workers, false if not.
  *
  * @see {@link http://www.w3.org/TR/workers/}
  */
@@ -480,12 +481,21 @@ NavigatorDetection.supportsWebWorkers = function () {
 /**
  * Detects whether the current browser supports Web Assembly.
  *
- * @returns {Boolean} true if the browsers supports Web Assembly, false if not.
+ * @returns {boolean} true if the browsers supports Web Assembly, false if not.
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/WebAssembly}
  */
 NavigatorDetection.supportsWebAssembly = function () {
     return typeof WebAssembly !== "undefined";
+};
+
+/**
+ * Detects whether the current browser supports ECMAScript modules in web workers.
+ * @returns {boolean} true if the browser supports ECMAScript modules in web workers.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Worker|Worker}
+ */
+NavigatorDetection.supportsEsmWebWorkers = function () {
+  return !isFirefox() || parseInt(firefoxVersionResult) >= 114;
 };
 
 export default NavigatorDetection;
