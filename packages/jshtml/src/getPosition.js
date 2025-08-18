@@ -5,7 +5,7 @@
  * @param {Object} result 计算坐标结果对象，可不填
  * @returns {Object} 返回计算坐标结果对象
  */
-function getEventPosition(event, domElement, result = {}) {
+function getPosition(event, domElement, result = {}) {
     domElement = domElement || event.currentTarget || event.target;
     const bounds = domElement.getBoundingClientRect();
     // pageX / pageY needed for iOS
@@ -14,5 +14,5 @@ function getEventPosition(event, domElement, result = {}) {
     return result;
 }
 
-export default getEventPosition;
-export { getEventPosition };
+export default getPosition;
+export { getPosition };

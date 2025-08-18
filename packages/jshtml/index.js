@@ -8,7 +8,7 @@ export * from "./src/getCssStyleRule.js";
 export * from "./src/getCurrentScriptFolderUrl.js";
 export * from "./src/getCurrentScriptUrl.js";
 export * from "./src/getElementById.js";
-export * from "./src/getEventPosition.js";
+export * from "./src/getPosition.js";
 export * from "./src/imageToDataURL.js";
 export * from "./src/measureText.js";
 
