@@ -495,7 +495,48 @@ NavigatorDetection.supportsWebAssembly = function () {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Worker|Worker}
  */
 NavigatorDetection.supportsEsmWebWorkers = function () {
-  return !isFirefox() || parseInt(firefoxVersionResult) >= 114;
+    return !isFirefox() || parseInt(firefoxVersionResult) >= 114;
+};
+
+let supportsWebGLResult;
+/**
+ * Detects whether the current browser supports WebGL.
+ * @returns {boolean} true if the browsers supports WebGL, false if not.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext}
+ */
+NavigatorDetection.supportsWebGL = function () {
+    if (!defined(supportsWebGLResult)) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        supportsWebGLResult = defined(context);
+        canvas.width = canvas.height = 0;
+    }
+    return supportsWebGLResult;
+};
+
+let supportsWebGL2Result;
+/**
+ * Detects whether the current browser supports WebGL2.
+ * @returns {boolean} true if the browsers supports WebGL2, false if not.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext}
+ */
+NavigatorDetection.supportsWebGL2 = function () {
+    if (!defined(supportsWebGL2Result)) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("webgl2");
+        supportsWebGL2Result = defined(context);
+        canvas.width = canvas.height = 0;
+    }
+    return supportsWebGL2Result;
+};
+
+/**
+ * Detects whether the current browser supports WebGPU.
+ * @returns {boolean} true if the browsers supports WebGPU, false if not.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Navigator/gpu}
+ */
+NavigatorDetection.supportsWebGPU = function () {
+    return defined(navigator.gpu);
 };
 
 export default NavigatorDetection;
