@@ -5,12 +5,12 @@ import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 import Event from "./EventSubscriber.js";
 
 /**
- * Description
  * @param {Map<any, Event>} events
  * @param {any} type
  * @param {Function} callback
  * @param {object} options 
  * @returns {void}
+ * @private
  */
 function addListener(events, type, callback, options) {
     let event = events.get(type);
@@ -22,11 +22,11 @@ function addListener(events, type, callback, options) {
 }
 
 /**
- * Description
  * @param {Map<any, Event>} events
  * @param {any} type
  * @param {Function} callback
  * @returns {void}
+ * @private
  */
 function removeListener(events, type, callback) {
     const event = events.get(type);
@@ -42,6 +42,9 @@ function removeListener(events, type, callback) {
 
 /**
  * 事件分发管理器
+ * 
+ * @class EventDispatcher
+ * @extends Destroyable
 */
 class EventDispatcher extends Destroyable {
     constructor() {

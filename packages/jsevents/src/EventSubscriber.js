@@ -3,6 +3,9 @@ import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 
 /**
  * A generic utility class for managing subscribers for a particular event. This class is usually instantiated inside of a container class and exposed as a property for others to subscribe to.
+ * 
+ * @class EventSubscriber
+ * @extends Destroyable
 */
 class EventSubscriber extends Destroyable {
     constructor() {

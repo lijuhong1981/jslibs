@@ -1,6 +1,12 @@
 import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 import EventDispatcher from "./EventDispatcher.js";
 
+/**
+ * 事件发射器
+ * 
+ * @class EventEmitter
+ * @extends Destroyable
+*/
 class EventEmitter extends Destroyable {
     constructor() {
         super();
