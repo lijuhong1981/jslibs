@@ -8,15 +8,13 @@
 function getPosition(event, domElement, result = {}) {
     domElement = domElement || event.target || event.currentTarget;
     if (domElement === document) {
-        // pageX / pageY needed for iOS
-        result.x = event.clientX ?? event.pageX;
-        result.y = event.clientY ?? event.pageY;
+        result.x = event.clientX;
+        result.y = event.clientY;
         return result;
     }
     const bounds = domElement.getBoundingClientRect();
-    // pageX / pageY needed for iOS
-    result.x = event.clientX ?? event.pageX - bounds.left;
-    result.y = event.clientY ?? event.pageY - bounds.top;
+    result.x = event.clientX - bounds.left;
+    result.y = event.clientY - bounds.top;
     return result;
 }
 
