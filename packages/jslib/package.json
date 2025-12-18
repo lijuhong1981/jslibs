@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/lijuhong1981/jslibs/issues"
   },
-  "gitHead": "11a1d49d8302089d97ed1c37cdbfa8a231d3ef0c",
+  "gitHead": "86b3d29eea7fd32c5e76c2ab385c745002e261a5",
   "dependencies": {
     "@lijuhong1981/jscheck": "^1.1.4",
     "@lijuhong1981/jsevents": "^1.2.9"
