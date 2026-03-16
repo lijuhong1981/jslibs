@@ -57,6 +57,20 @@ Check.valid = function (name, test) {
     }
 };
 /**
+ * 检查值是否为指定类的实例
+ * @param {string} name 值的名称
+ * @param {any} test 需要检查的值
+ * @param {Function} target 指定类
+ * @throws {Error} 如果值不是指定类的实例，则抛出错误
+ * @static
+ * @memberof Check
+*/
+Check.instanceOf = function (name, test, target) {
+    if (test instanceof target === false) {
+        throw new Error(getFailedTypeErrorMessage(false, target.name, name));
+    }
+};
+/**
  * 检查值是否为函数
  * @param {string} name 值的名称
  * @param {any} test 需要检查的值
@@ -387,20 +401,6 @@ Check.typeOf.integer.equals = function (name1, name2, test1, test2) {
             " and " +
             test2
         );
-    }
-};
-/**
- * 检查值是否为指定类的实例
- * @param {string} name 值的名称
- * @param {any} test 需要检查的值
- * @param {Function} target 指定类
- * @throws {Error} 如果值不是指定类的实例，则抛出错误
- * @static
- * @memberof Check.typeOf
-*/
-Check.typeOf.instanceOf = function (name, test, target) {
-    if (test instanceof target === false) {
-        throw new Error(getFailedTypeErrorMessage(false, target.name, name));
     }
 };
 /**
