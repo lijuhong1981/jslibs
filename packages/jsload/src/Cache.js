@@ -24,6 +24,20 @@ class Cache extends Destroyable {
         this.destroyValues = true;
     }
     /**
+     * 获取缓存项的键列表
+     * @return {string[]} 返回缓存项的键列表
+    */
+    keys() {
+        return Array.from(this.map.keys());
+    }
+    /**
+     * 获取缓存项的值列表
+     * @return {Array} 返回缓存项的值列表
+    */
+    values() {
+        return Array.from(this.map.values());
+    }
+    /**
      * 获取缓存项的值
      * @param {string} key 缓存项的键
      * @return {*} 返回缓存项的值，如果不存在则返回undefined
