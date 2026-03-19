@@ -1,3 +1,4 @@
+export * from "./src/acosClamped.js";
 export * from "./src/clamp.js";
 export * from "./src/clampLatitude.js";
 export * from "./src/clampLongitude.js";
@@ -24,3 +25,4 @@ export * from "./src/randomNumber.js";
 export * from "./src/scalarInRange.js";
 export * from "./src/toFixed.js";
 export * from "./src/windowPositionToNDC.js";
+

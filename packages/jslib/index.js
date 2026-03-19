@@ -12,7 +12,7 @@ export * from "./src/generateGUID.js";
 export * from "./src/getLocalIP.js";
 export * from "./src/getPropertyDescriptor.js";
 export * from "./src/HashArray.js";
-export * as logger from "./src/logger.js";
+export * from "./src/Logger.js";
 export * from "./src/merge.js";
 export * from "./src/mix.js";
 export * from "./src/NavigatorDetection.js";
