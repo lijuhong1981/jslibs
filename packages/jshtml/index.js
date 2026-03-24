@@ -1,6 +1,7 @@
 export * from "./src/appendCss.js";
 export * from "./src/canvasToImage.js";
 export * from "./src/clearCanvas.js";
+export * from "./src/createColorGradientCanvas.js";
 export * from "./src/createElementFromHTML.js";
 export * from "./src/createImage.js";
 export * from "./src/drawTextToCanvas.js";
