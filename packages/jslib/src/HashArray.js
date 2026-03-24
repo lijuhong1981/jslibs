@@ -30,8 +30,8 @@ class HashArray {
     constructor(onChange) {
         /** @type {Array<string>} */
         this._keys = [];
-        /** @type {Object<string, T>} */
-        this._hash = {};
+        /** @type {Map<string, T>} */
+        this._hash = new Map();
         this.changeEvent = new Event();
         this.onChange = onChange;
     }
@@ -64,7 +64,7 @@ class HashArray {
         const result = [];
         for (let i = 0, len = this._keys.length; i < len; i++) {
             const key = this._keys[i];
-            const value = this._hash[key];
+            const value = this._hash.get(key);
             result.push(value);
         }
         return result;
@@ -78,7 +78,7 @@ class HashArray {
         const result = [];
         for (let i = 0, len = this._keys.length; i < len; i++) {
             const key = this._keys[i];
-            const value = this._hash[key];
+            const value = this._hash.get(key);
             result.push({ key, value });
         }
         return result;
@@ -89,7 +89,7 @@ class HashArray {
      * @returns {void}
      */
     clear() {
-        this._hash = {};
+        this._hash.clear();
         this._keys.length = 0;
         this._emitEvent({ type: 'clear', });
     }
@@ -122,7 +122,7 @@ class HashArray {
         }
 
         // 设置值元素
-        this._hash[key] = value;
+        this._hash.set(key, value);
         if (hasKey)
             this._emitEvent({
                 type: 'replace',
@@ -150,7 +150,7 @@ class HashArray {
         const idx = this._keys.indexOf(key);
         if (idx !== -1) {
             this._keys.splice(idx, 1);
-            delete this._hash[key];
+            this._hash.delete(key);
             this._emitEvent({
                 type: 'delete',
                 key,
@@ -167,7 +167,7 @@ class HashArray {
      */
     get(key) {
         Check.typeOf.string('key', key);
-        return this._hash[key];
+        return this._hash.get(key);
     }
 
     /**
@@ -211,7 +211,7 @@ class HashArray {
         Check.typeOf.func('callback', callback);
         for (let i = 0, len = this._keys.length; i < len; i++) {
             const key = this._keys[i];
-            const value = this._hash[key];
+            const value = this._hash.get(key);
             callback(value, key);
         }
     }
