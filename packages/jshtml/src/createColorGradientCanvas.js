@@ -20,8 +20,8 @@ const defaultColorStops = Object.freeze([
  * @param {number} [options.startY] - 起始点Y坐标，范围0~1，0为上端，1为下端
  * @param {number} [options.endX] - 终止点X坐标，范围0~1，0为左端，1为右端
  * @param {number} [options.endY] - 终止点Y坐标，范围0~1，0为上端，1为下端
- * @param {number} [options.startR=0] - 起始半径，范围0~1，0为最小半径，1为最大半径（即画布宽高最大值的一半），type='radial'时有效，默认0
- * @param {number} [options.endR=1] - 终止半径，范围0~1，0为最小半径，1为最大半径（即画布宽高最大值的一半），type='radial'时有效，默认1
+ * @param {number} [options.startR=0] - 起始半径，范围0~2，0为最小半径，2为最大半径（即画布宽高的最大值），type='radial'时有效，默认0
+ * @param {number} [options.endR=1] - 终止半径，范围0~2，0为最小半径，2为最大半径（即画布宽高的最大值），type='radial'时有效，默认1
  * @param {Array<{offset: number, color: string}>} [options.colorStops=defaultColorStops] - 颜色停止点数组
  * @returns {HTMLCanvasElement} 创建的Canvas元素
 */
