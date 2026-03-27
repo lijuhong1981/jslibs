@@ -10,7 +10,7 @@
 function ndcToWindowPosition(ndc, width, height, result = {}, checkInvisible = true) {
 
     // invisible
-    if (checkInvisible && (ndc.z < 0 || ndc.z > 1))
+    if (checkInvisible && (ndc.x < -1 || ndc.x > 1 || ndc.y < -1 || ndc.y > 1 || ndc.z < 0 || ndc.z > 1))
         return;
 
     const x = (ndc.x + 1) / 2 * width;
