@@ -5,6 +5,10 @@ function returnTrue() {
     return true;
 }
 
+function warnOnDestroyed() {
+    console.warn('The object isDestroyed, call function is invalid.', object);
+}
+
 /**
  * 销毁一个对象下所有属性和方法
  * 销毁完成后会设置object.isDestroyed = function() { return true; };
@@ -21,11 +25,11 @@ function returnTrue() {
  */
 function destroyObject(object, config = {}) {
     if (isDestroyed(object) || object.isDestroying) {
-        console.warn('The object isDestroyed or isDestroying, repeated call destroyObject function are not required.', object);
+        // console.warn('The object isDestroyed or isDestroying, repeated call destroyObject function are not required.', object);
         return;
     }
     if (object.dontDestroy || object.isCached || object.isProtected) {
-        console.warn('The object has dontDestroy or isCached or isProtected flag, dont execute destroy.', object);
+        // console.warn('The object has dontDestroy or isCached or isProtected flag, dont execute destroy.', object);
         return;
     }
 
@@ -42,10 +46,6 @@ function destroyObject(object, config = {}) {
 
     //标记正在执行销毁
     object.isDestroying = true;
-
-    function warnOnDestroyed() {
-        console.warn('The object isDestroyed, call function is invalid.', object);
-    }
 
     const hasIgnoreProperties = Array.isArray(config.ignoreProperties) && config.ignoreProperties.length > 0;
 
@@ -84,7 +84,7 @@ function destroyObject(object, config = {}) {
             if (config.deleteProperty === true)
                 delete object[key];
         } catch (error) {
-            console.warn(error);
+            // console.warn(error);
         }
     }
 
