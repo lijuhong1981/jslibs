@@ -13,7 +13,7 @@ class AnimationFrameUpdater extends Destroyable {
      * @param {boolean} autoStart 自动开始，默认true
      * @param {number} framesPerSecond 帧率，默认60
      */
-    constructor(autoStart = true, framesPerSecond = 60) {
+    constructor(autoStart = true, framesPerSecond = 60, enableFpsRestriction = true) {
         super();
         this.updateFuncs = [];
         this.isStarted = false;
@@ -21,14 +21,18 @@ class AnimationFrameUpdater extends Destroyable {
         this.update = this.update.bind(this);
         this._oldTime = 0;
         this.framesPerSecond = framesPerSecond;
+        /**
+         * 是否启用帧率限制，默认true，如果启用，则会根据设置的帧率执行动画帧，否则会尽可能快的执行动画帧
+         * @type {boolean}
+        */
+        this.enableFpsRestriction = enableFpsRestriction;
 
         if (autoStart)
             this.start();
     }
-
     /**
-     * 设置帧率
-     * @param {number} value
+     * 帧率
+     * @type {number}
      */
     set framesPerSecond(value) {
         Check.typeOf.number.greaterThan('framesPerSecond', value, 0);
@@ -37,34 +41,24 @@ class AnimationFrameUpdater extends Destroyable {
             this._intervalTime = 1000 / value;
         }
     }
-
-    /**
-     * 获取帧率
-     * @returns {number}
-     */
     get framesPerSecond() {
         return this._framesPerSecond;
     }
 
-    /**
-     * @private
-    */
     update() {
         if (this.isStoped)
             return this;
-        this.animationFrameHandler = window.requestAnimationFrame(this.update);
+        this._animationFrameHandler = window.requestAnimationFrame(this.update);
         const newTime = now();
         const deltaTime = newTime - this._oldTime;
-        if (deltaTime >= this._intervalTime) {
+        if (!this.enableFpsRestriction || deltaTime >= this._intervalTime) {
             this._oldTime = newTime;
-            const updateFuncs = this.updateFuncs.slice();
-            updateFuncs.forEach(updateFunc => {
+            this.updateFuncs.forEach(updateFunc => {
                 updateFunc(deltaTime);
             });
         }
         return this;
     }
-
     /**
      * 启动
      * @returns {this}
@@ -77,7 +71,6 @@ class AnimationFrameUpdater extends Destroyable {
         this.update();
         return this;
     }
-
     /**
      * 停止
      * @returns {this}
@@ -85,13 +78,12 @@ class AnimationFrameUpdater extends Destroyable {
     stop() {
         this.isStoped = true;
         this.isStarted = false;
-        if (isDefined(this.animationFrameHandler)) {
-            window.cancelAnimationFrame(this.animationFrameHandler);
-            delete this.animationFrameHandler;
+        if (isDefined(this._animationFrameHandler)) {
+            window.cancelAnimationFrame(this._animationFrameHandler);
+            delete this._animationFrameHandler;
         }
         return this;
     }
-
     /**
      * 更新函数数量
      * @returns {number}
@@ -99,7 +91,6 @@ class AnimationFrameUpdater extends Destroyable {
     get numberOfUpdateFuncs() {
         return this.updateFuncs.length;
     }
-
     /**
      * 获取一个更新函数索引
      * @param {Function} updateFunc
@@ -108,16 +99,14 @@ class AnimationFrameUpdater extends Destroyable {
     indexOf(updateFunc) {
         return this.updateFuncs.indexOf(updateFunc);
     }
-
     /**
      * 是否包含一个更新函数
      * @param {Function} updateFunc
      * @returns {boolean}
      */
     contains(updateFunc) {
-        return this.indexOf(updateFunc) !== -1;
+        return this.updateFuncs.includes(updateFunc);
     }
-
     /**
      * 添加一个更新函数
      * @param {Function} updateFunc
@@ -129,7 +118,6 @@ class AnimationFrameUpdater extends Destroyable {
             this.updateFuncs.push(updateFunc);
         return this;
     }
-
     /**
      * 移除一个更新函数
      * @param {Function} updateFunc
@@ -141,7 +129,6 @@ class AnimationFrameUpdater extends Destroyable {
             this.updateFuncs.splice(index, 1);
         return this;
     }
-
     /**
      * 根据索引移除一个更新函数
      * @param {number} index
@@ -154,7 +141,6 @@ class AnimationFrameUpdater extends Destroyable {
             this.updateFuncs.splice(index, 1);
         return this;
     }
-
     /**
      * 移除所有更新函数
      * @returns {this}
@@ -163,7 +149,6 @@ class AnimationFrameUpdater extends Destroyable {
         this.updateFuncs.length = 0;
         return this;
     }
-
     /**
      * 执行销毁
      * @private
