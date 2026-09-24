@@ -1,6 +1,6 @@
 {
   "name": "@lijuhong1981/jstask",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "description": "Task scheduling utilities: TaskPool, defer and animation frame updater.",
   "author": "lijuhong1981 <lijuhong@hotmail.com>",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
@@ -19,9 +19,9 @@
     "url": "https://github.com/lijuhong1981/jslibs/issues"
   },
   "dependencies": {
-    "@lijuhong1981/jscheck": "^1.1.6",
-    "@lijuhong1981/jsdestroy": "^1.2.6",
-    "@lijuhong1981/jstime": "^1.1.1"
+    "@lijuhong1981/jscheck": "^1.1.7",
+    "@lijuhong1981/jsdestroy": "^1.2.7",
+    "@lijuhong1981/jstime": "^1.1.2"
   },
   "gitHead": "0aa8a09a9c5bc3ad3fd3710892adf1efb223e5a6"
 }
