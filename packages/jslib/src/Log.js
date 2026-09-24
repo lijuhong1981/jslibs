@@ -76,6 +76,24 @@ class Log {
         this.enabled && console.warn(...msg);
         return this;
     }
+    /**
+     * 启动一个计时器，用于计算操作的持续时间。
+     * @param {string} label - 计时器标签。
+     * @returns {Log} 当前Log实例，支持链式调用。
+    */
+    time(label) {
+        this.enabled && console.time(label);
+        return this;
+    }
+    /**
+     * 结束指定标签的计时器，并输出耗时。
+     * @param {string} label - 计时器标签。
+     * @returns {Log} 当前Log实例，支持链式调用。
+    */
+    timeEnd(label) {
+        this.enabled && console.timeEnd(label);
+        return this;
+    }
 };
 
 export default Log;
