@@ -15,7 +15,6 @@ npm install @lijuhong1981/jswindfield
   - 方法：`setOptions`、`setData`、`startRender`、`stopRender`、`destroy`
 - `Field` — 矢量场（含网格构建、双线性插值、经纬度/像素坐标换算）
 - `Vector` — 二维向量
-- `defaultColors` — 默认颜色数组
 - `defaultOptions` — 默认渲染选项
 
 ### 默认渲染选项

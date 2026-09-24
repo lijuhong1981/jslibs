@@ -268,4 +268,4 @@ WindField.Field = Field;
 WindField.defaultOptions = defaultOptions;
 
 export default WindField;
-export { WindField, defaultOptions, defaultColors };
+export { WindField, defaultOptions };
