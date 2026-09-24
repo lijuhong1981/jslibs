@@ -5,8 +5,10 @@ function returnTrue() {
     return true;
 }
 
-function warnOnDestroyed() {
-    console.warn('The object isDestroyed, call function is invalid.', object);
+function warnOnDestroyed(object) {
+    return function () {
+        console.warn('The object isDestroyed, call function is invalid.', object);
+    };
 }
 
 /**
@@ -62,7 +64,7 @@ function destroyObject(object, config = {}) {
                 if (value.dontDestroy || value.isCached || value.isProtected)
                     continue;
                 if (typeof value === 'function' && config.overwriteFunction === true)
-                    object[key] = warnOnDestroyed;
+                    object[key] = warnOnDestroyed(object);
                 else if (Array.isArray(value) && config.releaseArray === true)
                     value.length = 0;
                 else if (value instanceof HTMLElement && config.destroyHTMLElement === true)
