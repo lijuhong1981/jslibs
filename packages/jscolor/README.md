@@ -1,11 +1,18 @@
-# `@lijuhong1981/jscolor`
+# @lijuhong1981/jscolor
 
-> TODO: description
+> 颜色工具集，提供 `ColorRGB`/`ColorRGBA` 颜色类、颜色渐变、HSL 换算与颜色字符串解析。
 
-## Usage
+## 安装
 
+```bash
+npm install @lijuhong1981/jscolor
 ```
-const jscolor = require('@lijuhong1981/jscolor');
 
-// TODO: DEMONSTRATE API
-```
+## 导出
+
+- `ColorRGBA(red = 1, green = 1, blue = 1, alpha = 1)` — RGBA 颜色类（分量 0~1）
+- `ColorRGB(red = 1, green = 1, blue = 1)` — RGB 颜色类
+- `ColorGradient` — 颜色渐变
+- `parseToColorRGBA(color)` / `parseToColorRGB(color)` — 解析颜色字符串
+- `hue2rgb(p, q, t)` — HSL 分量换算
+- `byteToFloat(byte)` / `floatToByte(float)` — 字节值与浮点值互转

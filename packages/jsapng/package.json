@@ -1,7 +1,7 @@
 {
   "name": "@lijuhong1981/jsapng",
   "version": "1.1.18",
-  "description": "> TODO: description",
+  "description": "APNG animation image parsing and loading.",
   "author": "lijuhong1981 <lijuhong@hotmail.com>",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
   "license": "ISC",
