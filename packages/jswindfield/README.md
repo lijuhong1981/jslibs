@@ -15,6 +15,7 @@ npm install @lijuhong1981/jswindfield
   - 方法：`setOptions`、`setData`、`startRender`、`stopRender`、`destroy`
 - `Field` — 矢量场（含网格构建、双线性插值、经纬度/像素坐标换算）
 - `Vector` — 二维向量
+- `defaultColors` — 默认颜色数组
 - `defaultOptions` — 默认渲染选项
 
 ### 默认渲染选项
@@ -30,5 +31,6 @@ npm install @lijuhong1981/jswindfield
 | `frameDeltaTime` | `1000 / 30` | 动画帧渲染间隔（毫秒） |
 | `useAnimationFrame` | `true` | 是否使用动画帧 |
 | `unit` | `'degrees'` | 粒子位置单位 |
+| `enableLog` | `false` | 是否启用日志 |
 
-依赖：`@lijuhong1981/jscheck`、`@lijuhong1981/jsdestroy`、`@lijuhong1981/jsmath`、`@lijuhong1981/jstime`
+依赖：`@lijuhong1981/jscheck`、`@lijuhong1981/jsdestroy`、`@lijuhong1981/jslib`、`@lijuhong1981/jsmath`、`@lijuhong1981/jstime`
