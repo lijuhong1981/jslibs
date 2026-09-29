@@ -1,6 +1,6 @@
 {
   "name": "@lijuhong1981/jslibs",
-  "version": "1.4.27",
+  "version": "1.4.28",
   "description": "Aggregate package re-exporting all @lijuhong1981/js* packages.",
   "author": "lijuhong1981 <lijuhong@hotmail.com>",
   "homepage": "https://github.com/lijuhong1981/jslibs#readme",
@@ -33,7 +33,7 @@
     "@lijuhong1981/jstext": "^1.1.2",
     "@lijuhong1981/jstime": "^1.1.2",
     "@lijuhong1981/jsurl": "^1.1.4",
-    "@lijuhong1981/jswindfield": "^1.2.14"
+    "@lijuhong1981/jswindfield": "^1.2.15"
   },
   "gitHead": "0aa8a09a9c5bc3ad3fd3710892adf1efb223e5a6"
 }
