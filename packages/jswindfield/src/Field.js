@@ -1,7 +1,6 @@
 import Check from "@lijuhong1981/jscheck/src/Check.js";
 import isNumber from "@lijuhong1981/jscheck/src/isNumber.js";
 import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
-import Log from "@lijuhong1981/jslib/src/Log.js";
 import clamp from "@lijuhong1981/jsmath/src/clamp.js";
 import convertToLatitudeRange from "@lijuhong1981/jsmath/src/convertToLatitudeRange.js";
 import convertToLongitudeRange from "@lijuhong1981/jsmath/src/convertToLongitudeRange.js";
@@ -9,11 +8,12 @@ import lerp from "@lijuhong1981/jsmath/src/lerp.js";
 import randomNumber from "@lijuhong1981/jsmath/src/randomNumber.js";
 import scalarInRange from "@lijuhong1981/jsmath/src/scalarInRange.js";
 import Vector from "./Vector.js";
+import log from "./log.js";
 
 class Field extends Destroyable {
-    constructor(params = {}, log) {
+    constructor(params = {}) {
         super();
-        this.log = log || new Log();
+        this.log = log;
         Check.typeOf.number('xmin', params.xmin);
         Check.typeOf.number('xmax', params.xmax);
         Check.typeOf.number('ymin', params.ymin);

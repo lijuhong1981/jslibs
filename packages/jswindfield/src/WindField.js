@@ -6,10 +6,10 @@ import isNumber from "@lijuhong1981/jscheck/src/isNumber.js";
 import isString from "@lijuhong1981/jscheck/src/isString.js";
 import isValid from "@lijuhong1981/jscheck/src/isValid.js";
 import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
-import Log from "@lijuhong1981/jslib/src/Log.js";
 import now from "@lijuhong1981/jstime/src/now.js";
 import Field from "./Field.js";
 import Vector from "./Vector.js";
+import log from "./log.js";
 
 const defaultColors = Object.freeze([
     'rgb(36,104, 180)',
@@ -42,7 +42,7 @@ const defaultOptions = Object.freeze({
     enableLog: false, //是否启用日志
 });
 
-function formatData(data, log) {
+function formatData(data) {
     log.time('format-data');
     let uComponent, vComponent;
     data.forEach(function (record) {
@@ -71,7 +71,7 @@ function formatData(data, log) {
         rowsNumber: header.ny,
         uDatas: uComponent.data,
         vDatas: vComponent.data
-    }, log);
+    });
     log.timeEnd('format-data');
     return field;
 };
@@ -89,7 +89,7 @@ class WindField extends Destroyable {
             canvas = document.getElementById(canvas);
         Check.instanceOf('canvas', canvas, HTMLCanvasElement);
         this.canvas = canvas;
-        this.log = new Log();
+        this.log = log;
         this.setOptions(options);
         this.update = this.update.bind(this);
         this.particles = [];
@@ -111,7 +111,7 @@ class WindField extends Destroyable {
 
         let field;
         if (isArray(data))
-            field = formatData(data, this.log);
+            field = formatData(data);
         else if (data instanceof Field)
             field = data;
         else
