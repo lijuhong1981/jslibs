@@ -5,7 +5,7 @@ let theNavigator;
 if (typeof navigator !== "undefined") {
     theNavigator = navigator;
 } else {
-    theNavigator = {};
+    theNavigator = { userAgent: "", platform: "" };
 }
 
 function extractVersion(versionString) {
@@ -161,9 +161,9 @@ let isIPadOrIOSResult;
 function isIPadOrIOS() {
     if (!defined(isIPadOrIOSResult)) {
         isIPadOrIOSResult =
-            navigator.platform === "iPhone" ||
-            navigator.platform === "iPod" ||
-            navigator.platform === "iPad";
+            theNavigator.platform === "iPhone" ||
+            theNavigator.platform === "iPod" ||
+            theNavigator.platform === "iPad";
     }
 
     return isIPadOrIOSResult;
@@ -343,10 +343,6 @@ if (typeof ArrayBuffer !== "undefined") {
         Float32Array,
         Float64Array,
     );
-
-    if (typeof Uint8ClampedArray !== "undefined") {
-        typedArrayTypes.push(Uint8ClampedArray);
-    }
 
     if (typeof Uint8ClampedArray !== "undefined") {
         typedArrayTypes.push(Uint8ClampedArray);
@@ -536,7 +532,7 @@ NavigatorDetection.supportsWebGL2 = function () {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Navigator/gpu}
  */
 NavigatorDetection.supportsWebGPU = function () {
-    return defined(navigator.gpu);
+    return defined(theNavigator.gpu);
 };
 
 export default NavigatorDetection;

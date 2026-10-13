@@ -19,11 +19,10 @@ function foreachBigArray(array, callback = (element, index) => { }, maxLoopCount
 
     function processLoop() {
         const length = Math.min(arrayLength, index + maxLoopCount);
-        for (let i = 0; i < length; i++) {
+        while (index < length) {
             if (canceled)
                 return;
-            const element = array[i];
-            callback(element, index, arrayLength);
+            callback(array[index], index, arrayLength);
             index++;
         }
 

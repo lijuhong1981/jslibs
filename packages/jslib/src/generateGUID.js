@@ -1,13 +1,16 @@
 /**
- * 生成GUID
+ * 生成GUID（UUID v4）
  * @returns {string}
 */
-const generateGUID = (typeof window !== 'undefined' && window.crypto && typeof window.crypto.getRandomValues === 'function') ?
+const generateGUID = (typeof globalThis !== 'undefined' && globalThis.crypto && typeof globalThis.crypto.getRandomValues === 'function') ?
     function () {
-        // If we have a cryptographically secure PRNG, use that
+        // 使用密码学安全随机数生成 UUID v4
         // http://stackoverflow.com/questions/6906916/collisions-when-generating-uuids-in-javascript
         const buf = new Uint16Array(8);
-        window.crypto.getRandomValues(buf);
+        globalThis.crypto.getRandomValues(buf);
+        // 设置 version 位（第 3 段首字符为 4）与 variant 位（第 4 段首字符为 8~b）
+        buf[3] = (buf[3] & 0x0fff) | 0x4000;
+        buf[4] = (buf[4] & 0x3fff) | 0x8000;
         function S4(num) {
             let ret = num.toString(16);
             while (ret.length < 4) {
@@ -17,7 +20,7 @@ const generateGUID = (typeof window !== 'undefined' && window.crypto && typeof w
         };
         return (S4(buf[0]) + S4(buf[1]) + "-" + S4(buf[2]) + "-" + S4(buf[3]) + "-" + S4(buf[4]) + "-" + S4(buf[5]) + S4(buf[6]) + S4(buf[7]));
     } : function () {
-        // Otherwise, just use Math.random
+        // 退化方案：使用 Math.random
         // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/2117523#2117523
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             let r = Math.random() * 16 | 0,

@@ -1,5 +1,7 @@
 import "./src/Array.extension.js";
 export * from "./src/clone.js";
+export * from "./src/cloneArray.js";
+export * from "./src/cloneObject.js";
 export * from "./src/deepAssign.js";
 export * from "./src/deepMix.js";
 export * from "./src/equals.js";

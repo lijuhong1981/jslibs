@@ -8,6 +8,7 @@ function getLocalIP() {
         pc.createDataChannel(''); // 创建数据通道触发候选收集
         pc.onicecandidate = (e) => {
             if (!e.candidate) {
+                pc.close();
                 reject(new Error("无法获取IP"));
                 return;
             }
@@ -26,7 +27,10 @@ function getLocalIP() {
         };
         pc.createOffer()
             .then(offer => pc.setLocalDescription(offer))
-            .catch(reject);
+            .catch((err) => {
+                pc.close();
+                reject(err);
+            });
     });
 };
 

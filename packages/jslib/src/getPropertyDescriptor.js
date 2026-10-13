@@ -5,6 +5,8 @@
  * @returns {Object} 获取到的属性描述结果对象
  */
 function getPropertyDescriptor(object, propertyName) {
+    if (object == null)
+        return undefined;
     let __proto__ = object;
     let descriptor = Object.getOwnPropertyDescriptor(__proto__, propertyName);
     while (!descriptor && __proto__.__proto__) {

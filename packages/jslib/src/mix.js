@@ -34,7 +34,7 @@ function merge(target, source) {
  * @returns {object} 返回target目标对象
  */
 function mix(target = {}, ...sources) {
-    if (!sources || sources.length === 0)
+    if (sources.length === 0)
         return target;
     sources.forEach(source => {
         merge(target, source);

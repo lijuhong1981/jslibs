@@ -62,11 +62,7 @@ class HashArray {
      */
     values() {
         const result = [];
-        for (let i = 0, len = this._keys.length; i < len; i++) {
-            const key = this._keys[i];
-            const value = this._hash.get(key);
-            result.push(value);
-        }
+        this._each((key, value) => result.push(value));
         return result;
     }
 
@@ -76,11 +72,7 @@ class HashArray {
      */
     entries() {
         const result = [];
-        for (let i = 0, len = this._keys.length; i < len; i++) {
-            const key = this._keys[i];
-            const value = this._hash.get(key);
-            result.push({ key, value });
-        }
+        this._each((key, value) => result.push({ key, value }));
         return result;
     }
 
@@ -105,14 +97,14 @@ class HashArray {
         Check.typeOf.string('key', key);
 
         // 判断键元素是否已存在
-        const hasKey = this._keys.indexOf(key) !== -1;
+        const hasKey = this._hash.has(key);
         // 判断是否传入了插入索引
         const hasInsertIndex = Number.isSafeInteger(insertAt);
         if (!hasKey) {
             if (hasInsertIndex) {
                 // 检查插入索引是否超出了范围
                 Check.typeOf.integer.greaterThanOrEquals('insertAt', insertAt, 0);
-                Check.typeOf.integer.lessThan('insertAt', insertAt, this.size);
+                Check.typeOf.integer.lessThanOrEquals('insertAt', insertAt, this.size);
                 // 根据索引插入键元素
                 this._keys.splice(insertAt, 0, key);
             } else {
@@ -177,7 +169,7 @@ class HashArray {
      */
     has(key) {
         Check.typeOf.string('key', key);
-        return this._keys.indexOf(key) !== -1;
+        return this._hash.has(key);
     }
 
     /**
@@ -209,10 +201,19 @@ class HashArray {
      */
     forEach(callback) {
         Check.typeOf.func('callback', callback);
+        this._each((key, value) => callback(value, key));
+    }
+
+    /**
+     * 遍历所有键值对
+     * @param {Function} iteratee 回调，参数为(key, value)
+     * @returns {void}
+     * @private
+     */
+    _each(iteratee) {
         for (let i = 0, len = this._keys.length; i < len; i++) {
             const key = this._keys[i];
-            const value = this._hash.get(key);
-            callback(value, key);
+            iteratee(key, this._hash.get(key));
         }
     }
 

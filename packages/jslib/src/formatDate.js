@@ -14,7 +14,7 @@ function formatDate(formatString = 'yyyy-MM-dd HH:mm:ss', date = new Date()) {
         "m+": '' + date.getMinutes(), //分
         "s+": '' + date.getSeconds(), //秒
         "q+": '' + Math.floor((date.getMonth() + 3) / 3), //季度
-        "S": '' + date.getMilliseconds()  //毫秒
+        "S+": '' + date.getMilliseconds()  //毫秒
     };
     for (const key in values) {
         const regex = new RegExp('(' + key + ')');
@@ -24,7 +24,7 @@ function formatDate(formatString = 'yyyy-MM-dd HH:mm:ss', date = new Date()) {
             while (value.length < result[1].length) {
                 value = '0' + value;
             }
-            formatString = formatString.replace(result[1], value.substring(value.length - result[1].length));
+            formatString = formatString.replace(result[1], value);
         }
     }
     return formatString;

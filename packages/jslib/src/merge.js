@@ -3,7 +3,7 @@ import isObject from "@lijuhong1981/jscheck/src/isObject.js";
 
 /**
  * 合并两个对象属性并输出给一个新对象
- * 
+ *
  * 注：对象1属性优先级高于对象2
  * @param {object} object1 合并对象1
  * @param {object} object2 合并对象2
@@ -16,20 +16,21 @@ import isObject from "@lijuhong1981/jscheck/src/isObject.js";
 function merge(object1, object2, recursive = false, ignores = [], result = {}) {
     const object1Defined = defined(object1);
     const object2Defined = defined(object2);
-    const hasIgnores = ignores.length > 0;
+    const hasIgnores = Array.isArray(ignores) && ignores.length > 0;
+    const hasOwn = (object, property) => Object.prototype.hasOwnProperty.call(object, property);
 
     let property, object1Value, object2Value;
     if (object1Defined) {
         for (property in object1) {
-            if (object1.hasOwnProperty(property) &&
+            if (hasOwn(object1, property) &&
                 //输出对象已经含有该property了，不需要合并
-                !result.hasOwnProperty(property)) {
+                !hasOwn(result, property)) {
                 if (hasIgnores && ignores.indexOf(property) !== -1) //过滤掉ignores中包含的property
                     continue;
                 object1Value = object1[property];
                 // 当recursive为true时，如果object1Value是对象，且object2也有该property，且object2Value也是对象，执行递归合并
                 if (recursive && isObject(object1Value) &&
-                    object2Defined && object2.hasOwnProperty(property)) {
+                    object2Defined && hasOwn(object2, property)) {
                     object2Value = object2[property];
                     if (isObject(object2Value)) {
                         result[property] = merge(object1Value, object2Value, recursive, ignores);
@@ -44,9 +45,9 @@ function merge(object1, object2, recursive = false, ignores = [], result = {}) {
     }
     if (object2Defined) {
         for (property in object2) {
-            if (object2.hasOwnProperty(property) &&
+            if (hasOwn(object2, property) &&
                 //输出对象已经含有该property了，不需要合并
-                !result.hasOwnProperty(property)) {
+                !hasOwn(result, property)) {
                 if (hasIgnores && ignores.indexOf(property) !== -1) //过滤掉ignores中包含的property
                     continue;
                 object2Value = object2[property];

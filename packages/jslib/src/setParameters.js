@@ -8,7 +8,7 @@ import getPropertyDescriptor from './getPropertyDescriptor.js';
  */
 function setParameters(target, parameters) {
     if (!target || !parameters)
-        return;
+        return target;
     // console.log('target:', target, 'parameters:', parameters);
 
     Object.keys(parameters).forEach((key) => {

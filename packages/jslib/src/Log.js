@@ -33,48 +33,43 @@ class Log {
     }
     /**
      * 输出debug级别的日志信息。
-     * @param {...*} msg 
+     * @param {...*} msg
      * @returns {Log} 当前Log实例，支持链式调用。
     */
     debug(...msg) {
-        this.enabled && console.debug(...msg);
-        return this;
+        return this._log('debug', ...msg);
     }
     /**
      * 输出error级别的日志信息。
-     * @param {...*} msg 
+     * @param {...*} msg
      * @returns {Log} 当前Log实例，支持链式调用。
     */
     error(...msg) {
-        this.enabled && console.error(...msg);
-        return this;
+        return this._log('error', ...msg);
     }
     /**
      * 输出info级别的日志信息。
-     * @param {...*} msg 
+     * @param {...*} msg
      * @returns {Log} 当前Log实例，支持链式调用。
     */
     info(...msg) {
-        this.enabled && console.info(...msg);
-        return this;
+        return this._log('info', ...msg);
     }
     /**
      * 输出log级别的日志信息。
-     * @param {...*} msg 
+     * @param {...*} msg
      * @returns {Log} 当前Log实例，支持链式调用。
     */
     log(...msg) {
-        this.enabled && console.log(...msg);
-        return this;
+        return this._log('log', ...msg);
     }
     /**
      * 输出warn级别的日志信息。
-     * @param {...*} msg 
+     * @param {...*} msg
      * @returns {Log} 当前Log实例，支持链式调用。
     */
     warn(...msg) {
-        this.enabled && console.warn(...msg);
-        return this;
+        return this._log('warn', ...msg);
     }
     /**
      * 启动一个计时器，用于计算操作的持续时间。
@@ -82,8 +77,7 @@ class Log {
      * @returns {Log} 当前Log实例，支持链式调用。
     */
     time(label) {
-        this.enabled && console.time(label);
-        return this;
+        return this._log('time', label);
     }
     /**
      * 结束指定标签的计时器，并输出耗时。
@@ -91,7 +85,17 @@ class Log {
      * @returns {Log} 当前Log实例，支持链式调用。
     */
     timeEnd(label) {
-        this.enabled && console.timeEnd(label);
+        return this._log('timeEnd', label);
+    }
+    /**
+     * 输出日志的内部实现：仅在启用时调用指定的控制台方法。
+     * @param {string} method 控制台方法名
+     * @param {...*} args 日志参数
+     * @returns {Log} 当前Log实例，支持链式调用。
+     * @private
+    */
+    _log(method, ...args) {
+        this.enabled && console[method](...args);
         return this;
     }
 };

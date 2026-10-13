@@ -101,7 +101,7 @@ Object.defineProperties(Fullscreen, {
         return undefined;
       }
 
-      return Fullscreen.element !== null;
+      return Fullscreen.element != null;
     },
   },
 });
@@ -120,7 +120,7 @@ Fullscreen.supportsFullscreen = function () {
   _supportsFullscreen = false;
 
   const body = document.body;
-  if (typeof body.requestFullscreen === "function") {
+  if (body && typeof body.requestFullscreen === "function") {
     // go with the unprefixed, standard set of names
     _names.requestFullscreen = "requestFullscreen";
     _names.exitFullscreen = "exitFullscreen";
