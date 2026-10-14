@@ -1,4 +1,4 @@
-import clamp from "./clamp";
+import clamp from "./clamp.js";
 
 /**
  * 计算一个数值的反余弦值，并将输入值约束在-1到1之间

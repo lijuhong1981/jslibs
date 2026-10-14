@@ -9,7 +9,7 @@ import extractFileName from "./extractFileName.js";
 function extractExtName(url, containsPoint = true) {
     const fileName = extractFileName(url);
     const index = fileName.lastIndexOf('.');
-    if (index === -1)
+    if (index <= 0)
         return '';
     return fileName.substring(containsPoint ? index : index + 1);
 };

@@ -10,7 +10,7 @@ const ONE_OVER_TWO_PI = 1.0 / (2.0 * PI);
 const RADIANS_PER_DEGREE = PI / 180.0;
 const DEGREES_PER_RADIAN = 180.0 / PI;
 /**
- * The number of radians in an arc second.
+ * 一弧秒所对应的弧度数。
  *
  * @type {number}
  * @constant

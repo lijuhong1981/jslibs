@@ -8,6 +8,8 @@
  */
 function convertToRange(value, rangeMinimum, rangeMaximum) {
     const length = rangeMaximum - rangeMinimum;
+    if (length === 0)
+        return rangeMinimum;
     if (value < rangeMinimum) {
         value += length;
         while (value < rangeMinimum)

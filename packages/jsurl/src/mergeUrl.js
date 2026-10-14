@@ -1,6 +1,8 @@
 import hasProtocolPrefix from "./hasProtocolPrefix.js";
 
 function mergeUrl(base, relative) {
+    if (relative == null)
+        return base;
     if (!base || base.length === 0 || hasProtocolPrefix(relative))
         return relative;
     const hasEndSeparator = base.endsWith('/');

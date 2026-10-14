@@ -4,7 +4,7 @@
  * @returns {boolean}
  */
 function isAsyncFunction(func) {
-    return func.constructor.name === 'AsyncFunction';
+    return typeof func === 'function' && func.constructor.name === 'AsyncFunction';
 }
 
 export default isAsyncFunction;

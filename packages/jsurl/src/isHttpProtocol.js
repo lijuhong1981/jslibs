@@ -1,4 +1,4 @@
-const pattern = /^(https?:\/\/)?\.?\/?([\da-z])/i;
+const pattern = /^https?:\/\//i;
 
 function isHttpProtocol(url) {
     return pattern.test(url);

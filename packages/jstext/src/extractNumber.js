@@ -4,7 +4,7 @@
  * @returns {String}
  */
 function extractNumber(value) {
-    const arr = value.match(/\d+(.\d+)?/g);
+    const arr = value.match(/\d+(\.\d+)?/g);
     if (arr) {
         if (arr.length === 1)
             return arr[0];

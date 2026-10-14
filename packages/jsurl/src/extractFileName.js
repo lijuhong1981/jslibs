@@ -4,7 +4,7 @@
  * @returns {String} 提取的文件名
  */
 function extractFileName(url) {
-    let index = url.lastIndexOf('?');
+    let index = url.search(/[?#]/);
     if (index !== -1)
         url = url.substring(0, index);
 

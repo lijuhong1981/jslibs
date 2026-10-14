@@ -8,7 +8,7 @@ import extractFileName from "./extractFileName.js";
 function extractBaseName(url) {
     const fileName = extractFileName(url);
     const index = fileName.lastIndexOf('.');
-    if (index === -1)
+    if (index <= 0)
         return fileName;
     return fileName.substring(0, index);
 };

@@ -1,4 +1,4 @@
-const pattern = /^(https?|ftp|file|data|blob):/i;
+const pattern = /^([a-z][a-z0-9+.-]*:|\/\/)/i;
 
 function hasProtocolPrefix(url) {
     return pattern.test(url);

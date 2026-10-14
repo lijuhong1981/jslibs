@@ -1,5 +1,5 @@
 function isNumber(value) {
-    return !isNaN(value);
+    return typeof value === 'number' && !isNaN(value);
 };
 
 export default isNumber;
