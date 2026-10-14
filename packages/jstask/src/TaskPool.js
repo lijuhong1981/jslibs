@@ -64,7 +64,7 @@ class Task extends Destroyable {
         if (isFunction(options.onCancel))
             this.onCancel = options.onCancel.bind(this);
         if (isFunction(options.onFail))
-            this.onCancel = options.onCancel.bind(this);
+            this.onFail = options.onFail.bind(this);
     }
 
     /**
@@ -227,9 +227,6 @@ class TaskPool extends Destroyable {
         const tasks = this.taskQueue.slice();
         tasks.forEach(task => {
             if (task.isDestroyed() || task.isFinished || task.isCanceled || task.isFailed) { //移除掉已销毁、完成、取消、失败的任务
-                const index = this.taskQueue.indexOf(task);
-                if (index !== -1)
-                    this.taskQueue.splice(index, 1);
                 if (task.autoDestroy && !task.isDestroyed())
                     task.destroy();
             } else if (task.isExecuting) { //统计执行中的任务
@@ -238,6 +235,10 @@ class TaskPool extends Destroyable {
                 unexecuteTasks.push(task);
             }
         });
+        // 单次重建队列，避免 O(n²) 的 indexOf+splice
+        const remaining = this.taskQueue.filter(task => !(task.isDestroyed() || task.isFinished || task.isCanceled || task.isFailed));
+        this.taskQueue.length = 0;
+        this.taskQueue.push(...remaining);
 
         let i = 0;
         while (executingCount < this.maximumNumber && i < unexecuteTasks.length) {
@@ -268,7 +269,7 @@ Object.defineProperties(TaskPool, {
         configurable: false,
         get: function () {
             if (!_default)
-                _default = new AnimationFrameUpdater();
+                _default = new TaskPool();
             return _default;
         }
     },

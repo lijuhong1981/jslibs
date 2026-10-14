@@ -48,12 +48,16 @@ class AnimationFrameUpdater extends Destroyable {
     update() {
         if (this.isStoped)
             return this;
-        this._animationFrameHandler = window.requestAnimationFrame(this.update);
+        if (typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function')
+            this._animationFrameHandler = window.requestAnimationFrame(this.update);
+        else
+            this._animationFrameHandler = setTimeout(this.update, this._intervalTime);
         const newTime = now();
         const deltaTime = newTime - this._oldTime;
         if (!this.enableFpsRestriction || deltaTime >= this._intervalTime) {
             this._oldTime = newTime;
-            this.updateFuncs.forEach(updateFunc => {
+            const updateFuncs = this.updateFuncs.slice();
+            updateFuncs.forEach(updateFunc => {
                 updateFunc(deltaTime);
             });
         }
@@ -65,9 +69,10 @@ class AnimationFrameUpdater extends Destroyable {
     */
     start() {
         if (this.isStarted)
-            return;
+            return this;
         this.isStarted = true;
         this.isStoped = false;
+        this._oldTime = now();
         this.update();
         return this;
     }
@@ -79,7 +84,10 @@ class AnimationFrameUpdater extends Destroyable {
         this.isStoped = true;
         this.isStarted = false;
         if (isDefined(this._animationFrameHandler)) {
-            window.cancelAnimationFrame(this._animationFrameHandler);
+            if (typeof window !== 'undefined' && typeof window.cancelAnimationFrame === 'function')
+                window.cancelAnimationFrame(this._animationFrameHandler);
+            else
+                clearTimeout(this._animationFrameHandler);
             delete this._animationFrameHandler;
         }
         return this;

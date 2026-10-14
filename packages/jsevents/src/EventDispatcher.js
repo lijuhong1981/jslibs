@@ -33,6 +33,10 @@ function removeListener(events, type, callback) {
     if (event) {
         if (callback) {
             event.removeEventListener(callback);
+            if (event.numberOfListeners === 0) {
+                events.delete(type);
+                event.destroy();
+            }
         } else {
             events.delete(type);
             event.destroy();
@@ -147,7 +151,7 @@ class EventDispatcher extends Destroyable {
 
         const event = this._events.get(type);
 
-        return event && event.numberOfListeners > 0;
+        return !!(event && event.numberOfListeners > 0);
     }
 
     /**

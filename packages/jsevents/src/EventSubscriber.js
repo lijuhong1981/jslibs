@@ -2,8 +2,8 @@ import Check from "@lijuhong1981/jscheck/src/Check.js";
 import Destroyable from "@lijuhong1981/jsdestroy/src/Destroyable.js";
 
 /**
- * A generic utility class for managing subscribers for a particular event. This class is usually instantiated inside of a container class and exposed as a property for others to subscribe to.
- * 
+ * 用于管理某个事件的订阅者的通用工具类。该类通常在容器类内部实例化，并作为属性暴露给其他对象以进行订阅。
+ *
  * @class EventSubscriber
  * @extends Destroyable
 */
@@ -134,11 +134,11 @@ class EventSubscriber extends Destroyable {
      * @returns {this}
      */
     raiseEvent(...args) {
-        const listeners = this._listenersMap.values();
+        const listeners = Array.from(this._listenersMap.values());
         for (const listener of listeners) {
             const options = listener.options;
             const callback = listener.callback;
-            callback.apply(options.scope, arguments);
+            callback.apply(options.scope, args);
             if (options.once) {
                 this._listenersMap.delete(callback);
             }

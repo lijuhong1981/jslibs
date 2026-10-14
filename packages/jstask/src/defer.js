@@ -1,18 +1,18 @@
 /**
- * Creates a deferred object, containing a promise object, and functions to resolve or reject the promise.
- * @returns {object} deferred object
- * @property {Function} resolve Resolve the promise when called.
- * @property {Function} reject Reject the promise when called.
- * @property {Promise} promise Promise object.
- * @property {string} state Promise state. 
+ * 创建一个 deferred 对象，包含一个 promise 对象，以及 resolve 或 reject 该 promise 的函数。
+ * @returns {object} deferred 对象
+ * @property {Function} resolve 调用时 resolve 该 promise。
+ * @property {Function} reject 调用时 reject 该 promise。
+ * @property {Promise} promise Promise 对象。
+ * @property {string} state Promise 状态。
  * * "pending" - 初始状态。
  * * "fulfilled" - resolve已调用。
  * * "rejected" - reject已调用。
- * @property {boolean} resolved True if promise is fulfilled.
- * @property {boolean} rejected True if promise is rejected.
- * @property {Function} then Same as promise.then() method.
- * @property {Function} catch Same as promise.catch() method.
- * @property {Function} finally Same as promise.finally() method.
+ * @property {boolean} resolved 若 promise 已 fulfilled 则为 true。
+ * @property {boolean} rejected 若 promise 已 rejected 则为 true。
+ * @property {Function} then 同 promise.then() 方法。
+ * @property {Function} catch 同 promise.catch() 方法。
+ * @property {Function} finally 同 promise.finally() 方法。
  */
 function defer() {
     let state = 'pending';
@@ -75,21 +75,21 @@ function defer() {
             enumerable: true,
             configurable: false,
             get: function () {
-                return promise.then;
+                return promise.then.bind(promise);
             }
         },
         catch: {
             enumerable: true,
             configurable: false,
             get: function () {
-                return promise.catch;
+                return promise.catch.bind(promise);
             }
         },
         finally: {
             enumerable: true,
             configurable: false,
             get: function () {
-                return promise.finally;
+                return promise.finally.bind(promise);
             }
         }
     });
