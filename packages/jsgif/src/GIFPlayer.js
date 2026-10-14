@@ -15,7 +15,7 @@ function byteToBitArr(bite) {
     return byteArr;
 };
 
-// Generic functions
+// 通用函数
 function bitsToNum(ba) {
     return ba.reduce(function (s, n) {
         return s * 2 + n;
@@ -69,7 +69,10 @@ function lzwDecode(minCodeSize, data) {
     function readCode(size) {
         let code = 0;
         for (let i = 0; i < size; i++) {
-            if (data.charCodeAt(pos >> 3) & (1 << (pos & 7))) {
+            const byteIndex = pos >> 3;
+            if (byteIndex >= data.length)
+                return -1;
+            if (data.charCodeAt(byteIndex) & (1 << (pos & 7))) {
                 code |= 1 << i;
             }
             pos++;
@@ -98,6 +101,8 @@ function lzwDecode(minCodeSize, data) {
     while (true) {
         last = code;
         code = readCode(codeSize);
+        if (code === -1)
+            break;
 
         if (code === clearCode) {
             clear();
@@ -106,6 +111,8 @@ function lzwDecode(minCodeSize, data) {
         if (code === eoiCode) {
             break
         };
+        if (last === null)
+            break;
         if (code < dict.length) {
             if (last !== clearCode) {
                 dict.push(dict[last].concat(dict[code][0]));
@@ -120,7 +127,7 @@ function lzwDecode(minCodeSize, data) {
         output.push.apply(output, dict[code]);
 
         if (dict.length === (1 << codeSize) && codeSize < 12) {
-            // If we're at the last code and codeSize is 12, the next code will be a clearCode, and it'll be 12 bits long.
+            // 如果已经到达最后一个码且 codeSize 为 12，则下一个码将是 clearCode，其长度为 12 位。
             codeSize++;
         }
     }
@@ -135,7 +142,6 @@ const defaultOptions = {
 
 function GIFPlayer(options = {}) {
     options = Object.assign({}, defaultOptions, options);
-    console.log('options:', options);
     const CANVAS = options.canvas || document.createElement("canvas");
     const CANVAS_CTX = CANVAS.getContext('2d');
     const TEMP_CANVAS = document.createElement("canvas");//用来拿 imageData 的缓存canvas
@@ -180,11 +186,11 @@ function GIFPlayer(options = {}) {
         if (currIdx > 0) {
             // 这块不要动
             if (LAST_DISPOSA_METHOD === 3) {
-                // Restore to previous
-                // If we disposed every TEMP_CANVAS_CTX including first TEMP_CANVAS_CTX up to this point, then we have
-                // no composited TEMP_CANVAS_CTX to restore to. In this case, restore to background instead.
+                // 恢复到前一帧
+                // 如果到此为止已释放了包括第一个 TEMP_CANVAS_CTX 在内的所有画布，则没有可恢复的合成画布。
+                // 此时改为恢复到背景。
                 if (CURRENT_FRAME_INDEX > -1) {
-                    TEMP_CANVAS_CTX.putImageData(FRAME_LIST[CURRENT_FRAME_INDEX].data, 0, 0);
+                    TEMP_CANVAS_CTX.putImageData(FRAME_LIST[CURRENT_FRAME_INDEX].imgData, 0, 0);
                 } else {
                     TEMP_CANVAS_CTX.clearRect(0, 0, TEMP_CANVAS.width, TEMP_CANVAS.height);
                 }
@@ -193,8 +199,8 @@ function GIFPlayer(options = {}) {
             }
 
             if (LAST_DISPOSA_METHOD === 2) {
-                // Restore to background color
-                // Browser implementations historically restore to transparent; we do the same.
+                // 恢复到背景色
+                // 浏览器实现历史上会恢复到透明；我们保持一致。
                 // http://www.wizards-toolkit.org/discourse-server/viewtopic.php?f=1&t=21172#p86079
                 TEMP_CANVAS_CTX.clearRect(0, 0, TEMP_CANVAS.width, TEMP_CANVAS.height);
             }
@@ -211,10 +217,10 @@ function GIFPlayer(options = {}) {
 
         TEMP_CANVAS_CTX.putImageData(imgData, img.leftPos, img.topPos);
 
-        if (FRAME_LIST[CURRENT_FRAME_INDEX]) {
-            FRAME_LIST[CURRENT_FRAME_INDEX].imgData = imgData;
-            FRAME_LIST[CURRENT_FRAME_INDEX].leftPos = img.leftPos;
-            FRAME_LIST[CURRENT_FRAME_INDEX].topPos = img.topPos;
+        if (FRAME_LIST[currIdx - 1]) {
+            FRAME_LIST[currIdx - 1].imgData = TEMP_CANVAS_CTX.getImageData(0, 0, TEMP_CANVAS.width, TEMP_CANVAS.height);
+            FRAME_LIST[currIdx - 1].leftPos = img.leftPos;
+            FRAME_LIST[currIdx - 1].topPos = img.topPos;
             // console.log(CURRENT_FRAME_INDEX, FRAME_LIST[CURRENT_FRAME_INDEX]);
         }
     };
@@ -252,7 +258,7 @@ function GIFPlayer(options = {}) {
         };
 
         function parsePTExt(block) {
-            // No one *ever* uses this. If you use it, deal with parsing it yourself.
+            // 几乎没有人会使用它。如果你要用，请自行处理解析。
             STREAM.readByte(); // Always 12 这个必须得这样执行一次
             block.ptHeader = STREAM.readBytes(12);
             block.ptData = readSubBlocks();
@@ -319,8 +325,8 @@ function GIFPlayer(options = {}) {
     function parseImg(img) {
 
         function deinterlace(pixels, width) {
-            // Of course this defeats the purpose of interlacing. And it's *probably*
-            // the least efficient way it's ever been implemented. But nevertheless...
+            // 当然这会破坏隔行扫描的初衷。而且这*可能*
+            // 是有史以来效率最低的实现方式。但无论如何……
             let newPixels = new Array(pixels.length);
             const rows = pixels.length / width;
 
@@ -329,7 +335,7 @@ function GIFPlayer(options = {}) {
                 newPixels.splice.apply(newPixels, [toRow * width, width].concat(fromPixels));
             };
 
-            // See appendix E.
+            // 参见附录 E。
             const offsets = [0, 4, 2, 1],
                 steps = [8, 8, 4, 2];
 

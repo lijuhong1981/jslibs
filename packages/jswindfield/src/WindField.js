@@ -159,6 +159,8 @@ class WindField extends Destroyable {
             const vector = this.field.calculateParticleVector(particle, width, height);
             if (!vector) {
                 particle.age = maxAge;
+                particle.tx = x;
+                particle.ty = y;
             } else {
                 const velocity = deltaTime / 1000;
                 const tx = x + vector.u * velocityScale * velocity;

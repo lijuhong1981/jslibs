@@ -18,6 +18,8 @@ function loadAPNGImage(url, options = {}, result = document.createElement('canva
 
     fetchArrayBuffer(url, options.requestOptions).then(function (buffer) {
         const apng = parseAPNG(buffer);
+        if (apng instanceof Error)
+            throw apng;
         result.width = apng.width;
         result.height = apng.height;
         apng.getPlayer(result.getContext('2d')).then(function (player) {

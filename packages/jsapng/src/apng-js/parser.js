@@ -11,9 +11,9 @@ const errNotAPNG = new Error('Not an animated PNG');
 const PNGSignature = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 
 /**
- * Parse APNG data
- * @param {ArrayBuffer} buffer
- * @return {APNG|Error}
+ * 解析 APNG 数据
+ * @param {ArrayBuffer} buffer 输入的 ArrayBuffer
+ * @return {APNG|Error} 解析结果，失败时返回 Error
  */
 function parseAPNG(buffer) {
     const bytes = new Uint8Array(buffer);
@@ -42,7 +42,7 @@ function parseAPNG(buffer) {
         const dv = new DataView(bytes.buffer);
         switch (type) {
             case 'IHDR':
-                headerDataBytes = bytes.subarray(off + 8, off + 8 + length);
+                headerDataBytes = bytes.slice(off + 8, off + 8 + length);
                 apng.width = dv.getUint32(off + 8);
                 apng.height = dv.getUint32(off + 12);
                 break;
@@ -132,12 +132,14 @@ function parseAPNG(buffer) {
 function eachChunk(bytes, callback) {
     const dv = new DataView(bytes.buffer);
     let off = 8, type, length, res;
-    do {
+    while (off + 8 <= bytes.length) {
         length = dv.getUint32(off);
         type = readString(bytes, off + 4, 4);
         res = callback(type, bytes, off, length);
+        if (res === false || type == 'IEND')
+            break;
         off += 12 + length;
-    } while (res !== false && type != 'IEND' && off < bytes.length);
+    }
 }
 
 /**

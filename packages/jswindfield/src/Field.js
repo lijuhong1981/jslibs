@@ -88,8 +88,18 @@ class Field extends Destroyable {
     }
 
     calculateRange() {
-        if (this.grids.length === 0)
-            return
+        if (this.grids.length === 0) {
+            this.valueRange = [0, 0];
+            this.extent = {
+                xmin: this.xmin,
+                xmax: this.xmax,
+                ymin: this.ymin,
+                ymax: this.ymax,
+            };
+            this.longitudeRange = [this.wrappedX ? this.xmin - 180 : this.xmin, this.wrappedX ? this.xmax + 1 - 180 : this.xmax + 1];
+            this.latitudeRange = [this.ymin, this.ymax];
+            return this;
+        }
         let min = 0, max = 0;
         const rowsNumber = this.grids.length;
         for (let y = 0; y < rowsNumber; y++) {
