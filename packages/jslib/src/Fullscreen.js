@@ -9,7 +9,7 @@ const _names = {
 };
 
 /**
- * Browser-independent functions for working with the standard fullscreen API.
+ * 与标准全屏 API 配合使用的、不依赖具体浏览器的函数。
  *
  * @namespace Fullscreen
  *
@@ -19,8 +19,8 @@ const Fullscreen = {};
 
 Object.defineProperties(Fullscreen, {
   /**
-   * The element that is currently fullscreen, if any.  To simply check if the
-   * browser is in fullscreen mode or not, use {@link Fullscreen#fullscreen}.
+   * 当前处于全屏状态的元素（如果有的话）。若仅需判断浏览器是否
+   * 处于全屏模式，请使用 {@link Fullscreen#fullscreen}。
    * @memberof Fullscreen
    * @type {Object}
    * @readonly
@@ -36,10 +36,9 @@ Object.defineProperties(Fullscreen, {
   },
 
   /**
-   * The name of the event on the document that is fired when fullscreen is
-   * entered or exited.  This event name is intended for use with addEventListener.
-   * In your event handler, to determine if the browser is in fullscreen mode or not,
-   * use {@link Fullscreen#fullscreen}.
+   * 当进入或退出全屏时在 document 上触发的事件的名称。该事件名
+   * 旨在与 addEventListener 配合使用。在事件处理函数中，若需判断
+   * 浏览器是否处于全屏模式，请使用 {@link Fullscreen#fullscreen}。
    * @memberof Fullscreen
    * @type {String}
    * @readonly
@@ -55,8 +54,8 @@ Object.defineProperties(Fullscreen, {
   },
 
   /**
-   * The name of the event that is fired when a fullscreen error
-   * occurs.  This event name is intended for use with addEventListener.
+   * 发生全屏错误时触发的事件的名称。该事件名旨在与
+   * addEventListener 配合使用。
    * @memberof Fullscreen
    * @type {String}
    * @readonly
@@ -72,9 +71,9 @@ Object.defineProperties(Fullscreen, {
   },
 
   /**
-   * Determine whether the browser will allow an element to be made fullscreen, or not.
-   * For example, by default, iframes cannot go fullscreen unless the containing page
-   * adds an "allowfullscreen" attribute (or prefixed equivalent).
+   * 判断浏览器是否允许将某个元素设为全屏。例如，默认情况下，
+   * iframe 无法进入全屏，除非包含它的页面添加了 "allowfullscreen"
+   * 属性（或带前缀的等价属性）。
    * @memberof Fullscreen
    * @type {Boolean}
    * @readonly
@@ -90,7 +89,7 @@ Object.defineProperties(Fullscreen, {
   },
 
   /**
-   * Determines if the browser is currently in fullscreen mode.
+   * 判断浏览器当前是否处于全屏模式。
    * @memberof Fullscreen
    * @type {Boolean}
    * @readonly
@@ -107,10 +106,10 @@ Object.defineProperties(Fullscreen, {
 });
 
 /**
- * Detects whether the browser supports the standard fullscreen API.
+ * 检测浏览器是否支持标准全屏 API。
  *
- * @returns {Boolean} <code>true</code> if the browser supports the standard fullscreen API,
- * <code>false</code> otherwise.
+ * @returns {Boolean} 若浏览器支持标准全屏 API 则为 <code>true</code>，
+ * 否则为 <code>false</code>。
  */
 Fullscreen.supportsFullscreen = function () {
   if (_supportsFullscreen !== undefined) {
@@ -121,7 +120,7 @@ Fullscreen.supportsFullscreen = function () {
 
   const body = document.body;
   if (body && typeof body.requestFullscreen === "function") {
-    // go with the unprefixed, standard set of names
+    // 采用无前缀的标准名称集合
     _names.requestFullscreen = "requestFullscreen";
     _names.exitFullscreen = "exitFullscreen";
     _names.fullscreenEnabled = "fullscreenEnabled";
@@ -132,13 +131,13 @@ Fullscreen.supportsFullscreen = function () {
     return _supportsFullscreen;
   }
 
-  //check for the correct combination of prefix plus the various names that browsers use
+  // 检查浏览器所使用的各种名称与前缀的正确组合
   const prefixes = ["webkit", "moz", "o", "ms", "khtml"];
   let name;
   for (let i = 0, len = prefixes.length; i < len; ++i) {
     const prefix = prefixes[i];
 
-    // casing of Fullscreen differs across browsers
+    // Fullscreen 的大小写在不同浏览器中各不相同
     name = `${prefix}RequestFullscreen`;
     if (typeof body[name] === "function") {
       _names.requestFullscreen = name;
@@ -151,7 +150,7 @@ Fullscreen.supportsFullscreen = function () {
       }
     }
 
-    // disagreement about whether it's "exit" as per spec, or "cancel"
+    // 对于是按规范使用 "exit" 还是使用 "cancel" 存在分歧
     name = `${prefix}ExitFullscreen`;
     if (typeof document[name] === "function") {
       _names.exitFullscreen = name;
@@ -162,7 +161,7 @@ Fullscreen.supportsFullscreen = function () {
       }
     }
 
-    // casing of Fullscreen differs across browsers
+    // Fullscreen 的大小写在不同浏览器中各不相同
     name = `${prefix}FullscreenEnabled`;
     if (document[name] !== undefined) {
       _names.fullscreenEnabled = name;
@@ -173,7 +172,7 @@ Fullscreen.supportsFullscreen = function () {
       }
     }
 
-    // casing of Fullscreen differs across browsers
+    // Fullscreen 的大小写在不同浏览器中各不相同
     name = `${prefix}FullscreenElement`;
     if (document[name] !== undefined) {
       _names.fullscreenElement = name;
@@ -184,11 +183,11 @@ Fullscreen.supportsFullscreen = function () {
       }
     }
 
-    // thankfully, event names are all lowercase per spec
+    // 还好，按规范事件名都是小写的
     name = `${prefix}fullscreenchange`;
-    // event names do not have 'on' in the front, but the property on the document does
+    // 事件名前面没有 'on'，但 document 上的属性有
     if (document[`on${name}`] !== undefined) {
-      //except on IE
+      //IE 浏览器除外
       if (prefix === "ms") {
         name = "MSFullscreenChange";
       }
@@ -197,7 +196,7 @@ Fullscreen.supportsFullscreen = function () {
 
     name = `${prefix}fullscreenerror`;
     if (document[`on${name}`] !== undefined) {
-      //except on IE
+      //IE 浏览器除外
       if (prefix === "ms") {
         name = "MSFullscreenError";
       }
@@ -209,17 +208,17 @@ Fullscreen.supportsFullscreen = function () {
 };
 
 /**
- * Asynchronously requests the browser to enter fullscreen mode on the given element.
- * If fullscreen mode is not supported by the browser, does nothing.
+ * 异步请求浏览器让指定元素进入全屏模式。
+ * 如果浏览器不支持全屏模式，则不做任何操作。
  *
- * @param {Object} element The HTML element which will be placed into fullscreen mode.
- * @param {Object} [vrDevice] The HMDVRDevice device.
+ * @param {Object} element 将要进入全屏模式的 HTML 元素。
+ * @param {Object} [vrDevice] HMDVRDevice 设备。
  *
  * @example
- * // Put the entire page into fullscreen.
+ * // 让整个页面进入全屏。
  * Cesium.Fullscreen.requestFullscreen(document.body)
  *
- * // Place only the Cesium canvas into fullscreen.
+ * // 仅让 Cesium 画布进入全屏。
  * Cesium.Fullscreen.requestFullscreen(scene.canvas)
  */
 Fullscreen.requestFullscreen = function (element, vrDevice) {
@@ -231,8 +230,8 @@ Fullscreen.requestFullscreen = function (element, vrDevice) {
 };
 
 /**
- * Asynchronously exits fullscreen mode.  If the browser is not currently
- * in fullscreen, or if fullscreen mode is not supported by the browser, does nothing.
+ * 异步退出全屏模式。如果浏览器当前未处于全屏状态，或者浏览器不支持
+ * 全屏模式，则不做任何操作。
  */
 Fullscreen.exitFullscreen = function () {
   if (!Fullscreen.supportsFullscreen()) {
@@ -242,7 +241,7 @@ Fullscreen.exitFullscreen = function () {
   document[_names.exitFullscreen]();
 };
 
-//For unit tests
+//用于单元测试
 Fullscreen._names = _names;
 
 export default Fullscreen;

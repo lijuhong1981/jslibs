@@ -21,7 +21,7 @@ let chromeVersionResult;
 function isChrome() {
     if (!defined(isChromeResult)) {
         isChromeResult = false;
-        // Edge contains Chrome in the user agent too
+        // Edge 的 user agent 中也包含 Chrome
         if (!isEdge()) {
             const fields = / Chrome\/([\.0-9]+)/.exec(theNavigator.userAgent);
             if (fields !== null) {
@@ -44,7 +44,7 @@ function isSafari() {
     if (!defined(isSafariResult)) {
         isSafariResult = false;
 
-        // Chrome and Edge contain Safari in the user agent too
+        // Chrome 和 Edge 的 user agent 中也包含 Safari
         if (
             !isChrome() &&
             !isEdge() &&
@@ -240,12 +240,12 @@ function isMobile() {
 let hasPointerEvents;
 function supportsPointerEvents() {
     if (!defined(hasPointerEvents)) {
-        //While navigator.pointerEnabled is deprecated in the W3C specification
-        //we still need to use it if it exists in order to support browsers
-        //that rely on it, such as the Windows WebBrowser control which defines
-        //PointerEvent but sets navigator.pointerEnabled to false.
+        //虽然 navigator.pointerEnabled 在 W3C 规范中已被废弃，
+        //但在其存在时我们仍需要使用它，以兼容依赖该属性的浏览器，
+        //例如 Windows WebBrowser 控件，它定义了 PointerEvent
+        //却将 navigator.pointerEnabled 设置为 false。
 
-        //Firefox disabled because of https://github.com/CesiumGS/cesium/issues/6372
+        //Firefox 被禁用，原因参见 https://github.com/CesiumGS/cesium/issues/6372
         hasPointerEvents =
             !isFirefox() &&
             typeof PointerEvent !== "undefined" &&
@@ -272,7 +272,7 @@ function supportsImageRenderingPixelated() {
             "style",
             "image-rendering: -moz-crisp-edges;" + "image-rendering: pixelated;",
         );
-        //canvas.style.imageRendering will be undefined, null or an empty string on unsupported browsers.
+        //在不支持该特性的浏览器上，canvas.style.imageRendering 将为 undefined、null 或空字符串。
         const tmp = canvas.style.imageRendering;
         supportsImageRenderingPixelatedResult = defined(tmp) && tmp !== "";
         if (supportsImageRenderingPixelatedResult) {
@@ -301,7 +301,7 @@ function supportsWebP() {
 supportsWebP._promise = undefined;
 supportsWebP._result = undefined;
 supportsWebP.initialize = function () {
-    // From https://developers.google.com/speed/webp/faq#how_can_i_detect_browser_support_for_webp
+    // 来源：https://developers.google.com/speed/webp/faq#how_can_i_detect_browser_support_for_webp
     if (defined(supportsWebP._promise)) {
         return supportsWebP._promise;
     }
@@ -360,8 +360,7 @@ if (typeof ArrayBuffer !== "undefined") {
 }
 
 /**
- * A set of functions to detect whether the current browser supports
- * various features.
+ * 一组用于检测当前浏览器是否支持各种特性的函数。
  *
  * @namespace NavigatorDetection
  */
@@ -398,19 +397,19 @@ const NavigatorDetection = {
 };
 
 /**
- * Detects whether the current browser supports Basis Universal textures and the web assembly modules needed to transcode them.
+ * 检测当前浏览器是否支持 Basis Universal 纹理以及转码所需的 WebAssembly 模块。
  *
  * @param {Scene} scene
- * @returns {boolean} true if the browser supports web assembly modules and the scene supports Basis Universal textures, false if not.
+ * @returns {boolean} 如果浏览器支持 WebAssembly 模块且场景支持 Basis Universal 纹理则返回 true，否则返回 false。
  */
 NavigatorDetection.supportsBasis = function (scene) {
     return NavigatorDetection.supportsWebAssembly() && scene.context.supportsBasis;
 };
 
 /**
- * Detects whether the current browser supports the full screen standard.
+ * 检测当前浏览器是否支持全屏标准。
  *
- * @returns {boolean} true if the browser supports the full screen standard, false if not.
+ * @returns {boolean} 如果浏览器支持全屏标准则返回 true，否则返回 false。
  *
  * @see Fullscreen
  * @see {@link http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html|W3C Fullscreen Living Specification}
@@ -420,9 +419,9 @@ NavigatorDetection.supportsFullscreen = function () {
 };
 
 /**
- * Detects whether the current browser supports typed arrays.
+ * 检测当前浏览器是否支持类型化数组。
  *
- * @returns {boolean} true if the browser supports typed arrays, false if not.
+ * @returns {boolean} 如果浏览器支持类型化数组则返回 true，否则返回 false。
  *
  * @see {@link https://tc39.es/ecma262/#sec-typedarray-objects|Typed Array Specification}
  */
@@ -431,9 +430,9 @@ NavigatorDetection.supportsTypedArrays = function () {
 };
 
 /**
- * Detects whether the current browser supports BigInt64Array typed arrays.
+ * 检测当前浏览器是否支持 BigInt64Array 类型化数组。
  *
- * @returns {boolean} true if the browser supports BigInt64Array typed arrays, false if not.
+ * @returns {boolean} 如果浏览器支持 BigInt64Array 类型化数组则返回 true，否则返回 false。
  *
  * @see {@link https://tc39.es/ecma262/#sec-typedarray-objects|Typed Array Specification}
  */
@@ -442,9 +441,9 @@ NavigatorDetection.supportsBigInt64Array = function () {
 };
 
 /**
- * Detects whether the current browser supports BigUint64Array typed arrays.
+ * 检测当前浏览器是否支持 BigUint64Array 类型化数组。
  *
- * @returns {boolean} true if the browser supports BigUint64Array typed arrays, false if not.
+ * @returns {boolean} 如果浏览器支持 BigUint64Array 类型化数组则返回 true，否则返回 false。
  *
  * @see {@link https://tc39.es/ecma262/#sec-typedarray-objects|Typed Array Specification}
  */
@@ -453,9 +452,9 @@ NavigatorDetection.supportsBigUint64Array = function () {
 };
 
 /**
- * Detects whether the current browser supports BigInt.
+ * 检测当前浏览器是否支持 BigInt。
  *
- * @returns {boolean} true if the browser supports BigInt, false if not.
+ * @returns {boolean} 如果浏览器支持 BigInt 则返回 true，否则返回 false。
  *
  * @see {@link https://tc39.es/ecma262/#sec-bigint-objects|BigInt Specification}
  */
@@ -464,9 +463,9 @@ NavigatorDetection.supportsBigInt = function () {
 };
 
 /**
- * Detects whether the current browser supports Web Workers.
+ * 检测当前浏览器是否支持 Web Workers。
  *
- * @returns {boolean} true if the browsers supports Web Workers, false if not.
+ * @returns {boolean} 如果浏览器支持 Web Workers 则返回 true，否则返回 false。
  *
  * @see {@link http://www.w3.org/TR/workers/}
  */
@@ -475,9 +474,9 @@ NavigatorDetection.supportsWebWorkers = function () {
 };
 
 /**
- * Detects whether the current browser supports Web Assembly.
+ * 检测当前浏览器是否支持 Web Assembly。
  *
- * @returns {boolean} true if the browsers supports Web Assembly, false if not.
+ * @returns {boolean} 如果浏览器支持 Web Assembly 则返回 true，否则返回 false。
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/WebAssembly}
  */
@@ -486,8 +485,8 @@ NavigatorDetection.supportsWebAssembly = function () {
 };
 
 /**
- * Detects whether the current browser supports ECMAScript modules in web workers.
- * @returns {boolean} true if the browser supports ECMAScript modules in web workers.
+ * 检测当前浏览器是否支持在 Web Worker 中使用 ECMAScript 模块。
+ * @returns {boolean} 如果浏览器支持在 Web Worker 中使用 ECMAScript 模块则返回 true。
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Worker|Worker}
  */
 NavigatorDetection.supportsEsmWebWorkers = function () {
@@ -496,8 +495,8 @@ NavigatorDetection.supportsEsmWebWorkers = function () {
 
 let supportsWebGLResult;
 /**
- * Detects whether the current browser supports WebGL.
- * @returns {boolean} true if the browsers supports WebGL, false if not.
+ * 检测当前浏览器是否支持 WebGL。
+ * @returns {boolean} 如果浏览器支持 WebGL 则返回 true，否则返回 false。
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext}
  */
 NavigatorDetection.supportsWebGL = function () {
@@ -512,8 +511,8 @@ NavigatorDetection.supportsWebGL = function () {
 
 let supportsWebGL2Result;
 /**
- * Detects whether the current browser supports WebGL2.
- * @returns {boolean} true if the browsers supports WebGL2, false if not.
+ * 检测当前浏览器是否支持 WebGL2。
+ * @returns {boolean} 如果浏览器支持 WebGL2 则返回 true，否则返回 false。
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext}
  */
 NavigatorDetection.supportsWebGL2 = function () {
@@ -527,8 +526,8 @@ NavigatorDetection.supportsWebGL2 = function () {
 };
 
 /**
- * Detects whether the current browser supports WebGPU.
- * @returns {boolean} true if the browsers supports WebGPU, false if not.
+ * 检测当前浏览器是否支持 WebGPU。
+ * @returns {boolean} 如果浏览器支持 WebGPU 则返回 true，否则返回 false。
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Navigator/gpu}
  */
 NavigatorDetection.supportsWebGPU = function () {
