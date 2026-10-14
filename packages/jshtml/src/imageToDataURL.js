@@ -14,7 +14,7 @@ function imageToDataURL(image, mimeType, quality) {
 
     let canvas;
 
-    if (image instanceof HTMLCanvasElement) {
+    if (typeof HTMLCanvasElement !== 'undefined' && image instanceof HTMLCanvasElement) {
         canvas = image;
     } else {
         if (!_canvas) _canvas = document.createElement('canvas');
@@ -23,7 +23,7 @@ function imageToDataURL(image, mimeType, quality) {
 
         const context = _canvas.getContext('2d');
 
-        if (image instanceof ImageData) {
+        if (typeof ImageData !== 'undefined' && image instanceof ImageData) {
             context.putImageData(image, 0, 0);
         } else {
             context.drawImage(image, 0, 0, image.width, image.height);

@@ -67,7 +67,7 @@ function destroyObject(object, config = {}) {
                     object[key] = warnOnDestroyed(object);
                 else if (Array.isArray(value) && config.releaseArray === true)
                     value.length = 0;
-                else if (value instanceof HTMLElement && config.destroyHTMLElement === true)
+                else if (typeof HTMLElement !== 'undefined' && value instanceof HTMLElement && config.destroyHTMLElement === true)
                     destroyHTMLElement(value, config.deep);
                 //如果value是对象且deep为true
                 else if (typeof value === 'object' && config.deep === true) {

@@ -6,7 +6,7 @@ import measureText from "./measureText.js";
  * @param {Object} options 绘制文本配置项
  * @param {HTMLCanvasElement} canvas 画布对象，不填则自动创建
  * @returns {HTMLCanvasElement} 绘制后的画布对象
- * 
+ *
  * @example
  *  //文本配置项
  *  const options = {
@@ -34,7 +34,7 @@ function drawTextToCanvas(options = {}, canvas) {
     if (!options.text) throw new Error('options.text is required');
     const text = options.text;
 
-    let x, y, textAlign, textBaseline;
+    let x, y, textAlign, textBaseline, width, height;
     const scaleRadio = options.scaleRadio ?? 1;
     const background = options.background ?? false;
     let backgroundColor, backgroundPaddingX = 0, backgroundPaddingY = 0;
@@ -47,28 +47,31 @@ function drawTextToCanvas(options = {}, canvas) {
         canvas = document.createElement('canvas');
 
         const rect = measureText(text, options.font);
-        const width = (Math.ceil(rect.width) + backgroundPaddingX * 2) * scaleRadio;
-        const height = (Math.ceil(rect.height) + backgroundPaddingY * 2) * scaleRadio;
-        canvas.width = width;
-        canvas.height = height;
+        width = Math.ceil(rect.width) + backgroundPaddingX * 2;
+        height = Math.ceil(rect.height) + backgroundPaddingY * 2;
+        canvas.width = width * scaleRadio;
+        canvas.height = height * scaleRadio;
 
         x = width / 2;
         y = height / 2;
         textAlign = options.textAlign ?? 'center';
         textBaseline = options.textBaseline ?? 'middle';
     } else {
-        x = options.x ?? 0 * scaleRadio;
-        y = options.y ?? 0 * scaleRadio;
+        width = canvas.width / scaleRadio;
+        height = canvas.height / scaleRadio;
+        x = options.x ?? 0;
+        y = options.y ?? 0;
         textAlign = options.textAlign ?? 'start';
         textBaseline = options.textBaseline ?? 'alphabetic';
     }
 
     const context = canvas.getContext('2d');
+    context.save();
     context.scale(scaleRadio, scaleRadio);
 
     if (background) {
         context.fillStyle = backgroundColor;
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillRect(0, 0, width, height);
     }
 
     if (options.font)
@@ -88,6 +91,8 @@ function drawTextToCanvas(options = {}, canvas) {
         context.lineWidth = options.outlineWidth ?? 1;
         context.strokeText(text, x, y, maxWidth);
     }
+
+    context.restore();
 
     return canvas;
 };

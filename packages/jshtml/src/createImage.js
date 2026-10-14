@@ -22,7 +22,8 @@ function createImage(options = {}, onLoad, onError) {
     if (!url) throw new Error('createImage: url is required');
 
     const image = new Image();
-    image.crossOrigin = options.crossOrigin || 'anonymous';
+    if (options.crossOrigin)
+        image.crossOrigin = options.crossOrigin;
     if (typeof options.width === 'number')
         image.width = options.width;
     if (typeof options.height === 'number')

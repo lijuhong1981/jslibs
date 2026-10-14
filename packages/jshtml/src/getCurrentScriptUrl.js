@@ -3,13 +3,7 @@
  * @returns {string|undefined}
  */
 function getCurrentScriptUrl() {
-    if (import.meta) {
-        console.log('import.meta', import.meta);
-        return import.meta.url;
-    } else if (document.currentScript) {
-        console.log('document.currentScript', document.currentScript);
-        return document.currentScript.src;
-    }
+    return import.meta.url;
 };
 
 export default getCurrentScriptUrl;

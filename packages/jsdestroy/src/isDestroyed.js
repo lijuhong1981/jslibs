@@ -4,6 +4,8 @@
  * @returns {Boolean}
  */
 function isDestroyed(object) {
+    if (object == null)
+        return false;
     if (typeof object.isDestroyed !== 'undefined') {
         if (typeof object.isDestroyed === 'function')
             return object.isDestroyed();

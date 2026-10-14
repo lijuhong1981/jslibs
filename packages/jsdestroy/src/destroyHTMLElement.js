@@ -55,7 +55,7 @@ function destroyHTMLElementImpl(element, deepChildren) {
  * @returns {void}
  */
 function destroyHTMLElement(element, deepChildren) {
-    if (element instanceof HTMLElement === false) {
+    if (typeof HTMLElement === 'undefined' || element instanceof HTMLElement === false) {
         console.warn('The element must be instanceof HTMLElement.');
         return;
     }

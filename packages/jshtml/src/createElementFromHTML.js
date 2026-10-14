@@ -8,7 +8,8 @@ function createElementFromHTML(HTML) {
     div.innerHTML = HTML;
     // return div.childNodes[0];
     const domElement = div.children[0];
-    div.removeChild(domElement);
+    if (domElement)
+        div.removeChild(domElement);
     return domElement;
 };
 
