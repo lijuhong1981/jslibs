@@ -291,12 +291,10 @@ class ColorGradient extends Destroyable {
      */
     addArray(array) {
         Check.typeOf.array('array', array);
-        const result = [];
         array.forEach((element) => {
-            result.push(this.add(element));
+            this.add(element);
         });
         this.needsResort = true;
-        // return result;
         return this;
     }
 
@@ -393,7 +391,7 @@ class ColorGradient extends Destroyable {
                 let offset = element.offset;
                 if (this.reverse)
                     offset = 1.0 - offset;
-                gradient.addColorStop(element.offset, element.color.toCssColorString());
+                gradient.addColorStop(offset, element.color.toCssColorString());
             }
 
             context.fillStyle = gradient;

@@ -7,12 +7,12 @@ import floatToByte from "./floatToByte.js";
 import hue2rgb from "./hue2rgb.js";
 
 /**
- * A color, specified using red, green, blue, and alpha values,
- * which range from <code>0</code> (no intensity) to <code>1.0</code> (full intensity).
- * @param {number} [red=1.0] The red component.
- * @param {number} [green=1.0] The green component.
- * @param {number} [blue=1.0] The blue component.
- * @param {number} [alpha=1.0] The alpha component.
+ * 一种颜色，通过红色、绿色、蓝色和 alpha 分量指定，
+ * 取值范围从 <code>0</code>（无强度）到 <code>1.0</code>（满强度）。
+ * @param {number} [red=1.0] 红色分量。
+ * @param {number} [green=1.0] 绿色分量。
+ * @param {number} [blue=1.0] 蓝色分量。
+ * @param {number} [alpha=1.0] alpha 分量。
  *
  * @constructor
  * @alias Color4
@@ -27,7 +27,7 @@ function ColorRGBA(red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0) {
 
     Object.defineProperties(this, {
         /**
-         * The red component.
+         * 红色分量。
          * @type {number}
          * @default 1.0
          */
@@ -41,7 +41,7 @@ function ColorRGBA(red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0) {
             }
         },
         /**
-         * The green component.
+         * 绿色分量。
          * @type {number}
          * @default 1.0
          */
@@ -55,7 +55,7 @@ function ColorRGBA(red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0) {
             }
         },
         /**
-         * The blue component.
+         * 蓝色分量。
          * @type {number}
          * @default 1.0
          */
@@ -69,7 +69,7 @@ function ColorRGBA(red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0) {
             }
         },
         /**
-         * The alpha component.
+         * alpha 分量。
          * @type {number}
          * @default 1.0
          */
@@ -86,15 +86,15 @@ function ColorRGBA(red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0) {
 };
 
 /**
- * Creates a new Color specified using red, green, blue, and alpha values,
- * which range from <code>0</code> (no intensity) to <code>1.0</code> (full intensity).
+ * 创建新的 Color，通过红色、绿色、蓝色和 alpha 分量指定，
+ * 取值范围从 <code>0</code>（无强度）到 <code>1.0</code>（满强度）。
  *
- * @param {number} [red=1.0] The red component.
- * @param {number} [green=1.0] The green component.
- * @param {number} [blue=1.0] The blue component.
- * @param {number} [alpha=1.0] The alpha component.
- * @param {ColorRGBA} [result] The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter or a new Color instance if one was not provided.
+ * @param {number} [red=1.0] 红色分量。
+ * @param {number} [green=1.0] 绿色分量。
+ * @param {number} [blue=1.0] 蓝色分量。
+ * @param {number} [alpha=1.0] alpha 分量。
+ * @param {ColorRGBA} [result] 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数；若未提供则返回新的 Color 实例。
  */
 ColorRGBA.fromValues = function (red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0, result = new ColorRGBA()) {
     result.red = red;
@@ -105,25 +105,25 @@ ColorRGBA.fromValues = function (red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0
 };
 
 /**
- * Sets this Color values from specified using red, green, blue, and alpha values,
- * which range from <code>0</code> (no intensity) to <code>1.0</code> (full intensity).
+ * 通过指定的红色、绿色、蓝色和 alpha 分量设置此 Color 的值，
+ * 取值范围从 <code>0</code>（无强度）到 <code>1.0</code>（满强度）。
  * 
  * @see ColorRGBA.fromValues
 */
-ColorRGBA.prototype.setFromValues = function (red = 1.0, green = 1.0, blue = 1.0) {
-    return ColorRGBA.fromValues(red, green, blue, this);
+ColorRGBA.prototype.setFromValues = function (red = 1.0, green = 1.0, blue = 1.0, alpha = 1.0) {
+    return ColorRGBA.fromValues(red, green, blue, alpha, this);
 };
 
 /**
- * Creates a new Color specified using red, green, blue, and alpha values,
- * that are in the range of 0 to 255, converting them internally to a range of 0.0 to 1.0.
+ * 创建新的 Color，通过红色、绿色、蓝色和 alpha 分量指定，
+ * 取值范围为 0 到 255，内部会将其转换为 0.0 到 1.0 的范围。
  *
- * @param {number} [red=255] The red component.
- * @param {number} [green=255] The green component.
- * @param {number} [blue=255] The blue component.
- * @param {number} [alpha=255] The alpha component.
- * @param {ColorRGBA} [result] The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter or a new Color instance if one was not provided.
+ * @param {number} [red=255] 红色分量。
+ * @param {number} [green=255] 绿色分量。
+ * @param {number} [blue=255] 蓝色分量。
+ * @param {number} [alpha=255] alpha 分量。
+ * @param {ColorRGBA} [result] 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数；若未提供则返回新的 Color 实例。
  * 
  * @see ColorRGBA#toBytes
  */
@@ -141,23 +141,23 @@ ColorRGBA.fromBytes = function (red = 255.0, green = 255.0, blue = 255.0, alpha 
 };
 
 /**
- * Sets this Color values from specified using red, green, blue, and alpha values,
- * that are in the range of 0 to 255, converting them internally to a range of 0.0 to 1.0.
+ * 通过指定的红色、绿色、蓝色和 alpha 分量设置此 Color 的值，
+ * 取值范围为 0 到 255，内部会将其转换为 0.0 到 1.0 的范围。
  * 
  * @see ColorRGBA.fromBytes
 */
-ColorRGBA.prototype.setFromBytes = function (red, green, blue) {
-    return ColorRGBA.fromBytes(red, green, blue, this);
+ColorRGBA.prototype.setFromBytes = function (red = 255, green = 255, blue = 255, alpha = 255) {
+    return ColorRGBA.fromBytes(red, green, blue, alpha, this);
 };
 
 /**
- * Creates a new Color that has the same red, green, and blue components
- * of the specified color, but with the specified alpha value.
+ * 创建新的 Color，其红色、绿色和蓝色分量与
+ * 与指定颜色相同，但使用指定的 alpha 值。
  *
- * @param {ColorRGBA} color The base color
- * @param {number} alpha The new alpha component.
- * @param {ColorRGBA} [result] The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter or a new Color instance if one was not provided.
+ * @param {ColorRGBA} color 基础颜色
+ * @param {number} alpha 新的 alpha 分量。
+ * @param {ColorRGBA} [result] 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数；若未提供则返回新的 Color 实例。
  *
  * @example 
  * const translucentRed = ColorRGBA.fromAlpha(ColorRGBA.RED, 0.9);
@@ -180,12 +180,12 @@ const scratchUint32Array = new Uint32Array(scratchArrayBuffer);
 const scratchUint8Array = new Uint8Array(scratchArrayBuffer);
 
 /**
- * Creates a new Color from a single numeric unsigned 32-bit RGBA value, using the endianness
- * of the system.
+ * 从单个无符号 32 位 RGBA 数值创建新的 Color，使用系统的
+ * 字节序。
  *
- * @param {number} rgba A single numeric unsigned 32-bit RGBA value.
- * @param {ColorRGBA} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGBA} The color object.
+ * @param {number} rgba 单个无符号 32 位 RGBA 数值。
+ * @param {ColorRGBA} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGBA} 颜色对象。
  *
  * @example
  * const color = ColorRGBA.fromHexNumber(0x67ADDFFF);
@@ -194,20 +194,20 @@ const scratchUint8Array = new Uint8Array(scratchArrayBuffer);
  */
 ColorRGBA.fromHexNumber = function (rgba, result) {
     Check.typeOf.integer('rgba', rgba);
-    // scratchUint32Array and scratchUint8Array share an underlying array buffer
+    // scratchUint32Array 与 scratchUint8Array 共享同一个底层 ArrayBuffer
     scratchUint32Array[0] = rgba;
     return ColorRGBA.fromBytes(
-        scratchUint8Array[0],
-        scratchUint8Array[1],
-        scratchUint8Array[2],
         scratchUint8Array[3],
+        scratchUint8Array[2],
+        scratchUint8Array[1],
+        scratchUint8Array[0],
         result,
     );
 };
 
 /**
- * Sets this Color values from a single numeric unsigned 32-bit RGBA value, using the endianness
- * of the system.
+ * 从单个无符号 32 位 RGBA 数值设置此 Color 的值，使用系统的
+ * 字节序。
  *
  * @see ColorRGBA.fromHexNumber
  */
@@ -216,16 +216,16 @@ ColorRGBA.prototype.setFromHexNumber = function (rgba) {
 };
 
 /**
- * Creates a Color instance from hue, saturation, and lightness.
+ * 从色相、饱和度和亮度创建 Color 实例。
  *
- * @param {number} [hue=0] The hue angle 0...1
- * @param {number} [saturation=0] The saturation value 0...1
- * @param {number} [lightness=0] The lightness value 0...1
- * @param {number} [alpha=1.0] The alpha component 0...1
- * @param {ColorRGBA} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGBA} The color object.
+ * @param {number} [hue=0] 色相角，范围 0...1
+ * @param {number} [saturation=0] 饱和度值，范围 0...1
+ * @param {number} [lightness=0] 亮度值，范围 0...1
+ * @param {number} [alpha=1.0] alpha 分量，范围 0...1
+ * @param {ColorRGBA} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGBA} 颜色对象。
  *
- * @see {@link http://www.w3.org/TR/css3-color/#hsl-color|CSS color values}
+ * @see {@link http://www.w3.org/TR/css3-color/#hsl-color|CSS 颜色值}
  */
 ColorRGBA.fromHsl = function (hue = 0, saturation = 0, lightness = 0, alpha = 1.0, result = new ColorRGBA()) {
     hue = hue % 1.0;
@@ -256,7 +256,7 @@ ColorRGBA.fromHsl = function (hue = 0, saturation = 0, lightness = 0, alpha = 1.
 };
 
 /**
- * Sets this Color values from hue, saturation, and lightness.
+ * 从色相、饱和度和亮度设置此 Color 的值。
  * 
  * @see ColorRGBA.fromHsl
  */
@@ -265,41 +265,41 @@ ColorRGBA.prototype.setFromHsl = function (hue, saturation, lightness, alpha) {
 };
 
 /**
- * Creates a random color using the provided options. 
+ * 使用给定选项创建随机颜色。
  *
- * @param {Object} [options] Object with the following properties:
- * @param {number} [options.red] If specified, the red component to use instead of a randomized value.
- * @param {number} [options.minimumRed=0.0] The maximum red value to generate if none was specified.
- * @param {number} [options.maximumRed=1.0] The minimum red value to generate if none was specified.
- * @param {number} [options.green] If specified, the green component to use instead of a randomized value.
- * @param {number} [options.minimumGreen=0.0] The maximum green value to generate if none was specified.
- * @param {number} [options.maximumGreen=1.0] The minimum green value to generate if none was specified.
- * @param {number} [options.blue] If specified, the blue component to use instead of a randomized value.
- * @param {number} [options.minimumBlue=0.0] The maximum blue value to generate if none was specified.
- * @param {number} [options.maximumBlue=1.0] The minimum blue value to generate if none was specified.
- * @param {number} [options.alpha] If specified, the alpha component to use instead of a randomized value.
- * @param {number} [options.minimumAlpha=0.0] The maximum alpha value to generate if none was specified.
- * @param {number} [options.maximumAlpha=1.0] The minimum alpha value to generate if none was specified.
- * @param {ColorRGBA} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGBA} The modified result parameter or a new instance if result was undefined.
+ * @param {Object} [options] 具有以下属性的对象：
+ * @param {number} [options.red] 若指定，则使用该红色分量代替随机值。
+ * @param {number} [options.minimumRed=0.0] 未指定 red 时生成的最大 red 值。
+ * @param {number} [options.maximumRed=1.0] 未指定 red 时生成的最小 red 值。
+ * @param {number} [options.green] 若指定，则使用该绿色分量代替随机值。
+ * @param {number} [options.minimumGreen=0.0] 未指定 green 时生成的最大 green 值。
+ * @param {number} [options.maximumGreen=1.0] 未指定 green 时生成的最小 green 值。
+ * @param {number} [options.blue] 若指定，则使用该蓝色分量代替随机值。
+ * @param {number} [options.minimumBlue=0.0] 未指定 blue 时生成的最大 blue 值。
+ * @param {number} [options.maximumBlue=1.0] 未指定 blue 时生成的最小 blue 值。
+ * @param {number} [options.alpha] 若指定，则使用该 alpha 分量代替随机值。
+ * @param {number} [options.minimumAlpha=0.0] 未指定 alpha 时生成的最大 alpha 值。
+ * @param {number} [options.maximumAlpha=1.0] 未指定 alpha 时生成的最小 alpha 值。
+ * @param {ColorRGBA} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGBA} 修改后的 result 参数；若 result 未定义则返回新实例。
  *
- * @exception {Error} minimumRed must be less than or equal to maximumRed.
- * @exception {Error} minimumGreen must be less than or equal to maximumGreen.
- * @exception {Error} minimumBlue must be less than or equal to maximumBlue.
- * @exception {Error} minimumAlpha must be less than or equal to maximumAlpha.
+ * @exception {Error} minimumRed 必须小于或等于 maximumRed。
+ * @exception {Error} minimumGreen 必须小于或等于 maximumGreen。
+ * @exception {Error} minimumBlue 必须小于或等于 maximumBlue。
+ * @exception {Error} minimumAlpha 必须小于或等于 maximumAlpha。
  *
  * @example
- * //Create a completely random color
+ * //创建一个完全随机的颜色
  * const color = ColorRGBA.fromRandom();
  *
- * //Create a random shade of yellow.
+ * //创建一个随机的黄色调。
  * const color1 = ColorRGBA.fromRandom({
  *     red : 1.0,
  *     green : 1.0,
  *     alpha : 1.0
  * });
  *
- * //Create a random bright color.
+ * //创建一个随机的亮色。
  * const color2 = ColorRGBA.fromRandom({
  *     minimumRed : 0.75,
  *     minimumGreen : 0.75,
@@ -381,7 +381,7 @@ ColorRGBA.fromRandom = function (options = {}, result = new ColorRGBA()) {
 };
 
 /**
- * Set this Color random values using the provided options.
+ * 使用给定选项设置此 Color 的随机值。
  * 
  * @see ColorRGBA.fromRandom
 */
@@ -394,26 +394,26 @@ const rgbaMatcher = /^#([0-9a-f])([0-9a-f])([0-9a-f])([0-9a-f])?$/i;
 //#rrggbbaa
 const rrggbbaaMatcher =
     /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})?$/i;
-//rgb(), rgba(), or rgb%()
+//rgb()、rgba() 或 rgb%()
 const rgbParenthesesMatcher =
     /^rgba?\s*\(\s*([0-9.]+%?)\s*[,\s]+\s*([0-9.]+%?)\s*[,\s]+\s*([0-9.]+%?)(?:\s*[,\s/]+\s*([0-9.]+))?\s*\)$/i;
-//hsl() or hsla()
+//hsl() 或 hsla()
 const hslParenthesesMatcher =
     /^hsla?\s*\(\s*([0-9.]+)\s*[,\s]+\s*([0-9.]+%)\s*[,\s]+\s*([0-9.]+%)(?:\s*[,\s/]+\s*([0-9.]+))?\s*\)$/i;
 
 /**
- * Creates a Color instance from a CSS color value.
+ * 从 CSS 颜色值创建 Color 实例。
  *
- * @param {string} colorString The CSS color value in #rgb, #rgba, #rrggbb, #rrggbbaa, rgb(), rgba(), hsl(), or hsla() format.
- * @param {ColorRGBA} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGBA} The color object, or undefined if the string was not a valid CSS color.
+ * @param {string} colorString 采用 #rgb、#rgba、#rrggbb、#rrggbbaa、rgb()、rgba()、hsl() 或 hsla() 格式的 CSS 颜色值。
+ * @param {ColorRGBA} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGBA} 颜色对象；若字符串不是有效的 CSS 颜色则为 undefined。
  *
  *
  * @example
  * const color = ColorRGBA.fromCssColorString('#67ADDF');
  * const green = ColorRGBA.fromCssColorString('green');
  *
- * @see {@link http://www.w3.org/TR/css3-color|CSS color values}
+ * @see {@link http://www.w3.org/TR/css3-color|CSS 颜色值}
  * @see ColorRGBA#toCssColorString
  * @see ColorRGBA#toCssHexString
  */
@@ -422,7 +422,7 @@ ColorRGBA.fromCssColorString = function (colorString, result = new ColorRGBA()) 
     Check.typeOf.string("colorString", colorString);
     //>>includeEnd('debug');
 
-    // Remove all surrounding whitespaces from the color string
+    // 移除颜色字符串两端的所有空白字符
     let color = colorString.trim();
 
     const namedColor = ColorRGBA[color.toUpperCase()];
@@ -445,17 +445,18 @@ ColorRGBA.fromCssColorString = function (colorString, result = new ColorRGBA()) 
         result.red = parseInt(matches[1], 16) / 255.0;
         result.green = parseInt(matches[2], 16) / 255.0;
         result.blue = parseInt(matches[3], 16) / 255.0;
+        result.alpha = parseInt(matches[4] ?? "ff", 16) / 255.0;
         return result;
     }
 
     matches = rgbParenthesesMatcher.exec(color);
     if (matches !== null) {
         result.red =
-            parseFloat(matches[1]) / ("%" === matches[1].substring(-1) ? 100.0 : 255.0);
+            parseFloat(matches[1]) / (matches[1].endsWith("%") ? 100.0 : 255.0);
         result.green =
-            parseFloat(matches[2]) / ("%" === matches[2].substring(-1) ? 100.0 : 255.0);
+            parseFloat(matches[2]) / (matches[2].endsWith("%") ? 100.0 : 255.0);
         result.blue =
-            parseFloat(matches[3]) / ("%" === matches[3].substring(-1) ? 100.0 : 255.0);
+            parseFloat(matches[3]) / (matches[3].endsWith("%") ? 100.0 : 255.0);
         result.alpha = parseFloat(matches[4] ?? "1.0");
         return result;
     }
@@ -473,7 +474,7 @@ ColorRGBA.fromCssColorString = function (colorString, result = new ColorRGBA()) 
 };
 
 /**
- * Set this Color values from a CSS color value.
+ * 从 CSS 颜色值设置此 Color 的值。
  * 
  * @see ColorRGBA.fromCssColorString
 */
@@ -482,19 +483,19 @@ ColorRGBA.prototype.setFromCssColorString = function (colorString) {
 };
 
 /**
- * The number of elements used to pack the object into an array.
+ * 将对象打包到数组中所需的元素个数。
  * @type {number}
  */
 ColorRGBA.packedLength = 4;
 
 /**
- * Stores the provided instance into the provided array.
+ * 将给定实例存储到给定数组中。
  *
- * @param {ColorRGBA} value The value to pack.
- * @param {number[]} array The array to pack into.
- * @param {number} [startingIndex=0] The index into the array at which to start packing the elements.
+ * @param {ColorRGBA} value 要打包的值。
+ * @param {number[]} array 要打包到的数组。
+ * @param {number} [startingIndex=0] 数组中开始打包元素的索引。
  *
- * @returns {number[]} The array that was packed into
+ * @returns {number[]} 已打包到的数组
  */
 ColorRGBA.pack = function (value, array = [], startingIndex = 0) {
     //>>includeStart('debug', pragmas.debug);
@@ -510,12 +511,12 @@ ColorRGBA.pack = function (value, array = [], startingIndex = 0) {
 };
 
 /**
- * Retrieves an instance from a packed array.
+ * 从已打包的数组中取回实例。
  *
- * @param {number[]} array The packed array.
- * @param {number} [startingIndex=0] The starting index of the element to be unpacked.
- * @param {ColorRGBA} [result] The object into which to store the result.
- * @returns {ColorRGBA} The modified result parameter or a new Color instance if one was not provided.
+ * @param {number[]} array 已打包的数组。
+ * @param {number} [startingIndex=0] 要解包元素的起始索引。
+ * @param {ColorRGBA} [result] 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数；若未提供则返回新的 Color 实例。
  */
 ColorRGBA.unpack = function (array, startingIndex = 0, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -531,12 +532,12 @@ ColorRGBA.unpack = function (array, startingIndex = 0, result = new ColorRGBA())
 };
 
 /**
- * Creates an instance from a array, equals unpack.
+ * 从数组创建实例，等同于 unpack。
  *
- * @param {number[]} array The packed array.
- * @param {number} [startingIndex=0] The starting index of the element to be unpacked.
- * @param {ColorRGBA} [result] The object into which to store the result.
- * @returns {ColorRGBA} The modified result parameter or a new Color instance if one was not provided.
+ * @param {number[]} array 已打包的数组。
+ * @param {number} [startingIndex=0] 要解包元素的起始索引。
+ * @param {ColorRGBA} [result] 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数；若未提供则返回新的 Color 实例。
  * 
  * @see ColorRGBA.unpack
  * @see ColorRGBA#toArray
@@ -544,7 +545,7 @@ ColorRGBA.unpack = function (array, startingIndex = 0, result = new ColorRGBA())
 ColorRGBA.fromArray = ColorRGBA.unpack;
 
 /**
- * Sets this Color values from a array.
+ * 从数组设置此 Color 的值。
  * 
  * @see ColorRGBA.fromArray
 */
@@ -553,12 +554,12 @@ ColorRGBA.prototype.setFromArray = function (array, startingIndex) {
 };
 
 /**
- * Stores this instance into the provided array.
+ * 将此实例存储到给定数组中。
  * 
- * @param {number[]} array The array to pack into.
- * @param {number} [startingIndex=0] The index into the array at which to start packing the elements.
+ * @param {number[]} array 要打包到的数组。
+ * @param {number} [startingIndex=0] 数组中开始打包元素的索引。
  *
- * @returns {number[]} The array that was packed into
+ * @returns {number[]} 已打包到的数组
  * 
  * @example
  * const array = ColorRGB.BLUE.toArray();
@@ -574,11 +575,11 @@ ColorRGBA.prototype.toArray = function (array, startingIndex) {
 };
 
 /**
- * Duplicates a Color.
+ * 复制一个 Color。
  *
- * @param {ColorRGBA} color The Color to duplicate.
- * @param {ColorRGBA} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGBA} The modified result parameter or a new instance if result was undefined. (Returns undefined if color is undefined)
+ * @param {ColorRGBA} color 要复制的 Color。
+ * @param {ColorRGBA} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGBA} 修改后的 result 参数；若 result 未定义则返回新实例。（若 color 为 undefined 则返回 undefined）
  */
 ColorRGBA.clone = function (color, result = new ColorRGBA()) {
     if (!color) {
@@ -593,11 +594,11 @@ ColorRGBA.clone = function (color, result = new ColorRGBA()) {
 };
 
 /**
- * Returns true if the first Color equals the second Color.
+ * 若第一个 Color 与第二个 Color 相等，则返回 true。
  *
- * @param {ColorRGBA} [left] The first Color to compare for equality.
- * @param {ColorRGBA} [right] The second Color to compare for equality.
- * @returns {boolean} <code>true</code> if the Colors are equal; otherwise, <code>false</code>.
+ * @param {ColorRGBA} [left] 要比较是否相等的第一个 Color。
+ * @param {ColorRGBA} [right] 要比较是否相等的第二个 Color。
+ * @returns {boolean} 若 Colors 相等则返回 <code>true</code>；否则返回 <code>false</code>。
  */
 ColorRGBA.equals = function (left, right) {
     return (
@@ -612,12 +613,12 @@ ColorRGBA.equals = function (left, right) {
 };
 
 /**
- * Returns true if the Color values equals the Array values.
+ * 若 Color 的值与数组的值相等，则返回 true。
  *
- * @param {ColorRGBA} [color] The Color to compare for equality.
- * @param {number[]} [array] The Array to compare for equality.
- * @param {startingIndex} [startingIndex = 0] The starting index of the Array.
- * @returns {boolean} <code>true</code> if the values are equal; otherwise, <code>false</code>.
+ * @param {ColorRGBA} [color] 要比较是否相等的 Color。
+ * @param {number[]} [array] 要比较是否相等的数组。
+ * @param {startingIndex} [startingIndex = 0] 数组的起始索引。
+ * @returns {boolean} 若值相等则返回 <code>true</code>；否则返回 <code>false</code>。
  */
 ColorRGBA.equalsArray = function (color, array, startingIndex = 0) {
     return (
@@ -631,12 +632,12 @@ ColorRGBA.equalsArray = function (color, array, startingIndex = 0) {
 };
 
 /**
- * Returns <code>true</code> if the first Color equals the second Color componentwise within the specified epsilon.
+ * 若第一个 Color 与第二个 Color 在给定 epsilon 内逐分量相等，则返回 <code>true</code>。
  *
- * @param {ColorRGBA} [left] The first Color to compare for equality.
- * @param {ColorRGBA} [right] The second Color to compare for equality.
- * @param {number} [epsilon=0.0] The epsilon to use for equality testing.
- * @returns {boolean} <code>true</code> if the Colors are equal within the specified epsilon; otherwise, <code>false</code>.
+ * @param {ColorRGBA} [left] 要比较是否相等的第一个 Color。
+ * @param {ColorRGBA} [right] 要比较是否相等的第二个 Color。
+ * @param {number} [epsilon=0.0] 用于相等性测试的 epsilon。
+ * @returns {boolean} 若 Colors 在给定 epsilon 内相等则返回 <code>true</code>；否则返回 <code>false</code>。
  */
 ColorRGBA.equalsEpsilon = function (left, right, epsilon = 0.0) {
     return (
@@ -650,62 +651,62 @@ ColorRGBA.equalsEpsilon = function (left, right, epsilon = 0.0) {
 };
 
 /**
- * Returns a duplicate of a Color instance.
+ * 返回 Color 实例的副本。
  *
- * @param {ColorRGBA} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGBA} The modified result parameter or a new instance if result was undefined.
+ * @param {ColorRGBA} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGBA} 修改后的 result 参数；若 result 未定义则返回新实例。
  */
 ColorRGBA.prototype.clone = function (result) {
     return ColorRGBA.clone(this, result);
 };
 
 /**
- * Returns true if this Color equals other.
+ * 若此 Color 与 other 相等，则返回 true。
  *
- * @param {ColorRGBA} [other] The Color to compare for equality.
- * @returns {boolean} <code>true</code> if the Colors are equal; otherwise, <code>false</code>.
+ * @param {ColorRGBA} [other] 要比较是否相等的 Color。
+ * @returns {boolean} 若 Colors 相等则返回 <code>true</code>；否则返回 <code>false</code>。
  */
 ColorRGBA.prototype.equals = function (other) {
     return ColorRGBA.equals(this, other);
 };
 
 /**
- * Returns true if this Color values equals the Array values.
+ * 若此 Color 的值与数组的值相等，则返回 true。
  *
- * @param {number[]} [array] The Array to compare for equality.
- * @param {startingIndex} [startingIndex = 0] The starting index of the Array.
- * @returns {boolean} <code>true</code> if the values are equal; otherwise, <code>false</code>.
+ * @param {number[]} [array] 要比较是否相等的数组。
+ * @param {startingIndex} [startingIndex = 0] 数组的起始索引。
+ * @returns {boolean} 若值相等则返回 <code>true</code>；否则返回 <code>false</code>。
  */
 ColorRGBA.prototype.equalsArray = function (array, startingIndex) {
     return ColorRGBA.equalsArray(this, array, startingIndex);
 }
 
 /**
- * Returns <code>true</code> if this Color equals other componentwise within the specified epsilon.
+ * 若此 Color 与 other 在给定 epsilon 内逐分量相等，则返回 <code>true</code>。
  *
- * @param {ColorRGBA} other The Color to compare for equality.
- * @param {number} [epsilon=0.0] The epsilon to use for equality testing.
- * @returns {boolean} <code>true</code> if the Colors are equal within the specified epsilon; otherwise, <code>false</code>.
+ * @param {ColorRGBA} other 要比较是否相等的 Color。
+ * @param {number} [epsilon=0.0] 用于相等性测试的 epsilon。
+ * @returns {boolean} 若 Colors 在给定 epsilon 内相等则返回 <code>true</code>；否则返回 <code>false</code>。
  */
 ColorRGBA.prototype.equalsEpsilon = function (other, epsilon) {
     return ColorRGBA.equalsEpsilon(this, other, epsilon);
 };
 
 /**
- * Creates a string representing this Color in the format 'Color(red, green, blue, alpha)'.
+ * 创建以 'Color(red, green, blue, alpha)' 格式表示此 Color 的字符串。
  *
- * @returns {string} A string representing this Color in the format 'Color(red, green, blue, alpha)'.
+ * @returns {string} 以 'Color(red, green, blue, alpha)' 格式表示此 Color 的字符串。
  */
 ColorRGBA.prototype.toString = function () {
     return `Color(${this.red}, ${this.green}, ${this.blue}, ${this.alpha})`;
 };
 
 /**
- * Creates a string containing the CSS color value for this color.
+ * 创建包含此颜色的 CSS 颜色值的字符串。
  *
- * @returns {string} The CSS equivalent of this color.
+ * @returns {string} 此颜色对应的 CSS 值。
  *
- * @see {@link http://www.w3.org/TR/css3-color/#rgba-color|CSS RGB or RGBA color values}
+ * @see {@link http://www.w3.org/TR/css3-color/#rgba-color|CSS RGB 或 RGBA 颜色值}
  * @see ColorRGBA.fromCssColorString
  */
 ColorRGBA.prototype.toCssColorString = function () {
@@ -716,9 +717,9 @@ ColorRGBA.prototype.toCssColorString = function () {
 };
 
 /**
- * Creates a string containing CSS hex string color value for this color.
+ * 创建包含此颜色的 CSS 十六进制字符串颜色值的字符串。
  *
- * @returns {string} The CSS hex string equivalent of this color.
+ * @returns {string} 此颜色对应的 CSS 十六进制字符串。
  */
 ColorRGBA.prototype.toCssHexString = function () {
     let r = floatToByte(this.red).toString(16);
@@ -741,11 +742,11 @@ ColorRGBA.prototype.toCssHexString = function () {
 };
 
 /**
- * Converts this color to an array of red, green, blue, and alpha values
- * that are in the range of 0 to 255.
+ * 将此颜色转换为由红色、绿色、蓝色和 alpha 值组成的数组，
+ * 取值范围为 0 到 255。
  *
- * @param {number[]} [result] The array to store the result in, if undefined a new instance will be created.
- * @returns {number[]} The modified result parameter or a new instance if result was undefined.
+ * @param {number[]} [result] 用于存储结果的数组，若未定义将创建一个新实例。
+ * @returns {number[]} 修改后的 result 参数；若 result 未定义则返回新实例。
  * 
  * @see ColorRGBA.fromBytes
  */
@@ -763,10 +764,10 @@ ColorRGBA.prototype.toBytes = function (result = []) {
 };
 
 /**
- * Converts this color to a single numeric unsigned 32-bit RGBA value, using the endianness
- * of the system.
+ * 将此颜色转换为单个无符号 32 位 RGBA 数值，使用系统的
+ * 字节序。
  *
- * @returns {number} A single numeric unsigned 32-bit RGBA value.
+ * @returns {number} 单个无符号 32 位 RGBA 数值。
  *
  *
  * @example
@@ -775,21 +776,21 @@ ColorRGBA.prototype.toBytes = function (result = []) {
  * @see ColorRGBA.fromHexNumber
  */
 ColorRGBA.prototype.toHexNumber = function () {
-    // scratchUint32Array and scratchUint8Array share an underlying array buffer
-    scratchUint8Array[0] = floatToByte(this.red);
-    scratchUint8Array[1] = floatToByte(this.green);
-    scratchUint8Array[2] = floatToByte(this.blue);
-    scratchUint8Array[3] = floatToByte(this.alpha);
+    // scratchUint32Array 与 scratchUint8Array 共享同一个底层 ArrayBuffer
+    scratchUint8Array[3] = floatToByte(this.red);
+    scratchUint8Array[2] = floatToByte(this.green);
+    scratchUint8Array[1] = floatToByte(this.blue);
+    scratchUint8Array[0] = floatToByte(this.alpha);
     return scratchUint32Array[0];
 };
 
 /**
- * Creates a new Color that Brightens by the provided magnitude.
+ * 创建按给定幅度提亮后的新 Color。
  *
- * @param {ColorRGBA} color The base color
- * @param {number} magnitude A positive number indicating the amount to brighten.
- * @param {ColorRGBA} [result] The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter or a new ColorRGB instance if one was not provided.
+ * @param {ColorRGBA} color 基础颜色
+ * @param {number} magnitude 表示提亮量的正数。
+ * @param {ColorRGBA} [result] 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数；若未提供则返回新的 ColorRGB 实例。
  *
  * @example 
  * const brightBlue = ColorRGB.brighten(ColorRGB.BLUE, 0.5);
@@ -808,11 +809,11 @@ ColorRGBA.brighten = function (color, magnitude, result = new ColorRGBA()) {
 };
 
 /**
- * Brightens this Color by the provided magnitude.
+ * 将 this Color 按给定幅度提亮。
  *
- * @param {number} magnitude A positive number indicating the amount to brighten.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result.
+ * @param {number} magnitude 表示提亮量的正数。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的结果。
  *
  * @see ColorRGBA.brighten
  */
@@ -821,12 +822,12 @@ ColorRGBA.prototype.brighten = function (magnitude, result) {
 };
 
 /**
- * Creates a new Color that Darkens by the provided magnitude.
+ * 创建按给定幅度变暗后的新 Color。
  *
- * @param {ColorRGBA} color The base color
- * @param {number} magnitude A positive number indicating the amount to darken.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} color 基础颜色
+ * @param {number} magnitude 表示变暗量的正数。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  *
  * @example
  * const darkBlue = ColorRGBA.darken(ColorRGB.BLUE, 0.5);
@@ -845,11 +846,11 @@ ColorRGBA.darken = function (color, magnitude, result = new ColorRGBA()) {
 };
 
 /**
- * Darkens this Color by the provided magnitude.
+ * 将 this Color 按给定幅度变暗。
  *
- * @param {number} magnitude A positive number indicating the amount to darken.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {number} magnitude 表示变暗量的正数。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  *
  * @see ColorRGBA.darken
  */
@@ -858,12 +859,12 @@ ColorRGBA.prototype.darken = function (magnitude, result) {
 };
 
 /**
- * Computes the componentwise sum of two Colors.
+ * 计算两个 Color 的逐分量和。
  *
- * @param {ColorRGBA} left The first Color.
- * @param {ColorRGBA} right The second Color.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} left 第一个 Color。
+ * @param {ColorRGBA} right 第二个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.add = function (left, right, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -879,11 +880,11 @@ ColorRGBA.add = function (left, right, result = new ColorRGBA()) {
 };
 
 /**
- * Adds this Color componentwise by other Color.
+ * 将此 Color 按分量加上 other Color。
  *
- * @param {ColorRGBA} other The other Color.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} other 另一个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  * 
  * @see ColorRGBA.add
  */
@@ -892,12 +893,12 @@ ColorRGBA.prototype.add = function (other, result) {
 };
 
 /**
- * Computes the componentwise difference of two Colors.
+ * 计算两个 Color 的逐分量差值。
  *
- * @param {ColorRGBA} left The first Color.
- * @param {ColorRGBA} right The second Color.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} left 第一个 Color。
+ * @param {ColorRGBA} right 第二个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.subtract = function (left, right, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -913,11 +914,11 @@ ColorRGBA.subtract = function (left, right, result = new ColorRGBA()) {
 };
 
 /**
- * Subtracts this Color componentwise by other Color.
+ * 将此 Color 按分量减去 other Color。
  *
- * @param {ColorRGBA} other The other Color.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} other 另一个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  * 
  * @see ColorRGBA.subtract
  */
@@ -926,12 +927,12 @@ ColorRGBA.prototype.subtract = function (other, result) {
 };
 
 /**
- * Computes the componentwise product of two Colors.
+ * 计算两个 Color 的逐分量乘积。
  *
- * @param {ColorRGBA} left The first Color.
- * @param {ColorRGBA} right The second Color.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} left 第一个 Color。
+ * @param {ColorRGBA} right 第二个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.multiply = function (left, right, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -947,11 +948,11 @@ ColorRGBA.multiply = function (left, right, result = new ColorRGBA()) {
 };
 
 /**
- * Multiplies this Color componentwise by other Color.
+ * 将此 Color 按分量乘以 other Color。
  *
- * @param {ColorRGBA} other The other Color.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} other 另一个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  * 
  * @see ColorRGBA.multiply
  */
@@ -960,12 +961,12 @@ ColorRGBA.prototype.multiply = function (other, result) {
 };
 
 /**
- * Computes the componentwise quotient of two Colors.
+ * 计算两个 Color 的逐分量商。
  *
- * @param {ColorRGBA} left The first Color.
- * @param {ColorRGBA} right The second Color.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} left 第一个 Color。
+ * @param {ColorRGBA} right 第二个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.divide = function (left, right, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -981,11 +982,11 @@ ColorRGBA.divide = function (left, right, result = new ColorRGBA()) {
 };
 
 /**
- * Divides this Color componentwise by other Color.
+ * 将此 Color 按分量除以 other Color。
  *
- * @param {ColorRGBA} other The other Color.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} other 另一个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  * 
  * @see ColorRGBA.divide
  */
@@ -994,12 +995,12 @@ ColorRGBA.prototype.divide = function (other, result) {
 };
 
 /**
- * Computes the componentwise modulus of two Colors.
+ * 计算两个 Color 的逐分量取模。
  *
- * @param {ColorRGBA} left The first Color.
- * @param {ColorRGBA} right The second Color.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} left 第一个 Color。
+ * @param {ColorRGBA} right 第二个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.mod = function (left, right, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -1015,11 +1016,11 @@ ColorRGBA.mod = function (left, right, result = new ColorRGBA()) {
 };
 
 /**
- * Modulus this Color componentwise by other Color.
+ * 将此 Color 按分量对 other Color 取模。
  *
- * @param {ColorRGBA} other The other Color.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} other 另一个 Color。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  * 
  * @see ColorRGBA.mod
  */
@@ -1028,13 +1029,13 @@ ColorRGBA.prototype.mod = function (other, result) {
 };
 
 /**
- * Computes the linear interpolation or extrapolation at t between the provided colors.
+ * 计算给定两个颜色之间在 t 处的线性插值或外插。
  *
- * @param {ColorRGBA} start The color corresponding to t at 0.0.
- * @param {ColorRGBA} end The color corresponding to t at 1.0.
- * @param {number} t The point along t at which to interpolate.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} start t 为 0.0 时对应的颜色。
+ * @param {ColorRGBA} end t 为 1.0 时对应的颜色。
+ * @param {number} t 进行插值的 t 位置。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.lerp = function (start, end, t, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -1046,17 +1047,17 @@ ColorRGBA.lerp = function (start, end, t, result = new ColorRGBA()) {
     result.red = lerp(start.red, end.red, t);
     result.green = lerp(start.green, end.green, t);
     result.blue = lerp(start.blue, end.blue, t);
-    result.alpha = CesiumMath.lerp(start.alpha, end.alpha, t);
+    result.alpha = lerp(start.alpha, end.alpha, t);
     return result;
 };
 
 /**
- * Multiplies the provided Color componentwise by the provided scalar.
+ * 将给定 Color 按分量乘以给定标量。
  *
- * @param {ColorRGBA} color The Color to be scaled.
- * @param {number} scalar The scalar to multiply with.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} color 要被缩放的 Color。
+ * @param {number} scalar 用于相乘的标量。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.multiplyByScalar = function (color, scalar, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -1072,11 +1073,11 @@ ColorRGBA.multiplyByScalar = function (color, scalar, result = new ColorRGBA()) 
 };
 
 /**
- * Multiplies this Color componentwise by the provided scalar.
+ * 将此 Color 按分量乘以给定标量。
  *
- * @param {number} scalar The scalar to multiply with.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {number} scalar 用于相乘的标量。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  * 
  * @see ColorRGBA.multiplyByScalar
  */
@@ -1085,12 +1086,12 @@ ColorRGBA.prototype.multiplyByScalar = function (scalar, result) {
 };
 
 /**
- * Divides the provided Color componentwise by the provided scalar.
+ * 将给定 Color 按分量除以给定标量。
  *
- * @param {ColorRGBA} color The Color to be divided.
- * @param {number} scalar The scalar to divide with.
- * @param {ColorRGBA} result The object onto which to store the result.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {ColorRGBA} color 要被除的 Color。
+ * @param {number} scalar 用于相除的标量。
+ * @param {ColorRGBA} result 用于存储结果的对象。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  */
 ColorRGBA.divideByScalar = function (color, scalar, result = new ColorRGBA()) {
     //>>includeStart('debug', pragmas.debug);
@@ -1106,11 +1107,11 @@ ColorRGBA.divideByScalar = function (color, scalar, result = new ColorRGBA()) {
 };
 
 /**
- * Divides this Color componentwise by the provided scalar.
+ * 将此 Color 按分量除以给定标量。
  *
- * @param {number} scalar The scalar to divide with.
- * @param {ColorRGBA} result The object onto which to store the result, if not defined, it will use self.
- * @returns {ColorRGBA} The modified result parameter.
+ * @param {number} scalar 用于相除的标量。
+ * @param {ColorRGBA} result 用于存储结果的对象，若未定义则使用自身。
+ * @returns {ColorRGBA} 修改后的 result 参数。
  * 
  * @see ColorRGBA.divideByScalar
  */
@@ -1119,12 +1120,12 @@ ColorRGBA.prototype.divideByScalar = function (scalar, result) {
 };
 
 /**
- * Creates a new Color from a ColorRGB instance.
+ * 从 ColorRGB 实例创建新的 Color。
  *
- * @param {ColorRGB} color The ColorRGB instance.
- * @param {number} [alpha=1.0] The alpha component.
- * @param {ColorRGBA} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGBA} The modified result parameter or a new instance if result was undefined.
+ * @param {ColorRGB} color ColorRGB 实例。
+ * @param {number} [alpha=1.0] alpha 分量。
+ * @param {ColorRGBA} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGBA} 修改后的 result 参数；若 result 未定义则返回新实例。
  * 
  * @see ColorRGBA#toColorRGB
 */
@@ -1145,7 +1146,7 @@ ColorRGBA.fromColorRGB = function (color, alpha = 1.0, result = new ColorRGBA())
 ColorRGBA.fromColor3 = ColorRGBA.fromColorRGB;
 
 /**
- * Sets this Color values from an ColorRGB instance.
+ * 从 ColorRGB 实例设置此 Color 的值。
  * 
  * @see ColorRGBA.fromColorRGB
 */
@@ -1154,10 +1155,10 @@ ColorRGBA.prototype.setFromColorRGB = function (color, alpha = 1.0) {
 };
 
 /**
- * Converts this Color to an ColorRGB instance.
+ * 将此 Color 转换为 ColorRGB 实例。
  * 
- * @param {ColorRGB} [result] The object to store the result in, if undefined a new instance will be created.
- * @returns {ColorRGB} The modified result parameter or a new instance if result was undefined.
+ * @param {ColorRGB} [result] 用于存储结果的对象，若未定义将创建一个新实例。
+ * @returns {ColorRGB} 修改后的 result 参数；若 result 未定义则返回新实例。
  * 
  * @see ColorRGBA.fromColorRGB
 */
@@ -1176,1325 +1177,2210 @@ ColorRGBA.prototype.toColorRGB = function (result = new ColorRGBA()) {
 ColorRGBA.prototype.toColor3 = ColorRGBA.prototype.toColorRGB;
 
 /**
- * An immutable Color instance initialized to CSS color #F0F8FF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F0F8FF
  * <span class="colorSwath" style="background: #F0F8FF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.ALICEBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.ALICEBLUE));
+Object.defineProperty(ColorRGBA, 'ALICEBLUE', {
+    get: function () {
+        return _namedColor('ALICEBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FAEBD7
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FAEBD7
  * <span class="colorSwath" style="background: #FAEBD7;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.ANTIQUEWHITE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.ANTIQUEWHITE));
+Object.defineProperty(ColorRGBA, 'ANTIQUEWHITE', {
+    get: function () {
+        return _namedColor('ANTIQUEWHITE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00FFFF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00FFFF
  * <span class="colorSwath" style="background: #00FFFF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.AQUA = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.AQUA));
+Object.defineProperty(ColorRGBA, 'AQUA', {
+    get: function () {
+        return _namedColor('AQUA');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #7FFFD4
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #7FFFD4
  * <span class="colorSwath" style="background: #7FFFD4;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.AQUAMARINE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.AQUAMARINE));
+Object.defineProperty(ColorRGBA, 'AQUAMARINE', {
+    get: function () {
+        return _namedColor('AQUAMARINE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F0FFFF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F0FFFF
  * <span class="colorSwath" style="background: #F0FFFF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.AZURE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.AZURE));
+Object.defineProperty(ColorRGBA, 'AZURE', {
+    get: function () {
+        return _namedColor('AZURE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F5F5DC
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F5F5DC
  * <span class="colorSwath" style="background: #F5F5DC;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BEIGE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BEIGE));
+Object.defineProperty(ColorRGBA, 'BEIGE', {
+    get: function () {
+        return _namedColor('BEIGE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFE4C4
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFE4C4
  * <span class="colorSwath" style="background: #FFE4C4;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BISQUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BISQUE));
+Object.defineProperty(ColorRGBA, 'BISQUE', {
+    get: function () {
+        return _namedColor('BISQUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #000000
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #000000
  * <span class="colorSwath" style="background: #000000;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BLACK = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BLACK));
+Object.defineProperty(ColorRGBA, 'BLACK', {
+    get: function () {
+        return _namedColor('BLACK');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFEBCD
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFEBCD
  * <span class="colorSwath" style="background: #FFEBCD;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BLANCHEDALMOND = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BLANCHEDALMOND));
+Object.defineProperty(ColorRGBA, 'BLANCHEDALMOND', {
+    get: function () {
+        return _namedColor('BLANCHEDALMOND');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #0000FF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #0000FF
  * <span class="colorSwath" style="background: #0000FF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BLUE));
+Object.defineProperty(ColorRGBA, 'BLUE', {
+    get: function () {
+        return _namedColor('BLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #8A2BE2
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #8A2BE2
  * <span class="colorSwath" style="background: #8A2BE2;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BLUEVIOLET = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BLUEVIOLET));
+Object.defineProperty(ColorRGBA, 'BLUEVIOLET', {
+    get: function () {
+        return _namedColor('BLUEVIOLET');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #A52A2A
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #A52A2A
  * <span class="colorSwath" style="background: #A52A2A;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BROWN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BROWN));
+Object.defineProperty(ColorRGBA, 'BROWN', {
+    get: function () {
+        return _namedColor('BROWN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #DEB887
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #DEB887
  * <span class="colorSwath" style="background: #DEB887;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.BURLYWOOD = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.BURLYWOOD));
+Object.defineProperty(ColorRGBA, 'BURLYWOOD', {
+    get: function () {
+        return _namedColor('BURLYWOOD');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #5F9EA0
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #5F9EA0
  * <span class="colorSwath" style="background: #5F9EA0;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CADETBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CADETBLUE));
+Object.defineProperty(ColorRGBA, 'CADETBLUE', {
+    get: function () {
+        return _namedColor('CADETBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 /**
- * An immutable Color instance initialized to CSS color #7FFF00
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #7FFF00
  * <span class="colorSwath" style="background: #7FFF00;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CHARTREUSE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CHARTREUSE));
+Object.defineProperty(ColorRGBA, 'CHARTREUSE', {
+    get: function () {
+        return _namedColor('CHARTREUSE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #D2691E
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #D2691E
  * <span class="colorSwath" style="background: #D2691E;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CHOCOLATE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CHOCOLATE));
+Object.defineProperty(ColorRGBA, 'CHOCOLATE', {
+    get: function () {
+        return _namedColor('CHOCOLATE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF7F50
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF7F50
  * <span class="colorSwath" style="background: #FF7F50;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CORAL = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CORAL));
+Object.defineProperty(ColorRGBA, 'CORAL', {
+    get: function () {
+        return _namedColor('CORAL');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #6495ED
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #6495ED
  * <span class="colorSwath" style="background: #6495ED;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CORNFLOWERBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CORNFLOWERBLUE));
+Object.defineProperty(ColorRGBA, 'CORNFLOWERBLUE', {
+    get: function () {
+        return _namedColor('CORNFLOWERBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFF8DC
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFF8DC
  * <span class="colorSwath" style="background: #FFF8DC;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CORNSILK = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CORNSILK));
+Object.defineProperty(ColorRGBA, 'CORNSILK', {
+    get: function () {
+        return _namedColor('CORNSILK');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #DC143C
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #DC143C
  * <span class="colorSwath" style="background: #DC143C;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CRIMSON = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CRIMSON));
+Object.defineProperty(ColorRGBA, 'CRIMSON', {
+    get: function () {
+        return _namedColor('CRIMSON');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00FFFF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00FFFF
  * <span class="colorSwath" style="background: #00FFFF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.CYAN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.CYAN));
+Object.defineProperty(ColorRGBA, 'CYAN', {
+    get: function () {
+        return _namedColor('CYAN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00008B
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00008B
  * <span class="colorSwath" style="background: #00008B;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKBLUE));
+Object.defineProperty(ColorRGBA, 'DARKBLUE', {
+    get: function () {
+        return _namedColor('DARKBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #008B8B
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #008B8B
  * <span class="colorSwath" style="background: #008B8B;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKCYAN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKCYAN));
+Object.defineProperty(ColorRGBA, 'DARKCYAN', {
+    get: function () {
+        return _namedColor('DARKCYAN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #B8860B
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #B8860B
  * <span class="colorSwath" style="background: #B8860B;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKGOLDENROD = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKGOLDENROD));
+Object.defineProperty(ColorRGBA, 'DARKGOLDENROD', {
+    get: function () {
+        return _namedColor('DARKGOLDENROD');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #A9A9A9
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #A9A9A9
  * <span class="colorSwath" style="background: #A9A9A9;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKGRAY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKGRAY));
+Object.defineProperty(ColorRGBA, 'DARKGRAY', {
+    get: function () {
+        return _namedColor('DARKGRAY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #006400
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #006400
  * <span class="colorSwath" style="background: #006400;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKGREEN));
+Object.defineProperty(ColorRGBA, 'DARKGREEN', {
+    get: function () {
+        return _namedColor('DARKGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #A9A9A9
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #A9A9A9
  * <span class="colorSwath" style="background: #A9A9A9;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKGREY = ColorRGBA.DARKGRAY;
+Object.defineProperty(ColorRGBA, 'DARKGREY', {
+    get: function () {
+        return ColorRGBA.DARKGRAY;
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #BDB76B
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #BDB76B
  * <span class="colorSwath" style="background: #BDB76B;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKKHAKI = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKKHAKI));
+Object.defineProperty(ColorRGBA, 'DARKKHAKI', {
+    get: function () {
+        return _namedColor('DARKKHAKI');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #8B008B
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #8B008B
  * <span class="colorSwath" style="background: #8B008B;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKMAGENTA = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKMAGENTA));
+Object.defineProperty(ColorRGBA, 'DARKMAGENTA', {
+    get: function () {
+        return _namedColor('DARKMAGENTA');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #556B2F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #556B2F
  * <span class="colorSwath" style="background: #556B2F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKOLIVEGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKOLIVEGREEN));
+Object.defineProperty(ColorRGBA, 'DARKOLIVEGREEN', {
+    get: function () {
+        return _namedColor('DARKOLIVEGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF8C00
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF8C00
  * <span class="colorSwath" style="background: #FF8C00;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKORANGE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKORANGE));
+Object.defineProperty(ColorRGBA, 'DARKORANGE', {
+    get: function () {
+        return _namedColor('DARKORANGE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #9932CC
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #9932CC
  * <span class="colorSwath" style="background: #9932CC;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKORCHID = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKORCHID));
+Object.defineProperty(ColorRGBA, 'DARKORCHID', {
+    get: function () {
+        return _namedColor('DARKORCHID');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #8B0000
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #8B0000
  * <span class="colorSwath" style="background: #8B0000;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKRED = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKRED));
+Object.defineProperty(ColorRGBA, 'DARKRED', {
+    get: function () {
+        return _namedColor('DARKRED');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #E9967A
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #E9967A
  * <span class="colorSwath" style="background: #E9967A;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKSALMON = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKSALMON));
+Object.defineProperty(ColorRGBA, 'DARKSALMON', {
+    get: function () {
+        return _namedColor('DARKSALMON');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #8FBC8F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #8FBC8F
  * <span class="colorSwath" style="background: #8FBC8F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKSEAGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKSEAGREEN));
+Object.defineProperty(ColorRGBA, 'DARKSEAGREEN', {
+    get: function () {
+        return _namedColor('DARKSEAGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #483D8B
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #483D8B
  * <span class="colorSwath" style="background: #483D8B;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKSLATEBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKSLATEBLUE));
+Object.defineProperty(ColorRGBA, 'DARKSLATEBLUE', {
+    get: function () {
+        return _namedColor('DARKSLATEBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #2F4F4F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #2F4F4F
  * <span class="colorSwath" style="background: #2F4F4F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKSLATEGRAY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKSLATEGRAY));
+Object.defineProperty(ColorRGBA, 'DARKSLATEGRAY', {
+    get: function () {
+        return _namedColor('DARKSLATEGRAY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #2F4F4F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #2F4F4F
  * <span class="colorSwath" style="background: #2F4F4F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKSLATEGREY = ColorRGBA.DARKSLATEGRAY;
+Object.defineProperty(ColorRGBA, 'DARKSLATEGREY', {
+    get: function () {
+        return ColorRGBA.DARKSLATEGRAY;
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00CED1
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00CED1
  * <span class="colorSwath" style="background: #00CED1;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKTURQUOISE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKTURQUOISE));
+Object.defineProperty(ColorRGBA, 'DARKTURQUOISE', {
+    get: function () {
+        return _namedColor('DARKTURQUOISE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #9400D3
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #9400D3
  * <span class="colorSwath" style="background: #9400D3;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DARKVIOLET = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DARKVIOLET));
+Object.defineProperty(ColorRGBA, 'DARKVIOLET', {
+    get: function () {
+        return _namedColor('DARKVIOLET');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF1493
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF1493
  * <span class="colorSwath" style="background: #FF1493;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DEEPPINK = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DEEPPINK));
+Object.defineProperty(ColorRGBA, 'DEEPPINK', {
+    get: function () {
+        return _namedColor('DEEPPINK');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00BFFF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00BFFF
  * <span class="colorSwath" style="background: #00BFFF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DEEPSKYBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DEEPSKYBLUE));
+Object.defineProperty(ColorRGBA, 'DEEPSKYBLUE', {
+    get: function () {
+        return _namedColor('DEEPSKYBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #696969
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #696969
  * <span class="colorSwath" style="background: #696969;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DIMGRAY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DIMGRAY));
+Object.defineProperty(ColorRGBA, 'DIMGRAY', {
+    get: function () {
+        return _namedColor('DIMGRAY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #696969
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #696969
  * <span class="colorSwath" style="background: #696969;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DIMGREY = ColorRGBA.DIMGRAY;
+Object.defineProperty(ColorRGBA, 'DIMGREY', {
+    get: function () {
+        return ColorRGBA.DIMGRAY;
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #1E90FF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #1E90FF
  * <span class="colorSwath" style="background: #1E90FF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.DODGERBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.DODGERBLUE));
+Object.defineProperty(ColorRGBA, 'DODGERBLUE', {
+    get: function () {
+        return _namedColor('DODGERBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #B22222
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #B22222
  * <span class="colorSwath" style="background: #B22222;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.FIREBRICK = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.FIREBRICK));
+Object.defineProperty(ColorRGBA, 'FIREBRICK', {
+    get: function () {
+        return _namedColor('FIREBRICK');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFFAF0
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFFAF0
  * <span class="colorSwath" style="background: #FFFAF0;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.FLORALWHITE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.FLORALWHITE));
+Object.defineProperty(ColorRGBA, 'FLORALWHITE', {
+    get: function () {
+        return _namedColor('FLORALWHITE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #228B22
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #228B22
  * <span class="colorSwath" style="background: #228B22;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.FORESTGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.FORESTGREEN));
+Object.defineProperty(ColorRGBA, 'FORESTGREEN', {
+    get: function () {
+        return _namedColor('FORESTGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF00FF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF00FF
  * <span class="colorSwath" style="background: #FF00FF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.FUCHSIA = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.FUCHSIA));
+Object.defineProperty(ColorRGBA, 'FUCHSIA', {
+    get: function () {
+        return _namedColor('FUCHSIA');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #DCDCDC
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #DCDCDC
  * <span class="colorSwath" style="background: #DCDCDC;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GAINSBORO = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.GAINSBORO));
+Object.defineProperty(ColorRGBA, 'GAINSBORO', {
+    get: function () {
+        return _namedColor('GAINSBORO');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F8F8FF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F8F8FF
  * <span class="colorSwath" style="background: #F8F8FF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GHOSTWHITE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.GHOSTWHITE));
+Object.defineProperty(ColorRGBA, 'GHOSTWHITE', {
+    get: function () {
+        return _namedColor('GHOSTWHITE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFD700
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFD700
  * <span class="colorSwath" style="background: #FFD700;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GOLD = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.GOLD));
+Object.defineProperty(ColorRGBA, 'GOLD', {
+    get: function () {
+        return _namedColor('GOLD');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #DAA520
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #DAA520
  * <span class="colorSwath" style="background: #DAA520;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GOLDENROD = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.GOLDENROD));
+Object.defineProperty(ColorRGBA, 'GOLDENROD', {
+    get: function () {
+        return _namedColor('GOLDENROD');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #808080
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #808080
  * <span class="colorSwath" style="background: #808080;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GRAY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.GRAY));
+Object.defineProperty(ColorRGBA, 'GRAY', {
+    get: function () {
+        return _namedColor('GRAY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #008000
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #008000
  * <span class="colorSwath" style="background: #008000;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.GREEN));
+Object.defineProperty(ColorRGBA, 'GREEN', {
+    get: function () {
+        return _namedColor('GREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #ADFF2F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #ADFF2F
  * <span class="colorSwath" style="background: #ADFF2F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GREENYELLOW = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.GREENYELLOW));
+Object.defineProperty(ColorRGBA, 'GREENYELLOW', {
+    get: function () {
+        return _namedColor('GREENYELLOW');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #808080
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #808080
  * <span class="colorSwath" style="background: #808080;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.GREY = ColorRGBA.GRAY;
+Object.defineProperty(ColorRGBA, 'GREY', {
+    get: function () {
+        return ColorRGBA.GRAY;
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F0FFF0
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F0FFF0
  * <span class="colorSwath" style="background: #F0FFF0;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.HONEYDEW = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.HONEYDEW));
+Object.defineProperty(ColorRGBA, 'HONEYDEW', {
+    get: function () {
+        return _namedColor('HONEYDEW');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF69B4
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF69B4
  * <span class="colorSwath" style="background: #FF69B4;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.HOTPINK = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.HOTPINK));
+Object.defineProperty(ColorRGBA, 'HOTPINK', {
+    get: function () {
+        return _namedColor('HOTPINK');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #CD5C5C
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #CD5C5C
  * <span class="colorSwath" style="background: #CD5C5C;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.INDIANRED = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.INDIANRED));
+Object.defineProperty(ColorRGBA, 'INDIANRED', {
+    get: function () {
+        return _namedColor('INDIANRED');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #4B0082
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #4B0082
  * <span class="colorSwath" style="background: #4B0082;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.INDIGO = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.INDIGO));
+Object.defineProperty(ColorRGBA, 'INDIGO', {
+    get: function () {
+        return _namedColor('INDIGO');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFFFF0
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFFFF0
  * <span class="colorSwath" style="background: #FFFFF0;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.IVORY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.IVORY));
+Object.defineProperty(ColorRGBA, 'IVORY', {
+    get: function () {
+        return _namedColor('IVORY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F0E68C
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F0E68C
  * <span class="colorSwath" style="background: #F0E68C;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.KHAKI = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.KHAKI));
+Object.defineProperty(ColorRGBA, 'KHAKI', {
+    get: function () {
+        return _namedColor('KHAKI');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #E6E6FA
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #E6E6FA
  * <span class="colorSwath" style="background: #E6E6FA;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LAVENDER = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LAVENDER));
+Object.defineProperty(ColorRGBA, 'LAVENDER', {
+    get: function () {
+        return _namedColor('LAVENDER');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFF0F5
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFF0F5
  * <span class="colorSwath" style="background: #FFF0F5;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LAVENDAR_BLUSH = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LAVENDAR_BLUSH));
+Object.defineProperty(ColorRGBA, 'LAVENDAR_BLUSH', {
+    get: function () {
+        return _namedColor('LAVENDAR_BLUSH');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #7CFC00
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #7CFC00
  * <span class="colorSwath" style="background: #7CFC00;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LAWNGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LAWNGREEN));
+Object.defineProperty(ColorRGBA, 'LAWNGREEN', {
+    get: function () {
+        return _namedColor('LAWNGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFFACD
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFFACD
  * <span class="colorSwath" style="background: #FFFACD;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LEMONCHIFFON = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LEMONCHIFFON));
+Object.defineProperty(ColorRGBA, 'LEMONCHIFFON', {
+    get: function () {
+        return _namedColor('LEMONCHIFFON');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #ADD8E6
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #ADD8E6
  * <span class="colorSwath" style="background: #ADD8E6;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTBLUE));
+Object.defineProperty(ColorRGBA, 'LIGHTBLUE', {
+    get: function () {
+        return _namedColor('LIGHTBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F08080
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F08080
  * <span class="colorSwath" style="background: #F08080;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTCORAL = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTCORAL));
+Object.defineProperty(ColorRGBA, 'LIGHTCORAL', {
+    get: function () {
+        return _namedColor('LIGHTCORAL');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #E0FFFF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #E0FFFF
  * <span class="colorSwath" style="background: #E0FFFF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTCYAN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTCYAN));
+Object.defineProperty(ColorRGBA, 'LIGHTCYAN', {
+    get: function () {
+        return _namedColor('LIGHTCYAN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FAFAD2
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FAFAD2
  * <span class="colorSwath" style="background: #FAFAD2;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTGOLDENRODYELLOW = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTGOLDENRODYELLOW));
+Object.defineProperty(ColorRGBA, 'LIGHTGOLDENRODYELLOW', {
+    get: function () {
+        return _namedColor('LIGHTGOLDENRODYELLOW');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #D3D3D3
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #D3D3D3
  * <span class="colorSwath" style="background: #D3D3D3;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTGRAY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTGRAY));
+Object.defineProperty(ColorRGBA, 'LIGHTGRAY', {
+    get: function () {
+        return _namedColor('LIGHTGRAY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #90EE90
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #90EE90
  * <span class="colorSwath" style="background: #90EE90;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTGREEN));
+Object.defineProperty(ColorRGBA, 'LIGHTGREEN', {
+    get: function () {
+        return _namedColor('LIGHTGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #D3D3D3
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #D3D3D3
  * <span class="colorSwath" style="background: #D3D3D3;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTGREY = ColorRGBA.LIGHTGRAY;
+Object.defineProperty(ColorRGBA, 'LIGHTGREY', {
+    get: function () {
+        return ColorRGBA.LIGHTGRAY;
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFB6C1
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFB6C1
  * <span class="colorSwath" style="background: #FFB6C1;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTPINK = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTPINK));
+Object.defineProperty(ColorRGBA, 'LIGHTPINK', {
+    get: function () {
+        return _namedColor('LIGHTPINK');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #20B2AA
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #20B2AA
  * <span class="colorSwath" style="background: #20B2AA;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTSEAGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTSEAGREEN));
+Object.defineProperty(ColorRGBA, 'LIGHTSEAGREEN', {
+    get: function () {
+        return _namedColor('LIGHTSEAGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #87CEFA
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #87CEFA
  * <span class="colorSwath" style="background: #87CEFA;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTSKYBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTSKYBLUE));
+Object.defineProperty(ColorRGBA, 'LIGHTSKYBLUE', {
+    get: function () {
+        return _namedColor('LIGHTSKYBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #778899
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #778899
  * <span class="colorSwath" style="background: #778899;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTSLATEGRAY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTSLATEGRAY));
+Object.defineProperty(ColorRGBA, 'LIGHTSLATEGRAY', {
+    get: function () {
+        return _namedColor('LIGHTSLATEGRAY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #778899
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #778899
  * <span class="colorSwath" style="background: #778899;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTSLATEGREY = ColorRGBA.LIGHTSLATEGRAY;
+Object.defineProperty(ColorRGBA, 'LIGHTSLATEGREY', {
+    get: function () {
+        return ColorRGBA.LIGHTSLATEGRAY;
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #B0C4DE
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #B0C4DE
  * <span class="colorSwath" style="background: #B0C4DE;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTSTEELBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTSTEELBLUE));
+Object.defineProperty(ColorRGBA, 'LIGHTSTEELBLUE', {
+    get: function () {
+        return _namedColor('LIGHTSTEELBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFFFE0
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFFFE0
  * <span class="colorSwath" style="background: #FFFFE0;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIGHTYELLOW = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIGHTYELLOW));
+Object.defineProperty(ColorRGBA, 'LIGHTYELLOW', {
+    get: function () {
+        return _namedColor('LIGHTYELLOW');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00FF00
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00FF00
  * <span class="colorSwath" style="background: #00FF00;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIME = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIME));
+Object.defineProperty(ColorRGBA, 'LIME', {
+    get: function () {
+        return _namedColor('LIME');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #32CD32
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #32CD32
  * <span class="colorSwath" style="background: #32CD32;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LIMEGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LIMEGREEN));
+Object.defineProperty(ColorRGBA, 'LIMEGREEN', {
+    get: function () {
+        return _namedColor('LIMEGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FAF0E6
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FAF0E6
  * <span class="colorSwath" style="background: #FAF0E6;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.LINEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.LINEN));
+Object.defineProperty(ColorRGBA, 'LINEN', {
+    get: function () {
+        return _namedColor('LINEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF00FF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF00FF
  * <span class="colorSwath" style="background: #FF00FF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MAGENTA = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MAGENTA));
+Object.defineProperty(ColorRGBA, 'MAGENTA', {
+    get: function () {
+        return _namedColor('MAGENTA');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #800000
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #800000
  * <span class="colorSwath" style="background: #800000;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MAROON = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MAROON));
+Object.defineProperty(ColorRGBA, 'MAROON', {
+    get: function () {
+        return _namedColor('MAROON');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #66CDAA
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #66CDAA
  * <span class="colorSwath" style="background: #66CDAA;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMAQUAMARINE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMAQUAMARINE));
+Object.defineProperty(ColorRGBA, 'MEDIUMAQUAMARINE', {
+    get: function () {
+        return _namedColor('MEDIUMAQUAMARINE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #0000CD
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #0000CD
  * <span class="colorSwath" style="background: #0000CD;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMBLUE));
+Object.defineProperty(ColorRGBA, 'MEDIUMBLUE', {
+    get: function () {
+        return _namedColor('MEDIUMBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #BA55D3
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #BA55D3
  * <span class="colorSwath" style="background: #BA55D3;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMORCHID = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMORCHID));
+Object.defineProperty(ColorRGBA, 'MEDIUMORCHID', {
+    get: function () {
+        return _namedColor('MEDIUMORCHID');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #9370DB
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #9370DB
  * <span class="colorSwath" style="background: #9370DB;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMPURPLE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMPURPLE));
+Object.defineProperty(ColorRGBA, 'MEDIUMPURPLE', {
+    get: function () {
+        return _namedColor('MEDIUMPURPLE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #3CB371
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #3CB371
  * <span class="colorSwath" style="background: #3CB371;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMSEAGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMSEAGREEN));
+Object.defineProperty(ColorRGBA, 'MEDIUMSEAGREEN', {
+    get: function () {
+        return _namedColor('MEDIUMSEAGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #7B68EE
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #7B68EE
  * <span class="colorSwath" style="background: #7B68EE;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMSLATEBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMSLATEBLUE));
+Object.defineProperty(ColorRGBA, 'MEDIUMSLATEBLUE', {
+    get: function () {
+        return _namedColor('MEDIUMSLATEBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00FA9A
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00FA9A
  * <span class="colorSwath" style="background: #00FA9A;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMSPRINGGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMSPRINGGREEN));
+Object.defineProperty(ColorRGBA, 'MEDIUMSPRINGGREEN', {
+    get: function () {
+        return _namedColor('MEDIUMSPRINGGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #48D1CC
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #48D1CC
  * <span class="colorSwath" style="background: #48D1CC;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMTURQUOISE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMTURQUOISE));
+Object.defineProperty(ColorRGBA, 'MEDIUMTURQUOISE', {
+    get: function () {
+        return _namedColor('MEDIUMTURQUOISE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #C71585
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #C71585
  * <span class="colorSwath" style="background: #C71585;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MEDIUMVIOLETRED = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MEDIUMVIOLETRED));
+Object.defineProperty(ColorRGBA, 'MEDIUMVIOLETRED', {
+    get: function () {
+        return _namedColor('MEDIUMVIOLETRED');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #191970
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #191970
  * <span class="colorSwath" style="background: #191970;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MIDNIGHTBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MIDNIGHTBLUE));
+Object.defineProperty(ColorRGBA, 'MIDNIGHTBLUE', {
+    get: function () {
+        return _namedColor('MIDNIGHTBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F5FFFA
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F5FFFA
  * <span class="colorSwath" style="background: #F5FFFA;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MINTCREAM = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MINTCREAM));
+Object.defineProperty(ColorRGBA, 'MINTCREAM', {
+    get: function () {
+        return _namedColor('MINTCREAM');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFE4E1
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFE4E1
  * <span class="colorSwath" style="background: #FFE4E1;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MISTYROSE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MISTYROSE));
+Object.defineProperty(ColorRGBA, 'MISTYROSE', {
+    get: function () {
+        return _namedColor('MISTYROSE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFE4B5
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFE4B5
  * <span class="colorSwath" style="background: #FFE4B5;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.MOCCASIN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.MOCCASIN));
+Object.defineProperty(ColorRGBA, 'MOCCASIN', {
+    get: function () {
+        return _namedColor('MOCCASIN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFDEAD
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFDEAD
  * <span class="colorSwath" style="background: #FFDEAD;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.NAVAJOWHITE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.NAVAJOWHITE));
+Object.defineProperty(ColorRGBA, 'NAVAJOWHITE', {
+    get: function () {
+        return _namedColor('NAVAJOWHITE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #000080
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #000080
  * <span class="colorSwath" style="background: #000080;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.NAVY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.NAVY));
+Object.defineProperty(ColorRGBA, 'NAVY', {
+    get: function () {
+        return _namedColor('NAVY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FDF5E6
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FDF5E6
  * <span class="colorSwath" style="background: #FDF5E6;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.OLDLACE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.OLDLACE));
+Object.defineProperty(ColorRGBA, 'OLDLACE', {
+    get: function () {
+        return _namedColor('OLDLACE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #808000
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #808000
  * <span class="colorSwath" style="background: #808000;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.OLIVE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.OLIVE));
+Object.defineProperty(ColorRGBA, 'OLIVE', {
+    get: function () {
+        return _namedColor('OLIVE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #6B8E23
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #6B8E23
  * <span class="colorSwath" style="background: #6B8E23;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.OLIVEDRAB = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.OLIVEDRAB));
+Object.defineProperty(ColorRGBA, 'OLIVEDRAB', {
+    get: function () {
+        return _namedColor('OLIVEDRAB');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFA500
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFA500
  * <span class="colorSwath" style="background: #FFA500;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.ORANGE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.ORANGE));
+Object.defineProperty(ColorRGBA, 'ORANGE', {
+    get: function () {
+        return _namedColor('ORANGE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF4500
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF4500
  * <span class="colorSwath" style="background: #FF4500;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.ORANGERED = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.ORANGERED));
+Object.defineProperty(ColorRGBA, 'ORANGERED', {
+    get: function () {
+        return _namedColor('ORANGERED');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #DA70D6
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #DA70D6
  * <span class="colorSwath" style="background: #DA70D6;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.ORCHID = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.ORCHID));
+Object.defineProperty(ColorRGBA, 'ORCHID', {
+    get: function () {
+        return _namedColor('ORCHID');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #EEE8AA
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #EEE8AA
  * <span class="colorSwath" style="background: #EEE8AA;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PALEGOLDENROD = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PALEGOLDENROD));
+Object.defineProperty(ColorRGBA, 'PALEGOLDENROD', {
+    get: function () {
+        return _namedColor('PALEGOLDENROD');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #98FB98
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #98FB98
  * <span class="colorSwath" style="background: #98FB98;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PALEGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PALEGREEN));
+Object.defineProperty(ColorRGBA, 'PALEGREEN', {
+    get: function () {
+        return _namedColor('PALEGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #AFEEEE
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #AFEEEE
  * <span class="colorSwath" style="background: #AFEEEE;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PALETURQUOISE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PALETURQUOISE));
+Object.defineProperty(ColorRGBA, 'PALETURQUOISE', {
+    get: function () {
+        return _namedColor('PALETURQUOISE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #DB7093
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #DB7093
  * <span class="colorSwath" style="background: #DB7093;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PALEVIOLETRED = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PALEVIOLETRED));
+Object.defineProperty(ColorRGBA, 'PALEVIOLETRED', {
+    get: function () {
+        return _namedColor('PALEVIOLETRED');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFEFD5
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFEFD5
  * <span class="colorSwath" style="background: #FFEFD5;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PAPAYAWHIP = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PAPAYAWHIP));
+Object.defineProperty(ColorRGBA, 'PAPAYAWHIP', {
+    get: function () {
+        return _namedColor('PAPAYAWHIP');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFDAB9
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFDAB9
  * <span class="colorSwath" style="background: #FFDAB9;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PEACHPUFF = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PEACHPUFF));
+Object.defineProperty(ColorRGBA, 'PEACHPUFF', {
+    get: function () {
+        return _namedColor('PEACHPUFF');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #CD853F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #CD853F
  * <span class="colorSwath" style="background: #CD853F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PERU = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PERU));
+Object.defineProperty(ColorRGBA, 'PERU', {
+    get: function () {
+        return _namedColor('PERU');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFC0CB
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFC0CB
  * <span class="colorSwath" style="background: #FFC0CB;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PINK = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PINK));
+Object.defineProperty(ColorRGBA, 'PINK', {
+    get: function () {
+        return _namedColor('PINK');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #DDA0DD
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #DDA0DD
  * <span class="colorSwath" style="background: #DDA0DD;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PLUM = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PLUM));
+Object.defineProperty(ColorRGBA, 'PLUM', {
+    get: function () {
+        return _namedColor('PLUM');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #B0E0E6
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #B0E0E6
  * <span class="colorSwath" style="background: #B0E0E6;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.POWDERBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.POWDERBLUE));
+Object.defineProperty(ColorRGBA, 'POWDERBLUE', {
+    get: function () {
+        return _namedColor('POWDERBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #800080
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #800080
  * <span class="colorSwath" style="background: #800080;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.PURPLE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.PURPLE));
+Object.defineProperty(ColorRGBA, 'PURPLE', {
+    get: function () {
+        return _namedColor('PURPLE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF0000
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF0000
  * <span class="colorSwath" style="background: #FF0000;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.RED = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.RED));
+Object.defineProperty(ColorRGBA, 'RED', {
+    get: function () {
+        return _namedColor('RED');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #BC8F8F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #BC8F8F
  * <span class="colorSwath" style="background: #BC8F8F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.ROSYBROWN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.ROSYBROWN));
+Object.defineProperty(ColorRGBA, 'ROSYBROWN', {
+    get: function () {
+        return _namedColor('ROSYBROWN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #4169E1
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #4169E1
  * <span class="colorSwath" style="background: #4169E1;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.ROYALBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.ROYALBLUE));
+Object.defineProperty(ColorRGBA, 'ROYALBLUE', {
+    get: function () {
+        return _namedColor('ROYALBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #8B4513
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #8B4513
  * <span class="colorSwath" style="background: #8B4513;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SADDLEBROWN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SADDLEBROWN));
+Object.defineProperty(ColorRGBA, 'SADDLEBROWN', {
+    get: function () {
+        return _namedColor('SADDLEBROWN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FA8072
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FA8072
  * <span class="colorSwath" style="background: #FA8072;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SALMON = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SALMON));
+Object.defineProperty(ColorRGBA, 'SALMON', {
+    get: function () {
+        return _namedColor('SALMON');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F4A460
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F4A460
  * <span class="colorSwath" style="background: #F4A460;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SANDYBROWN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SANDYBROWN));
+Object.defineProperty(ColorRGBA, 'SANDYBROWN', {
+    get: function () {
+        return _namedColor('SANDYBROWN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #2E8B57
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #2E8B57
  * <span class="colorSwath" style="background: #2E8B57;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SEAGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SEAGREEN));
+Object.defineProperty(ColorRGBA, 'SEAGREEN', {
+    get: function () {
+        return _namedColor('SEAGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFF5EE
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFF5EE
  * <span class="colorSwath" style="background: #FFF5EE;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SEASHELL = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SEASHELL));
+Object.defineProperty(ColorRGBA, 'SEASHELL', {
+    get: function () {
+        return _namedColor('SEASHELL');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #A0522D
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #A0522D
  * <span class="colorSwath" style="background: #A0522D;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SIENNA = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SIENNA));
+Object.defineProperty(ColorRGBA, 'SIENNA', {
+    get: function () {
+        return _namedColor('SIENNA');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #C0C0C0
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #C0C0C0
  * <span class="colorSwath" style="background: #C0C0C0;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SILVER = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SILVER));
+Object.defineProperty(ColorRGBA, 'SILVER', {
+    get: function () {
+        return _namedColor('SILVER');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #87CEEB
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #87CEEB
  * <span class="colorSwath" style="background: #87CEEB;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SKYBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SKYBLUE));
+Object.defineProperty(ColorRGBA, 'SKYBLUE', {
+    get: function () {
+        return _namedColor('SKYBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #6A5ACD
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #6A5ACD
  * <span class="colorSwath" style="background: #6A5ACD;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SLATEBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SLATEBLUE));
+Object.defineProperty(ColorRGBA, 'SLATEBLUE', {
+    get: function () {
+        return _namedColor('SLATEBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #708090
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #708090
  * <span class="colorSwath" style="background: #708090;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SLATEGRAY = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SLATEGRAY));
+Object.defineProperty(ColorRGBA, 'SLATEGRAY', {
+    get: function () {
+        return _namedColor('SLATEGRAY');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #708090
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #708090
  * <span class="colorSwath" style="background: #708090;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SLATEGREY = ColorRGBA.SLATEGRAY;
+Object.defineProperty(ColorRGBA, 'SLATEGREY', {
+    get: function () {
+        return ColorRGBA.SLATEGRAY;
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFFAFA
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFFAFA
  * <span class="colorSwath" style="background: #FFFAFA;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SNOW = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SNOW));
+Object.defineProperty(ColorRGBA, 'SNOW', {
+    get: function () {
+        return _namedColor('SNOW');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #00FF7F
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #00FF7F
  * <span class="colorSwath" style="background: #00FF7F;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.SPRINGGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.SPRINGGREEN));
+Object.defineProperty(ColorRGBA, 'SPRINGGREEN', {
+    get: function () {
+        return _namedColor('SPRINGGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #4682B4
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #4682B4
  * <span class="colorSwath" style="background: #4682B4;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.STEELBLUE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.STEELBLUE));
+Object.defineProperty(ColorRGBA, 'STEELBLUE', {
+    get: function () {
+        return _namedColor('STEELBLUE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #D2B48C
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #D2B48C
  * <span class="colorSwath" style="background: #D2B48C;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.TAN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.TAN));
+Object.defineProperty(ColorRGBA, 'TAN', {
+    get: function () {
+        return _namedColor('TAN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #008080
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #008080
  * <span class="colorSwath" style="background: #008080;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.TEAL = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.TEAL));
+Object.defineProperty(ColorRGBA, 'TEAL', {
+    get: function () {
+        return _namedColor('TEAL');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #D8BFD8
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #D8BFD8
  * <span class="colorSwath" style="background: #D8BFD8;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.THISTLE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.THISTLE));
+Object.defineProperty(ColorRGBA, 'THISTLE', {
+    get: function () {
+        return _namedColor('THISTLE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FF6347
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FF6347
  * <span class="colorSwath" style="background: #FF6347;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.TOMATO = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.TOMATO));
+Object.defineProperty(ColorRGBA, 'TOMATO', {
+    get: function () {
+        return _namedColor('TOMATO');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #40E0D0
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #40E0D0
  * <span class="colorSwath" style="background: #40E0D0;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.TURQUOISE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.TURQUOISE));
+Object.defineProperty(ColorRGBA, 'TURQUOISE', {
+    get: function () {
+        return _namedColor('TURQUOISE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #EE82EE
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #EE82EE
  * <span class="colorSwath" style="background: #EE82EE;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.VIOLET = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.VIOLET));
+Object.defineProperty(ColorRGBA, 'VIOLET', {
+    get: function () {
+        return _namedColor('VIOLET');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F5DEB3
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F5DEB3
  * <span class="colorSwath" style="background: #F5DEB3;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.WHEAT = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.WHEAT));
+Object.defineProperty(ColorRGBA, 'WHEAT', {
+    get: function () {
+        return _namedColor('WHEAT');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFFFFF
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFFFFF
  * <span class="colorSwath" style="background: #FFFFFF;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.WHITE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.WHITE));
+Object.defineProperty(ColorRGBA, 'WHITE', {
+    get: function () {
+        return _namedColor('WHITE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #F5F5F5
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #F5F5F5
  * <span class="colorSwath" style="background: #F5F5F5;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.WHITESMOKE = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.WHITESMOKE));
+Object.defineProperty(ColorRGBA, 'WHITESMOKE', {
+    get: function () {
+        return _namedColor('WHITESMOKE');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #FFFF00
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #FFFF00
  * <span class="colorSwath" style="background: #FFFF00;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.YELLOW = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.YELLOW));
+Object.defineProperty(ColorRGBA, 'YELLOW', {
+    get: function () {
+        return _namedColor('YELLOW');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS color #9ACD32
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 #9ACD32
  * <span class="colorSwath" style="background: #9ACD32;"></span>
  *
  * @constant
  * @type {ColorRGBA}
  */
-ColorRGBA.YELLOWGREEN = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB.YELLOWGREEN));
+Object.defineProperty(ColorRGBA, 'YELLOWGREEN', {
+    get: function () {
+        return _namedColor('YELLOWGREEN');
+    },
+    enumerable: true,
+    configurable: false,
+});
 
 /**
- * An immutable Color instance initialized to CSS transparent.
+ * 一个不可变的 Color 实例，初始化为 CSS 颜色 transparent。
  * <span class="colorSwath" style="background: transparent;"></span>
  *
  * @constant
  * @type {Color}
  */
 ColorRGBA.TRANSPARENT = Object.freeze(new ColorRGBA(0, 0, 0, 0));
+
+const _namedColorCache = {};
+function _namedColor(name) {
+    if (!(name in _namedColorCache)) {
+        _namedColorCache[name] = Object.freeze(ColorRGBA.fromColorRGB(ColorRGB[name]));
+    }
+    return _namedColorCache[name];
+}
+
 export default ColorRGBA;
 export { ColorRGBA as Color4, ColorRGBA };
