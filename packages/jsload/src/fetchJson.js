@@ -9,11 +9,7 @@ import fetchResponse from './fetchResponse.js';
 async function fetchJson(url, requestOptions) {
     try {
         const response = await fetchResponse(url, requestOptions);
-        const json = await response.json();
-        if (json)
-            return json;
-        else
-            throw new Error('fetchJson result is null. ');
+        return await response.json();
     } catch (error) {
         throw error;
     }

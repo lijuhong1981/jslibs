@@ -8,15 +8,11 @@ async function fetchResponse(url, requestOptions) {
     if (typeof url !== 'string') {
         throw new Error('fetch url ' + url + ' is illegal. ');
     }
-    try {
-        const response = await fetch(url, requestOptions);
-        if (response.ok)
-            return response;
-        else
-            throw new Error('fetch url ' + url + ' failed, status=' + response.status + ' ;statusText=' + response.statusText);
-    } catch (error) {
-        throw error;
-    }
+    const response = await fetch(url, requestOptions);
+    if (response.ok)
+        return response;
+    else
+        throw new Error('fetch url ' + url + ' failed, status=' + response.status + ' ;statusText=' + response.statusText);
 };
 
 export default fetchResponse;

@@ -7,7 +7,7 @@ import destroyHTMLElement from '@lijuhong1981/jsdestroy/src/destroyHTMLElement.j
 import destroyObject from '@lijuhong1981/jsdestroy/src/destroyObject.js';
 
 function destroyValue(value) {
-    if (value instanceof HTMLElement)
+    if (typeof HTMLElement !== 'undefined' && value instanceof HTMLElement)
         destroyHTMLElement(value);
     else if (isObject(value))
         destroyObject(value);
@@ -67,7 +67,7 @@ class Cache extends Destroyable {
         destroyOldValue = definedValue(destroyOldValue, this.destroyValues);
         const oldValue = this.map.get(key);
         if (oldValue === value)
-            return;
+            return this;
 
         if (defined(oldValue)) {
             isObject(oldValue) && delete oldValue.isCached;

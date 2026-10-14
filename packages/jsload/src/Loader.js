@@ -98,6 +98,9 @@ class Loader {
                     cached.readyPromise.then(function () {
                         if (typeof options.onLoad === 'function')
                             options.onLoad(cached);
+                    }).catch(function (error) {
+                        if (typeof options.onError === 'function')
+                            options.onError(error);
                     });
                 } else {
                     if (typeof options.onLoad === 'function')
@@ -113,6 +116,11 @@ class Loader {
         const result = this.onLoad(url, options);
         if (enableCache) {
             this.cache.set(url, result);
+            if (result && result.readyPromise) {
+                result.readyPromise.catch(() => {
+                    this.cache.delete(url);
+                });
+            }
         }
         return result;
     }

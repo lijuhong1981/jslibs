@@ -5,36 +5,41 @@ import {
 } from './FileRead.js';
 
 /**
- * @type {HTMLInputElement}
-*/
-let fileInput;
-
-/**
  * 触发文件输入
  * @param {Function} callback 回调函数
  * @returns {Promise<File>}
  */
 function inputFile(callback) {
-    return new Promise((resole, reject) => {
-        if (!fileInput) {
-            fileInput = document.createElement('input');
-            fileInput.type = 'file';
+    return new Promise((resolve, reject) => {
+        const input = document.createElement('input');
+        input.type = 'file';
+
+        function cleanup() {
+            input.removeEventListener('change', onInput, false);
+            input.removeEventListener('cancel', onCancel, false);
         }
 
         function onInput() {
-            fileInput.removeEventListener('change', onInput, false);
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
+            cleanup();
+            if (input.files.length > 0) {
+                const file = input.files[0];
                 if (callback)
                     callback(file);
-                if (resole)
-                    resole(file);
+                resolve(file);
+            } else {
+                reject(new Error('file selection canceled'));
             }
         }
 
-        fileInput.addEventListener('change', onInput, false);
+        function onCancel() {
+            cleanup();
+            reject(new Error('file selection canceled'));
+        }
 
-        fileInput.click();
+        input.addEventListener('change', onInput, false);
+        input.addEventListener('cancel', onCancel, false);
+
+        input.click();
     });
 }
 
@@ -46,13 +51,15 @@ function inputFile(callback) {
  * @returns {Promise}
  */
 function inputFileAsText(onLoad, onError, encoding) {
-    return new Promise((resole, reject) => {
+    return new Promise((resolve, reject) => {
         inputFile().then((file) => {
             readAsText(file, onLoad, onError, encoding).then((result) => {
-                resole(result);
+                resolve(result);
             }).catch((error) => {
                 reject(error);
             });
+        }).catch((error) => {
+            reject(error);
         });
     });
 }
@@ -64,13 +71,15 @@ function inputFileAsText(onLoad, onError, encoding) {
  * @returns {Promise}
  */
 function inputFileAsArrayBuffer(onLoad, onError) {
-    return new Promise((resole, reject) => {
+    return new Promise((resolve, reject) => {
         inputFile().then((file) => {
             readAsArrayBuffer(file, onLoad, onError).then((result) => {
-                resole(result);
+                resolve(result);
             }).catch((error) => {
                 reject(error);
             });
+        }).catch((error) => {
+            reject(error);
         });
     });
 }
@@ -82,13 +91,15 @@ function inputFileAsArrayBuffer(onLoad, onError) {
  * @returns {Promise}
  */
 function inputFileAsDataURL(onLoad, onError) {
-    return new Promise((resole, reject) => {
+    return new Promise((resolve, reject) => {
         inputFile().then((file) => {
             readAsDataURL(file, onLoad, onError).then((result) => {
-                resole(result);
+                resolve(result);
             }).catch((error) => {
                 reject(error);
             });
+        }).catch((error) => {
+            reject(error);
         });
     });
 }

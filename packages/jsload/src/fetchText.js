@@ -9,11 +9,7 @@ import fetchResponse from './fetchResponse.js';
 async function fetchText(url, requestOptions) {
     try {
         const response = await fetchResponse(url, requestOptions);
-        const text = await response.text();
-        if (text)
-            return text;
-        else
-            throw new Error('fetchText result is null. ');
+        return await response.text();
     } catch (error) {
         throw error;
     }

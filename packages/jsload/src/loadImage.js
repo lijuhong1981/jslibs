@@ -35,7 +35,8 @@ function loadImage(url, options = {}, result = new Image()) {
         readyPromise.reject(error);
     }
 
-    result.crossOrigin = options.crossOrigin || 'anonymous';
+    if (options.crossOrigin)
+        result.crossOrigin = options.crossOrigin;
     result.src = url;
 
     return result;

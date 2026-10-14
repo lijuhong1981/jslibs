@@ -9,16 +9,16 @@ import loadImage from "./loadImage.js";
  * @returns {Image} 返回Image对象
  */
 function blobToImage(blob, onLoad, onError, result) {
-    const objectUrl = window.URL.createObjectURL(blob);
+    const objectUrl = URL.createObjectURL(blob);
 
     return loadImage(objectUrl, {
         onLoad: function (image) {
-            window.URL.revokeObjectURL(objectUrl);
+            URL.revokeObjectURL(objectUrl);
             if (typeof onLoad === 'function')
                 onLoad(image);
         },
         onError: function (error) {
-            window.URL.revokeObjectURL(objectUrl);
+            URL.revokeObjectURL(objectUrl);
             if (typeof onError === 'function')
                 onError(error);
         },

@@ -37,7 +37,7 @@ function readLine(data, callback, encoding) {
                 reject(error);
             }, encoding);
         } else if (data instanceof ArrayBuffer) {
-            const decoder = new TextDecode(encoding);
+            const decoder = new TextDecoder(encoding);
             const text = decoder.decode(data);
             doReadLine(text);
         } else if (typeof data === 'string') {
